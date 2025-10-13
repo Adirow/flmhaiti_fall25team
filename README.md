@@ -8,11 +8,14 @@ First thing you need to do is download flutter, you can download it through VS c
 https://docs.flutter.dev/get-started/install/windows
 
 Verify your installation:
+
 flutter --version
+
 flutter doctor
 
 Then run Install Dependencies:
-cd d:\dental_roots (change to your folder used to store our code)
+
+cd d:\dental_roots **(change to your folder used to store our code)**
 flutter pub get
 
 Run the program:
