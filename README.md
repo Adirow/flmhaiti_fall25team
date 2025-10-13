@@ -16,13 +16,16 @@ flutter doctor
 Then run Install Dependencies:
 
 cd d:\dental_roots **(change to your folder used to store our code)**
+
 flutter pub get
 
 Run the program:
+
 # For web
 flutter run -d chrome
 
 Build for production:
+
 # Android APK
 flutter build apk
 
@@ -34,7 +37,7 @@ flutter build ios
 
 
 
-This project is a starting point for a Flutter application.
+This project is a Flutter application.
 
 A few resources to get you started if this is your first Flutter project:
 
