@@ -1,7 +1,7 @@
-import 'package:dental_roots/models/form_template.dart';
-import 'package:dental_roots/supabase/supabase_config.dart';
-import 'package:dental_roots/supabase/supabase_utils.dart';
-import 'package:dental_roots/services/form_service.dart';
+import 'package:flmhaiti_fall25team/models/form_template.dart';
+import 'package:flmhaiti_fall25team/supabase/supabase_config.dart';
+import 'package:flmhaiti_fall25team/supabase/supabase_utils.dart';
+import 'package:flmhaiti_fall25team/services/form_service.dart';
 
 class FormRepository {
   static final FormRepository _instance = FormRepository._();

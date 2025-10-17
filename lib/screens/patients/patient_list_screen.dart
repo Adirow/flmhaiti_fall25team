@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:dental_roots/screens/patients/patient_detail_screen.dart';
-import 'package:dental_roots/screens/patients/add_patient_screen.dart';
-import 'package:dental_roots/models/patient.dart';
-import 'package:dental_roots/services/patient_service.dart';
+import 'package:flmhaiti_fall25team/screens/patients/patient_detail_screen.dart';
+import 'package:flmhaiti_fall25team/screens/patients/add_patient_screen.dart';
+import 'package:flmhaiti_fall25team/models/patient.dart';
+import 'package:flmhaiti_fall25team/services/patient_service.dart';
 
 class PatientListScreen extends StatefulWidget {
   const PatientListScreen({super.key});

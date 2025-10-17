@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:dental_roots/screens/medical_history/medical_history_screen.dart';
-import 'package:dental_roots/screens/encounters/encounter_screen.dart';
-import 'package:dental_roots/screens/patients/patient_edit_screen.dart';
-import 'package:dental_roots/screens/questionnaires/questionnaires_home_page.dart';
-import 'package:dental_roots/models/patient.dart';
+import 'package:flmhaiti_fall25team/screens/medical_history/medical_history_screen.dart';
+import 'package:flmhaiti_fall25team/screens/encounters/encounter_screen.dart';
+import 'package:flmhaiti_fall25team/screens/patients/patient_edit_screen.dart';
+import 'package:flmhaiti_fall25team/screens/questionnaires/questionnaires_home_page.dart';
+import 'package:flmhaiti_fall25team/models/patient.dart';
 import 'package:intl/intl.dart';
 
 class PatientDetailScreen extends StatelessWidget {

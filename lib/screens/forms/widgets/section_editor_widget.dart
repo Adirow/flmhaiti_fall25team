@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:dental_roots/models/form_template.dart';
+import 'package:flmhaiti_fall25team/models/form_template.dart';
 
 class SectionEditorWidget extends StatelessWidget {
   final List<FormSection> sections;

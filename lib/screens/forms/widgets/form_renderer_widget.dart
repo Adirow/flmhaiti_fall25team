@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:dental_roots/models/form_template.dart';
+import 'package:flmhaiti_fall25team/models/form_template.dart';
 
 class FormRendererWidget extends StatefulWidget {
   final List<FormSection> sections;

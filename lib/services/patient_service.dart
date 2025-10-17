@@ -1,6 +1,6 @@
-import 'package:dental_roots/models/patient.dart';
-import 'package:dental_roots/supabase/supabase_config.dart';
-import 'package:dental_roots/supabase/supabase_utils.dart';
+import 'package:flmhaiti_fall25team/models/patient.dart';
+import 'package:flmhaiti_fall25team/supabase/supabase_config.dart';
+import 'package:flmhaiti_fall25team/supabase/supabase_utils.dart';
 
 class PatientService {
   static final PatientService _instance = PatientService._();

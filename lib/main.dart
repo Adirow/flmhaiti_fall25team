@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:dental_roots/theme.dart';
-import 'package:dental_roots/screens/auth/login_screen.dart';
-import 'package:dental_roots/supabase/supabase_config.dart';
-import 'package:dental_roots/encounter/config/encounter_config.dart';
+import 'package:flmhaiti_fall25team/theme.dart';
+import 'package:flmhaiti_fall25team/screens/auth/login_screen.dart';
+import 'package:flmhaiti_fall25team/supabase/supabase_config.dart';
+import 'package:flmhaiti_fall25team/encounter/config/encounter_config.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

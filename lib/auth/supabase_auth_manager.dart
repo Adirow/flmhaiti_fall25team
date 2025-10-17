@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:dental_roots/auth/auth_manager.dart';
-import 'package:dental_roots/supabase/supabase_config.dart';
-import 'package:dental_roots/models/user_profile.dart';
+import 'package:flmhaiti_fall25team/auth/auth_manager.dart';
+import 'package:flmhaiti_fall25team/supabase/supabase_config.dart';
+import 'package:flmhaiti_fall25team/models/user_profile.dart';
 
 class SupabaseAuthManager extends AuthManager with EmailSignInManager {
   static final SupabaseAuthManager _instance = SupabaseAuthManager._();

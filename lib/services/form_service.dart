@@ -1,6 +1,6 @@
-import 'package:dental_roots/models/form_template.dart';
-import 'package:dental_roots/supabase/supabase_config.dart';
-import 'package:dental_roots/supabase/supabase_utils.dart';
+import 'package:flmhaiti_fall25team/models/form_template.dart';
+import 'package:flmhaiti_fall25team/supabase/supabase_config.dart';
+import 'package:flmhaiti_fall25team/supabase/supabase_utils.dart';
 
 /// Simplified form service for MVP implementation
 class FormService {

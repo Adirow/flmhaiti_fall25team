@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:dental_roots/screens/patients/patient_list_screen.dart';
-import 'package:dental_roots/screens/appointments/appointments_screen.dart';
-import 'package:dental_roots/screens/encounters/encounter_screen.dart';
-import 'package:dental_roots/screens/forms/template_list_page.dart';
+import 'package:flmhaiti_fall25team/screens/patients/patient_list_screen.dart';
+import 'package:flmhaiti_fall25team/screens/appointments/appointments_screen.dart';
+import 'package:flmhaiti_fall25team/screens/encounters/encounter_screen.dart';
+import 'package:flmhaiti_fall25team/screens/forms/template_list_page.dart';
 
 class DashboardScreen extends StatelessWidget {
   const DashboardScreen({super.key});

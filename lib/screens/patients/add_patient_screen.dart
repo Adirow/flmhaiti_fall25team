@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:dental_roots/models/patient.dart';
-import 'package:dental_roots/services/patient_service.dart';
-import 'package:dental_roots/auth/supabase_auth_manager.dart';
+import 'package:flmhaiti_fall25team/models/patient.dart';
+import 'package:flmhaiti_fall25team/services/patient_service.dart';
+import 'package:flmhaiti_fall25team/auth/supabase_auth_manager.dart';
 
 class AddPatientScreen extends StatefulWidget {
   const AddPatientScreen({super.key});

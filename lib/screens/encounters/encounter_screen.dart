@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:dental_roots/encounter/encounter.dart';
+import 'package:flmhaiti_fall25team/encounter/encounter.dart';
 
 class EncounterScreen extends StatelessWidget {
   final String? patientId;

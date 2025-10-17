@@ -1,7 +1,7 @@
-import 'package:dental_roots/models/form_template.dart';
-import 'package:dental_roots/models/questionnaire_session.dart';
-import 'package:dental_roots/supabase/supabase_config.dart';
-import 'package:dental_roots/supabase/supabase_utils.dart';
+import 'package:flmhaiti_fall25team/models/form_template.dart';
+import 'package:flmhaiti_fall25team/models/questionnaire_session.dart';
+import 'package:flmhaiti_fall25team/supabase/supabase_config.dart';
+import 'package:flmhaiti_fall25team/supabase/supabase_utils.dart';
 
 class QuestionnaireRepository {
   static final QuestionnaireRepository _instance = QuestionnaireRepository._();

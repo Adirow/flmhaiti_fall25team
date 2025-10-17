@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:dental_roots/screens/dashboard/dashboard_screen.dart';
-import 'package:dental_roots/screens/auth/register_screen.dart';
-import 'package:dental_roots/auth/supabase_auth_manager.dart';
+import 'package:flmhaiti_fall25team/screens/dashboard/dashboard_screen.dart';
+import 'package:flmhaiti_fall25team/screens/auth/register_screen.dart';
+import 'package:flmhaiti_fall25team/auth/supabase_auth_manager.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});

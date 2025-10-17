@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:dental_roots/models/form_template.dart';
-import 'package:dental_roots/repositories/form_repository.dart';
-import 'package:dental_roots/screens/forms/widgets/section_editor_widget.dart';
-import 'package:dental_roots/screens/forms/widgets/question_editor_widget.dart';
-import 'package:dental_roots/screens/forms/widgets/form_preview_widget.dart';
+import 'package:flmhaiti_fall25team/models/form_template.dart';
+import 'package:flmhaiti_fall25team/repositories/form_repository.dart';
+import 'package:flmhaiti_fall25team/screens/forms/widgets/section_editor_widget.dart';
+import 'package:flmhaiti_fall25team/screens/forms/widgets/question_editor_widget.dart';
+import 'package:flmhaiti_fall25team/screens/forms/widgets/form_preview_widget.dart';
 
 class TemplateEditorPage extends StatefulWidget {
   final FormTemplate? template;

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:dental_roots/screens/dashboard/dashboard_screen.dart';
-import 'package:dental_roots/screens/auth/login_screen.dart';
-import 'package:dental_roots/auth/supabase_auth_manager.dart';
-import 'package:dental_roots/models/user_profile.dart';
-import 'package:dental_roots/supabase/supabase_config.dart';
+import 'package:flmhaiti_fall25team/screens/dashboard/dashboard_screen.dart';
+import 'package:flmhaiti_fall25team/screens/auth/login_screen.dart';
+import 'package:flmhaiti_fall25team/auth/supabase_auth_manager.dart';
+import 'package:flmhaiti_fall25team/models/user_profile.dart';
+import 'package:flmhaiti_fall25team/supabase/supabase_config.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});

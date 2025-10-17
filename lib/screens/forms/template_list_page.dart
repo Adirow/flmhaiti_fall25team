@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:dental_roots/models/form_template.dart';
-import 'package:dental_roots/repositories/form_repository.dart';
-import 'package:dental_roots/screens/forms/template_editor_page.dart';
+import 'package:flmhaiti_fall25team/models/form_template.dart';
+import 'package:flmhaiti_fall25team/repositories/form_repository.dart';
+import 'package:flmhaiti_fall25team/screens/forms/template_editor_page.dart';
 
 class TemplateListPage extends StatefulWidget {
   const TemplateListPage({super.key});

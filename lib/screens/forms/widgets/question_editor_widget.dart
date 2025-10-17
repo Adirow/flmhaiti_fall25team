@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
-import 'package:dental_roots/models/form_template.dart';
-import 'package:dental_roots/services/form_service.dart';
+import 'package:flmhaiti_fall25team/models/form_template.dart';
+import 'package:flmhaiti_fall25team/services/form_service.dart';
 
 class QuestionEditorWidget extends StatefulWidget {
   final String sectionId;

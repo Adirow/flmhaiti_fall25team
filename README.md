@@ -15,7 +15,7 @@ flutter doctor
 
 Then run Install Dependencies:
 
-cd d:\dental_roots **(change to your folder used to store our code)**
+cd d:\flmhaiti_fall25team **(change to your folder used to store our code)**
 
 flutter pub get
 

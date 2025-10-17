@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:dental_roots/models/patient.dart';
-import 'package:dental_roots/services/patient_service.dart';
+import 'package:flmhaiti_fall25team/models/patient.dart';
+import 'package:flmhaiti_fall25team/services/patient_service.dart';
 
 class PatientEditScreen extends StatefulWidget {
   final Patient patient;

@@ -1,4 +1,4 @@
-import 'package:dental_roots/models/form_template.dart';
+import 'package:flmhaiti_fall25team/models/form_template.dart';
 
 enum SessionStatus { inProgress, submitted, archived }
 

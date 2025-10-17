@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:dental_roots/models/form_template.dart';
-import 'package:dental_roots/screens/forms/widgets/form_renderer_widget.dart';
+import 'package:flmhaiti_fall25team/models/form_template.dart';
+import 'package:flmhaiti_fall25team/screens/forms/widgets/form_renderer_widget.dart';
 
 class FormPreviewWidget extends StatelessWidget {
   final FormTemplate template;
