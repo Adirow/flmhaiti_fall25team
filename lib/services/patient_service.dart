@@ -18,7 +18,7 @@ class PatientService {
         orderBy: 'name',
         ascending: true,
       );
-      
+
       return data.map((json) => Patient.fromJson(json)).toList();
     } catch (e) {
       throw Exception('Failed to load patients: $e');
@@ -32,7 +32,7 @@ class PatientService {
         'patients',
         filters: {'id': id},
       );
-      
+
       return data != null ? Patient.fromJson(data) : null;
     } catch (e) {
       throw Exception('Failed to load patient: $e');
@@ -48,10 +48,9 @@ class PatientService {
         return await getAllPatients();
       }
 
-      // Use Supabase's text search capabilities
       final data = await SupabaseConfig.client
           .from('patients')
-          .select('*')
+          .select('*') // ✅ includes numeric_id automatically
           .eq('clinic_id', clinicId)
           .or('name.ilike.%$query%,phone.ilike.%$query%')
           .order('name');
@@ -68,10 +67,15 @@ class PatientService {
       final clinicId = await SupabaseUtils.getCurrentClinicId();
       final patientData = patient.toJson();
       patientData['clinic_id'] = clinicId;
+
       // Remove auto-generated fields
       patientData.remove('id');
       patientData.remove('created_at');
       patientData.remove('updated_at');
+
+      if (patientData['numeric_id'] == 0) {
+        patientData.remove('numeric_id');
+      }
 
       final result = await SupabaseService.insert('patients', patientData);
       return Patient.fromJson(result.first);
@@ -84,17 +88,20 @@ class PatientService {
   Future<Patient> updatePatient(Patient patient) async {
     try {
       final patientData = patient.toJson();
+
       // Remove fields that shouldn't be updated
       patientData.remove('id');
       patientData.remove('created_at');
       patientData.remove('updated_at');
+
+      patientData.remove('numeric_id');
 
       final result = await SupabaseService.update(
         'patients',
         patientData,
         filters: {'id': patient.id},
       );
-      
+
       return Patient.fromJson(result.first);
     } catch (e) {
       throw Exception('Failed to update patient: $e');
@@ -120,7 +127,7 @@ class PatientService {
           .from('patients')
           .select('id')
           .eq('clinic_id', clinicId);
-      
+
       return data.length;
     } catch (e) {
       throw Exception('Failed to get patients count: $e');
@@ -137,7 +144,7 @@ class PatientService {
         ascending: false,
         limit: 10,
       );
-      
+
       return data.map((json) => Patient.fromJson(json)).toList();
     } catch (e) {
       throw Exception('Failed to load recent patients: $e');

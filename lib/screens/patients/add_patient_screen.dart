@@ -70,6 +70,7 @@ class _AddPatientScreenState extends State<AddPatientScreen> {
         bloodPressure: _bloodPressureController.text.trim(),
         createdAt: DateTime.now(),
         updatedAt: DateTime.now(),
+        numericId: 0
       );
 
       await _patientService.createPatient(newPatient);

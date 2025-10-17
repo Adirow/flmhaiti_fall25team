@@ -223,7 +223,7 @@ class _PatientEditScreenState extends State<PatientEditScreen> {
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      'Patient ID: ${widget.patient.id.substring(0, 8)}...',
+                      'Patient ID: ${widget.patient.numericId}',
                       style: theme.textTheme.bodyMedium?.copyWith(
                         color: colorScheme.onSurface.withValues(alpha: 0.6),
                       ),

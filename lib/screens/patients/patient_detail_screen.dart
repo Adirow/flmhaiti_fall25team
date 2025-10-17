@@ -79,6 +79,14 @@ class PatientDetailScreen extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
+                  const SizedBox(height: 6),
+                  Text(
+                    'Patient ID: #${patient.numericId}', // New Numeric Id
+                    style: theme.textTheme.bodyMedium?.copyWith(
+                      color: colorScheme.onSurface.withValues(alpha: 0.8),
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
                   const SizedBox(height: 8),
                   Text(
                     '${patient.age} years • ${_getGenderDisplayName(patient.gender)}',
