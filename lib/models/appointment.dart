@@ -3,11 +3,10 @@ enum AppointmentStatus { scheduled, confirmed, inProgress, completed, cancelled 
 class Appointment {
   final String id;
   final String patientId;
-  final String providerId;
-  final String clinicId;
+  final String? providerId;
   final String reason;
   final DateTime startTime;
-  final DateTime endTime;
+  final DateTime? endTime;
   final AppointmentStatus status;
   final DateTime createdAt;
   final DateTime updatedAt;
@@ -15,11 +14,10 @@ class Appointment {
   Appointment({
     required this.id,
     required this.patientId,
-    required this.providerId,
-    required this.clinicId,
+    this.providerId,
     required this.reason,
     required this.startTime,
-    required this.endTime,
+    this.endTime,
     required this.status,
     required this.createdAt,
     required this.updatedAt,
@@ -28,11 +26,10 @@ class Appointment {
   factory Appointment.fromJson(Map<String, dynamic> json) => Appointment(
     id: json['id'] as String,
     patientId: json['patient_id'] as String,
-    providerId: json['provider_id'] as String,
-    clinicId: json['clinic_id'] as String,
-    reason: json['reason'] as String,
+    providerId: json['provider_id'] as String?,
+    reason: json['reason'] as String? ?? '',
     startTime: DateTime.parse(json['start_time'] as String),
-    endTime: DateTime.parse(json['end_time'] as String),
+    endTime: json['end_time'] != null ? DateTime.parse(json['end_time'] as String) : null,
     status: AppointmentStatus.values.firstWhere((e) => e.name == json['status']),
     createdAt: DateTime.parse(json['created_at'] as String),
     updatedAt: DateTime.parse(json['updated_at'] as String),
@@ -42,10 +39,9 @@ class Appointment {
     'id': id,
     'patient_id': patientId,
     'provider_id': providerId,
-    'clinic_id': clinicId,
     'reason': reason,
     'start_time': startTime.toIso8601String(),
-    'end_time': endTime.toIso8601String(),
+    'end_time': endTime?.toIso8601String(),
     'status': status.name,
     'created_at': createdAt.toIso8601String(),
     'updated_at': updatedAt.toIso8601String(),
@@ -55,7 +51,6 @@ class Appointment {
     String? id,
     String? patientId,
     String? providerId,
-    String? clinicId,
     String? reason,
     DateTime? startTime,
     DateTime? endTime,
@@ -66,7 +61,6 @@ class Appointment {
     id: id ?? this.id,
     patientId: patientId ?? this.patientId,
     providerId: providerId ?? this.providerId,
-    clinicId: clinicId ?? this.clinicId,
     reason: reason ?? this.reason,
     startTime: startTime ?? this.startTime,
     endTime: endTime ?? this.endTime,
