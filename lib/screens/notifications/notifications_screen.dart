@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:dental_roots/services/notification_service.dart';
-import 'package:dental_roots/screens/appointments/appointment_detail_screen.dart';
+import 'package:flmhaiti_fall25team/services/notification_service.dart';
+import 'package:flmhaiti_fall25team/screens/appointments/appointment_detail_screen.dart';
 
 class NotificationsScreen extends StatefulWidget {
   const NotificationsScreen({super.key});

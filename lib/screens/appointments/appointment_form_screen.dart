@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:dental_roots/models/appointment.dart';
-import 'package:dental_roots/models/patient.dart';
-import 'package:dental_roots/services/appointment_service.dart';
-import 'package:dental_roots/services/patient_service.dart';
-import 'package:dental_roots/supabase/supabase_utils.dart';
-import 'package:dental_roots/supabase/supabase_config.dart';
+import 'package:flmhaiti_fall25team/models/appointment.dart';
+import 'package:flmhaiti_fall25team/models/patient.dart';
+import 'package:flmhaiti_fall25team/services/appointment_service.dart';
+import 'package:flmhaiti_fall25team/services/patient_service.dart';
+import 'package:flmhaiti_fall25team/supabase/supabase_utils.dart';
+import 'package:flmhaiti_fall25team/supabase/supabase_config.dart';
 
 class AppointmentFormScreen extends StatefulWidget {
   final Appointment? appointment;

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:dental_roots/models/appointment.dart';
-import 'package:dental_roots/supabase/supabase_config.dart';
-import 'package:dental_roots/supabase/supabase_utils.dart';
+import 'package:flmhaiti_fall25team/models/appointment.dart';
+import 'package:flmhaiti_fall25team/supabase/supabase_config.dart';
+import 'package:flmhaiti_fall25team/supabase/supabase_utils.dart';
 
 class AppointmentService {
   static final AppointmentService _instance = AppointmentService._();
