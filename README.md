@@ -1,4 +1,4 @@
-# FLMHaiti-Fall25Team - Dental Roots
+# flmhaiti_fall25team
 
 A Flutter project for FLM Haiti Fall 2025 Team.
 
