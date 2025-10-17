@@ -150,4 +150,22 @@ class PatientService {
       throw Exception('Failed to load recent patients: $e');
     }
   }
+
+  /// Check for patients with duplicate names
+  Future<List<Patient>> checkDuplicateNames(String name) async {
+    try {
+      final clinicId = await SupabaseUtils.getCurrentClinicId();
+      
+      final data = await SupabaseConfig.client
+          .from('patients')
+          .select('*')
+          .eq('clinic_id', clinicId)
+          .ilike('name', name.trim())
+          .order('name');
+
+      return data.map<Patient>((json) => Patient.fromJson(json)).toList();
+    } catch (e) {
+      throw Exception('Failed to check duplicate names: $e');
+    }
+  }
 }
