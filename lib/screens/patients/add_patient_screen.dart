@@ -3,6 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:flmhaiti_fall25team/models/patient.dart';
 import 'package:flmhaiti_fall25team/services/patient_service.dart';
 import 'package:flmhaiti_fall25team/auth/supabase_auth_manager.dart';
+import 'package:flmhaiti_fall25team/localization/l10n_extension.dart';
 import 'package:flmhaiti_fall25team/screens/patients/patient_detail_screen.dart';
 
 class AddPatientScreen extends StatefulWidget {
@@ -46,7 +47,7 @@ class _AddPatientScreenState extends State<AddPatientScreen> {
   Future<void> _savePatient() async {
     if (!_formKey.currentState!.validate() || _selectedDate == null) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Please fill all required fields')),
+        SnackBar(content: Text(context.l10n.commonRequiredFieldsError)),
       );
       return;
     }
@@ -57,7 +58,7 @@ class _AddPatientScreenState extends State<AddPatientScreen> {
       // Get current user's clinic ID
       final currentUser = SupabaseAuthManager().currentUser;
       if (currentUser == null) {
-        throw Exception('User not authenticated');
+        throw Exception(context.l10n.commonUserNotAuthenticated);
       }
 
       // Check for duplicate names
@@ -94,14 +95,14 @@ class _AddPatientScreenState extends State<AddPatientScreen> {
       if (mounted) {
         Navigator.pop(context, true); // Return true to indicate success
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Patient added successfully')),
+          SnackBar(content: Text(context.l10n.patientsAddSuccess)),
         );
       }
     } catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Failed to add patient: $e'),
+            content: Text('${context.l10n.patientsAddError}: $e'),
             backgroundColor: Colors.red,
           ),
         );
@@ -117,18 +118,17 @@ class _AddPatientScreenState extends State<AddPatientScreen> {
     final result = await showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Duplicate Name Found'),
+        title: Text(context.l10n.patientsDuplicateNameTitle),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              'There ${duplicatePatients.length == 1 ? 'is' : 'are'} already ${duplicatePatients.length} patient${duplicatePatients.length == 1 ? '' : 's'} named "${_nameController.text.trim()}". Do you want to continue saving?',
-            ),
+            Text(context.l10n
+                .patientsDuplicateNameMessage(_nameController.text.trim(), duplicatePatients.length)),
             const SizedBox(height: 16),
-            const Text(
-              'Existing patients:',
-              style: TextStyle(fontWeight: FontWeight.bold),
+            Text(
+              context.l10n.patientsDuplicateExisting,
+              style: const TextStyle(fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 8),
             ...duplicatePatients.map((patient) => Padding(
@@ -155,7 +155,7 @@ class _AddPatientScreenState extends State<AddPatientScreen> {
                               style: const TextStyle(fontWeight: FontWeight.bold),
                             ),
                             Text(
-                              'Age: ${patient.age}, Phone: ${patient.phone}',
+                              '${context.l10n.patientsAgeLabel}: ${patient.age} ${context.l10n.patientsAgeYearsSuffix}, ${context.l10n.patientsPhoneLabel}: ${patient.phone}',
                               style: TextStyle(
                                 color: Colors.grey.shade600,
                                 fontSize: 12,
@@ -179,14 +179,14 @@ class _AddPatientScreenState extends State<AddPatientScreen> {
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context, false),
-            child: const Text('Cancel'),
+            child: Text(context.l10n.commonCancel),
           ),
           TextButton(
             onPressed: () => Navigator.pop(context, true),
             style: TextButton.styleFrom(
               foregroundColor: Theme.of(context).colorScheme.primary,
             ),
-            child: const Text('Yes, Save Anyway'),
+            child: Text(context.l10n.patientsDuplicateContinueButton),
           ),
         ],
       ),
@@ -204,14 +204,14 @@ class _AddPatientScreenState extends State<AddPatientScreen> {
     );
   }
 
-  String _getGenderDisplayName(Gender gender) {
+  String _getGenderDisplayName(BuildContext context, Gender gender) {
     switch (gender) {
       case Gender.male:
-        return 'Male';
+        return context.l10n.genderMale;
       case Gender.female:
-        return 'Female';
+        return context.l10n.genderFemale;
       case Gender.other:
-        return 'Other';
+        return context.l10n.genderOther;
     }
   }
 
@@ -219,11 +219,12 @@ class _AddPatientScreenState extends State<AddPatientScreen> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
+    final l10n = context.l10n;
 
     return Scaffold(
       backgroundColor: colorScheme.surface,
       appBar: AppBar(
-        title: const Text('Add New Patient'),
+        title: Text(l10n.patientsAddTitle),
       ),
       body: Form(
         key: _formKey,
@@ -235,19 +236,19 @@ class _AddPatientScreenState extends State<AddPatientScreen> {
               TextFormField(
                 controller: _nameController,
                 decoration: InputDecoration(
-                  labelText: 'Full Name *',
+                  labelText: '${l10n.patientsNameLabel} *',
                   prefixIcon: Icon(Icons.person_outline, color: colorScheme.primary),
                   border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
                   filled: true,
                   fillColor: Colors.white,
                 ),
-                validator: (value) => value == null || value.isEmpty ? 'Please enter name' : null,
+                validator: (value) => value == null || value.isEmpty ? l10n.patientsNameRequired : null,
               ),
               const SizedBox(height: 16),
               DropdownButtonFormField<Gender>(
                 value: _selectedGender,
                 decoration: InputDecoration(
-                  labelText: 'Gender',
+                  labelText: l10n.patientsGenderLabel,
                   prefixIcon: Icon(Icons.wc, color: colorScheme.primary),
                   border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
                   filled: true,
@@ -256,7 +257,7 @@ class _AddPatientScreenState extends State<AddPatientScreen> {
                 items: Gender.values.map((gender) {
                   return DropdownMenuItem(
                     value: gender,
-                    child: Text(_getGenderDisplayName(gender)),
+                    child: Text(_getGenderDisplayName(context, gender)),
                   );
                 }).toList(),
                 onChanged: (Gender? newGender) {
@@ -265,7 +266,7 @@ class _AddPatientScreenState extends State<AddPatientScreen> {
                   }
                 },
                 validator: (value) {
-                  if (value == null) return 'Please select gender';
+                  if (value == null) return l10n.patientsGenderRequired;
                   return null;
                 },
               ),
@@ -274,50 +275,55 @@ class _AddPatientScreenState extends State<AddPatientScreen> {
                 onTap: _selectDate,
                 child: InputDecorator(
                   decoration: InputDecoration(
-                    labelText: 'Date of Birth *',
+                    labelText: '${l10n.patientsDobLabel} *',
                     prefixIcon: Icon(Icons.cake, color: colorScheme.primary),
                     border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
                     filled: true,
                     fillColor: Colors.white,
                   ),
-                  child: Text(_selectedDate == null ? 'Select date' : DateFormat('MMM dd, yyyy').format(_selectedDate!)),
+                  child: Text(
+                    _selectedDate == null
+                        ? l10n.patientsDobPlaceholder
+                        : DateFormat('MMM dd, yyyy').format(_selectedDate!),
+                  ),
                 ),
               ),
               const SizedBox(height: 16),
               TextFormField(
                 controller: _phoneController,
                 decoration: InputDecoration(
-                  labelText: 'Phone Number *',
+                  labelText: '${l10n.patientsPhoneLabel} *',
                   prefixIcon: Icon(Icons.phone_outlined, color: colorScheme.primary),
                   border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
                   filled: true,
                   fillColor: Colors.white,
                 ),
                 keyboardType: TextInputType.phone,
-                validator: (value) => value == null || value.isEmpty ? 'Please enter phone' : null,
+                validator: (value) => value == null || value.isEmpty ? l10n.patientsPhoneRequired : null,
               ),
               const SizedBox(height: 16),
               TextFormField(
                 controller: _addressController,
                 decoration: InputDecoration(
-                  labelText: 'Address',
+                  labelText: l10n.patientsAddressLabel,
                   prefixIcon: Icon(Icons.location_on_outlined, color: colorScheme.primary),
                   border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
                   filled: true,
                   fillColor: Colors.white,
                 ),
                 maxLines: 2,
+                validator: (value) => value == null || value.isEmpty ? l10n.patientsAddressRequired : null,
               ),
               const SizedBox(height: 16),
               TextFormField(
                 controller: _bloodPressureController,
                 decoration: InputDecoration(
-                  labelText: 'Blood Pressure',
+                  labelText: l10n.patientsBloodPressureOptionalLabel,
                   prefixIcon: Icon(Icons.favorite_outline, color: colorScheme.primary),
                   border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
                   filled: true,
                   fillColor: Colors.white,
-                  hintText: 'e.g., 120/80',
+                  hintText: l10n.patientsBloodPressureHint,
                 ),
               ),
               const SizedBox(height: 32),
@@ -332,7 +338,8 @@ class _AddPatientScreenState extends State<AddPatientScreen> {
                 ),
                 child: _isLoading
                     ? SizedBox(height: 20, width: 20, child: CircularProgressIndicator(strokeWidth: 2, color: colorScheme.onPrimary))
-                    : Text('Save Patient', style: theme.textTheme.titleMedium?.copyWith(color: colorScheme.onPrimary, fontWeight: FontWeight.w600)),
+                    : Text(l10n.patientsSaveButton,
+                        style: theme.textTheme.titleMedium?.copyWith(color: colorScheme.onPrimary, fontWeight: FontWeight.w600)),
               ),
             ],
           ),

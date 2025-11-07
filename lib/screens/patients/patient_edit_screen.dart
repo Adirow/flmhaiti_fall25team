@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:flmhaiti_fall25team/models/patient.dart';
 import 'package:flmhaiti_fall25team/services/patient_service.dart';
+import 'package:flmhaiti_fall25team/localization/l10n_extension.dart';
 
 class PatientEditScreen extends StatefulWidget {
   final Patient patient;
@@ -61,7 +62,7 @@ class _PatientEditScreenState extends State<PatientEditScreen> {
   Future<void> _savePatient() async {
     if (!_formKey.currentState!.validate() || _selectedDate == null) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Please fill all required fields')),
+        SnackBar(content: Text(context.l10n.commonRequiredFieldsError)),
       );
       return;
     }
@@ -83,14 +84,14 @@ class _PatientEditScreenState extends State<PatientEditScreen> {
       if (mounted) {
         Navigator.pop(context, true); // Return true to indicate success
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Patient updated successfully')),
+          SnackBar(content: Text(context.l10n.patientsUpdateSuccess)),
         );
       }
     } catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Failed to update patient: $e'),
+            content: Text('${context.l10n.patientsUpdateError}: $e'),
             backgroundColor: Colors.red,
           ),
         );
@@ -106,17 +107,17 @@ class _PatientEditScreenState extends State<PatientEditScreen> {
     final confirmed = await showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Delete Patient'),
-        content: Text('Are you sure you want to delete ${widget.patient.name}? This action cannot be undone.'),
+        title: Text(context.l10n.patientsDeleteTitle),
+        content: Text(context.l10n.patientsDeleteConfirmationMessage(widget.patient.name)),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context, false),
-            child: const Text('Cancel'),
+            child: Text(context.l10n.commonCancel),
           ),
           TextButton(
             onPressed: () => Navigator.pop(context, true),
             style: TextButton.styleFrom(foregroundColor: Colors.red),
-            child: const Text('Delete'),
+            child: Text(context.l10n.commonDelete),
           ),
         ],
       ),
@@ -131,14 +132,14 @@ class _PatientEditScreenState extends State<PatientEditScreen> {
         if (mounted) {
           Navigator.pop(context, true); // Return true to indicate success
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Patient deleted successfully')),
+            SnackBar(content: Text(context.l10n.patientsDeleteSuccess)),
           );
         }
       } catch (e) {
         if (mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
-              content: Text('Failed to delete patient: $e'),
+              content: Text('${context.l10n.patientsDeleteError}: $e'),
               backgroundColor: Colors.red,
             ),
           );
@@ -151,14 +152,14 @@ class _PatientEditScreenState extends State<PatientEditScreen> {
     }
   }
 
-  String _getGenderDisplayName(Gender gender) {
+  String _getGenderDisplayName(BuildContext context, Gender gender) {
     switch (gender) {
       case Gender.male:
-        return 'Male';
+        return context.l10n.genderMale;
       case Gender.female:
-        return 'Female';
+        return context.l10n.genderFemale;
       case Gender.other:
-        return 'Other';
+        return context.l10n.genderOther;
     }
   }
 
@@ -166,11 +167,12 @@ class _PatientEditScreenState extends State<PatientEditScreen> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
+    final l10n = context.l10n;
 
     return Scaffold(
       backgroundColor: colorScheme.surface,
       appBar: AppBar(
-        title: const Text('Edit Patient'),
+        title: Text(l10n.patientsEditingTitle),
         actions: [
           IconButton(
             icon: const Icon(Icons.delete),
@@ -216,14 +218,14 @@ class _PatientEditScreenState extends State<PatientEditScreen> {
                     ),
                     const SizedBox(height: 16),
                     Text(
-                      'Editing Patient',
+                      l10n.patientsEditingTitle,
                       style: theme.textTheme.titleLarge?.copyWith(
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      'Patient ID: ${widget.patient.numericId}',
+                      '${l10n.patientsIdLabel}: ${widget.patient.numericId}',
                       style: theme.textTheme.bodyMedium?.copyWith(
                         color: colorScheme.onSurface.withValues(alpha: 0.6),
                       ),
@@ -237,7 +239,7 @@ class _PatientEditScreenState extends State<PatientEditScreen> {
               TextFormField(
                 controller: _nameController,
                 decoration: InputDecoration(
-                  labelText: 'Full Name',
+                  labelText: l10n.patientsNameLabel,
                   prefixIcon: Icon(Icons.person_outline, color: colorScheme.primary),
                   border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
                   filled: true,
@@ -245,7 +247,7 @@ class _PatientEditScreenState extends State<PatientEditScreen> {
                 ),
                 textCapitalization: TextCapitalization.words,
                 validator: (value) {
-                  if (value == null || value.trim().isEmpty) return 'Please enter patient name';
+                  if (value == null || value.trim().isEmpty) return l10n.patientsNameRequired;
                   return null;
                 },
               ),
@@ -254,7 +256,7 @@ class _PatientEditScreenState extends State<PatientEditScreen> {
               TextFormField(
                 controller: _phoneController,
                 decoration: InputDecoration(
-                  labelText: 'Phone Number',
+                  labelText: l10n.patientsPhoneLabel,
                   prefixIcon: Icon(Icons.phone_outlined, color: colorScheme.primary),
                   border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
                   filled: true,
@@ -262,7 +264,7 @@ class _PatientEditScreenState extends State<PatientEditScreen> {
                 ),
                 keyboardType: TextInputType.phone,
                 validator: (value) {
-                  if (value == null || value.trim().isEmpty) return 'Please enter phone number';
+                  if (value == null || value.trim().isEmpty) return l10n.patientsPhoneRequired;
                   return null;
                 },
               ),
@@ -271,7 +273,7 @@ class _PatientEditScreenState extends State<PatientEditScreen> {
               TextFormField(
                 controller: _addressController,
                 decoration: InputDecoration(
-                  labelText: 'Address',
+                  labelText: l10n.patientsAddressLabel,
                   prefixIcon: Icon(Icons.location_on_outlined, color: colorScheme.primary),
                   border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
                   filled: true,
@@ -280,7 +282,7 @@ class _PatientEditScreenState extends State<PatientEditScreen> {
                 maxLines: 2,
                 textCapitalization: TextCapitalization.words,
                 validator: (value) {
-                  if (value == null || value.trim().isEmpty) return 'Please enter address';
+                  if (value == null || value.trim().isEmpty) return l10n.patientsAddressRequired;
                   return null;
                 },
               ),
@@ -289,7 +291,7 @@ class _PatientEditScreenState extends State<PatientEditScreen> {
               DropdownButtonFormField<Gender>(
                 value: _selectedGender,
                 decoration: InputDecoration(
-                  labelText: 'Gender',
+                  labelText: l10n.patientsGenderLabel,
                   prefixIcon: Icon(Icons.wc_outlined, color: colorScheme.primary),
                   border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
                   filled: true,
@@ -298,7 +300,7 @@ class _PatientEditScreenState extends State<PatientEditScreen> {
                 items: Gender.values.map((gender) {
                   return DropdownMenuItem(
                     value: gender,
-                    child: Text(_getGenderDisplayName(gender)),
+                    child: Text(_getGenderDisplayName(context, gender)),
                   );
                 }).toList(),
                 onChanged: (Gender? newGender) {
@@ -307,7 +309,7 @@ class _PatientEditScreenState extends State<PatientEditScreen> {
                   }
                 },
                 validator: (value) {
-                  if (value == null) return 'Please select gender';
+                  if (value == null) return l10n.patientsGenderRequired;
                   return null;
                 },
               ),
@@ -328,8 +330,8 @@ class _PatientEditScreenState extends State<PatientEditScreen> {
                       const SizedBox(width: 12),
                       Text(
                         _selectedDate != null
-                            ? 'Date of Birth: ${DateFormat('MMM dd, yyyy').format(_selectedDate!)}'
-                            : 'Select Date of Birth',
+                            ? '${l10n.patientsDobLabel}: ${DateFormat('MMM dd, yyyy').format(_selectedDate!)}'
+                            : l10n.patientsDobSelectPlaceholder,
                         style: theme.textTheme.bodyLarge,
                       ),
                     ],
@@ -341,12 +343,12 @@ class _PatientEditScreenState extends State<PatientEditScreen> {
               TextFormField(
                 controller: _bloodPressureController,
                 decoration: InputDecoration(
-                  labelText: 'Blood Pressure (optional)',
+                  labelText: l10n.patientsBloodPressureOptionalLabel,
                   prefixIcon: Icon(Icons.favorite_outline, color: colorScheme.primary),
                   border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
                   filled: true,
                   fillColor: Colors.white,
-                  hintText: 'e.g., 120/80',
+                  hintText: l10n.patientsBloodPressureHint,
                 ),
               ),
               const SizedBox(height: 32),
@@ -370,7 +372,7 @@ class _PatientEditScreenState extends State<PatientEditScreen> {
                         ),
                       )
                     : Text(
-                        'Save Changes',
+                        l10n.patientsSaveChangesButton,
                         style: theme.textTheme.titleMedium?.copyWith(
                           color: colorScheme.onPrimary,
                           fontWeight: FontWeight.w600,
@@ -386,7 +388,7 @@ class _PatientEditScreenState extends State<PatientEditScreen> {
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                 ),
                 child: Text(
-                  'Cancel',
+                  l10n.commonCancel,
                   style: theme.textTheme.titleMedium?.copyWith(
                     fontWeight: FontWeight.w600,
                   ),

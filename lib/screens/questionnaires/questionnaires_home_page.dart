@@ -341,13 +341,6 @@ class _QuestionnairesHomePageState extends State<QuestionnairesHomePage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(template.name),
-                            if (template.description.isNotEmpty)
-                              Text(
-                                template.description,
-                                style: theme.textTheme.bodySmall?.copyWith(
-                                  color: colorScheme.onSurface.withValues(alpha: 0.6),
-                                ),
-                              ),
                           ],
                         ),
                       );

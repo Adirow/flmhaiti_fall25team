@@ -3,20 +3,29 @@ import 'package:flmhaiti_fall25team/screens/patients/patient_list_screen.dart';
 import 'package:flmhaiti_fall25team/screens/appointments/appointments_screen.dart';
 import 'package:flmhaiti_fall25team/screens/encounters/encounter_screen.dart';
 import 'package:flmhaiti_fall25team/screens/forms/template_list_page.dart';
+import 'package:flmhaiti_fall25team/localization/language_selector.dart';
+import 'package:flmhaiti_fall25team/localization/l10n_extension.dart';
 
 class DashboardScreen extends StatelessWidget {
   const DashboardScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
 
     return Scaffold(
       backgroundColor: colorScheme.surface,
       appBar: AppBar(
-        title: const Text('Dashboard'),
+        title: Text(l10n.dashboardTitle),
         actions: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+            child: Center(
+              child: LanguageSelector(compact: true),
+            ),
+          ),
           IconButton(
             icon: const Icon(Icons.notifications_outlined),
             onPressed: () {},
@@ -32,11 +41,11 @@ class DashboardScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('FLM Haiti - Welcome Back!',
+            Text(l10n.dashboardWelcome,
                 style: theme.textTheme.headlineMedium
                     ?.copyWith(fontWeight: FontWeight.bold)),
             const SizedBox(height: 8),
-            Text('Developed by CMU Heinz College Capstone Team',
+            Text(l10n.dashboardSubheading,
                 style: theme.textTheme.bodyLarge?.copyWith(
                     color: colorScheme.onSurface.withValues(alpha: 0.6))),
             const SizedBox(height: 32),
@@ -51,8 +60,8 @@ class DashboardScreen extends StatelessWidget {
               ),
               children: [
                 _DashboardCard(
-                  title: 'Patients',
-                  subtitle: 'Manage patient records',
+                  title: l10n.patientsCardTitle,
+                  subtitle: l10n.patientsCardSubtitle,
                   icon: Icons.people_outline,
                   color: colorScheme.primary,
                   onTap: () => Navigator.push(
@@ -61,8 +70,8 @@ class DashboardScreen extends StatelessWidget {
                   ),
                 ),
                 _DashboardCard(
-                  title: 'Appointments',
-                  subtitle: 'Schedule & manage',
+                  title: l10n.appointmentsCardTitle,
+                  subtitle: l10n.appointmentsCardSubtitle,
                   icon: Icons.calendar_today_outlined,
                   color: colorScheme.secondary,
                   onTap: () => Navigator.push(
@@ -71,8 +80,8 @@ class DashboardScreen extends StatelessWidget {
                   ),
                 ),
                 _DashboardCard(
-                  title: 'Encounters',
-                  subtitle: 'Clinical exams',
+                  title: l10n.encountersCardTitle,
+                  subtitle: l10n.encountersCardSubtitle,
                   icon: Icons.medical_services_outlined,
                   color: colorScheme.tertiary,
                   onTap: () => Navigator.push(
@@ -81,8 +90,8 @@ class DashboardScreen extends StatelessWidget {
                   ),
                 ),
                 _DashboardCard(
-                  title: 'Form Templates',
-                  subtitle: 'Manage questionnaires',
+                  title: l10n.formsCardTitle,
+                  subtitle: l10n.formsCardSubtitle,
                   icon: Icons.description_outlined,
                   color: const Color(0xFF9C27B0),
                   onTap: () => Navigator.push(
@@ -91,8 +100,8 @@ class DashboardScreen extends StatelessWidget {
                   ),
                 ),
                 _DashboardCard(
-                  title: 'Reports (In progress)',
-                  subtitle: 'Analytics & insights',
+                  title: l10n.reportsCardTitle,
+                  subtitle: l10n.reportsCardSubtitle,
                   icon: Icons.analytics_outlined,
                   color: const Color(0xFF43A047),
                   onTap: () {},
@@ -100,26 +109,26 @@ class DashboardScreen extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 32),
-            Text('Recent Activity',
+            Text(l10n.recentActivity,
                 style: theme.textTheme.titleLarge
                     ?.copyWith(fontWeight: FontWeight.bold)),
             const SizedBox(height: 16),
             _ActivityCard(
-              title: 'Today\'s Appointments',
+              title: l10n.todaysAppointments,
               count: '8',
               icon: Icons.calendar_today,
               color: colorScheme.primary,
             ),
             const SizedBox(height: 12),
             _ActivityCard(
-              title: 'Pending Reviews',
+              title: l10n.pendingReviews,
               count: '3',
               icon: Icons.pending_actions,
               color: colorScheme.tertiary,
             ),
             const SizedBox(height: 12),
             _ActivityCard(
-              title: 'New Patients This Week',
+              title: l10n.newPatientsThisWeek,
               count: '5',
               icon: Icons.person_add,
               color: colorScheme.secondary,

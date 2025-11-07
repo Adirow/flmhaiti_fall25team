@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flmhaiti_fall25team/screens/dashboard/dashboard_screen.dart';
 import 'package:flmhaiti_fall25team/screens/auth/register_screen.dart';
 import 'package:flmhaiti_fall25team/auth/supabase_auth_manager.dart';
+import 'package:flmhaiti_fall25team/localization/l10n_extension.dart';
+import 'package:flmhaiti_fall25team/localization/language_selector.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -50,6 +52,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
 
@@ -85,6 +88,11 @@ class _LoginScreenState extends State<LoginScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
+                      const Align(
+                        alignment: Alignment.centerRight,
+                        child: LanguageSelector(),
+                      ),
+                      const SizedBox(height: 16),
                       Icon(
                         Icons.local_hospital_rounded,
                         size: 80,
@@ -94,7 +102,17 @@ class _LoginScreenState extends State<LoginScreen> {
 
                       /// App title
                       Text(
-                        'FLM Haiti EMR',
+                        l10n.loginTitle,
+                        style: theme.textTheme.displaySmall?.copyWith(
+                          color: colorScheme.primary,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                      const SizedBox(height: 8),
+
+                      Text(
+                        l10n.loginSubtitle,
                         style: theme.textTheme.displaySmall?.copyWith(
                           color: colorScheme.primary,
                           fontWeight: FontWeight.bold,
@@ -105,7 +123,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                       /// Subtitle
                       Text(
-                        'Developed by CMU Heinz College Capstone Team',
+                        l10n.loginTagline,
                         style: theme.textTheme.bodyLarge?.copyWith(
                           color:
                               colorScheme.onSurface.withValues(alpha: 0.6),
@@ -118,7 +136,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       TextFormField(
                         controller: _emailController,
                         decoration: InputDecoration(
-                          labelText: 'Email',
+                          labelText: l10n.emailLabel,
                           prefixIcon: Icon(
                             Icons.email_outlined,
                             color: colorScheme.primary,
@@ -132,10 +150,10 @@ class _LoginScreenState extends State<LoginScreen> {
                         keyboardType: TextInputType.emailAddress,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Please enter email';
+                            return l10n.emailRequiredError;
                           }
                           if (!value.contains('@')) {
-                            return 'Please enter valid email';
+                            return l10n.emailInvalidError;
                           }
                           return null;
                         },
@@ -146,7 +164,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       TextFormField(
                         controller: _passwordController,
                         decoration: InputDecoration(
-                          labelText: 'Password',
+                          labelText: l10n.passwordLabel,
                           prefixIcon: Icon(
                             Icons.lock_outline,
                             color: colorScheme.primary,
@@ -171,10 +189,10 @@ class _LoginScreenState extends State<LoginScreen> {
                         obscureText: _obscurePassword,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Please enter password';
+                            return l10n.passwordRequiredError;
                           }
                           if (value.length < 6) {
-                            return 'Password must be at least 6 characters';
+                            return l10n.passwordLengthError;
                           }
                           return null;
                         },
@@ -203,7 +221,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 ),
                               )
                             : Text(
-                                'Sign In',
+                                l10n.signIn,
                                 style: theme.textTheme.titleMedium?.copyWith(
                                   color: colorScheme.onPrimary,
                                   fontWeight: FontWeight.w600,
@@ -216,7 +234,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       TextButton(
                         onPressed: () {},
                         child: Text(
-                          'Forgot Password?',
+                          l10n.forgotPassword,
                           style: TextStyle(color: colorScheme.primary),
                         ),
                       ),
@@ -227,7 +245,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            'Don\'t have an account? ',
+                            l10n.signUpPrompt,
                             style: TextStyle(
                               color: colorScheme.onSurface
                                   .withValues(alpha: 0.6),
@@ -242,7 +260,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               );
                             },
                             child: Text(
-                              'Sign Up',
+                              l10n.signUp,
                               style: TextStyle(
                                 color: colorScheme.primary,
                                 fontWeight: FontWeight.w600,

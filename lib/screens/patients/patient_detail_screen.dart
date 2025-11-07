@@ -4,6 +4,7 @@ import 'package:flmhaiti_fall25team/screens/encounters/encounter_screen.dart';
 import 'package:flmhaiti_fall25team/screens/patients/patient_edit_screen.dart';
 import 'package:flmhaiti_fall25team/screens/questionnaires/questionnaires_home_page.dart';
 import 'package:flmhaiti_fall25team/models/patient.dart';
+import 'package:flmhaiti_fall25team/localization/l10n_extension.dart';
 import 'package:intl/intl.dart';
 
 class PatientDetailScreen extends StatelessWidget {
@@ -11,14 +12,14 @@ class PatientDetailScreen extends StatelessWidget {
 
   const PatientDetailScreen({super.key, required this.patient});
 
-  String _getGenderDisplayName(Gender gender) {
+  String _getGenderDisplayName(BuildContext context, Gender gender) {
     switch (gender) {
       case Gender.male:
-        return 'Male';
+        return context.l10n.genderMale;
       case Gender.female:
-        return 'Female';
+        return context.l10n.genderFemale;
       case Gender.other:
-        return 'Other';
+        return context.l10n.genderOther;
     }
   }
 
@@ -30,7 +31,7 @@ class PatientDetailScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: colorScheme.surface,
       appBar: AppBar(
-        title: const Text('Patient Details'),
+        title: Text(context.l10n.patientsDetailTitle),
         actions: [
           IconButton(
             icon: const Icon(Icons.edit),
@@ -81,7 +82,7 @@ class PatientDetailScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 6),
                   Text(
-                    'Patient ID: #${patient.numericId}', // New Numeric Id
+                    '${context.l10n.patientsIdLabel}: #${patient.numericId}', // New Numeric Id
                     style: theme.textTheme.bodyMedium?.copyWith(
                       color: colorScheme.onSurface.withValues(alpha: 0.8),
                       fontWeight: FontWeight.w600,
@@ -89,14 +90,14 @@ class PatientDetailScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    '${patient.age} years • ${_getGenderDisplayName(patient.gender)}',
+                    '${patient.age} ${context.l10n.patientsAgeYearsSuffix} • ${_getGenderDisplayName(context, patient.gender)}',
                     style: theme.textTheme.bodyLarge?.copyWith(
                       color: colorScheme.onSurface.withValues(alpha: 0.6),
                     ),
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    'Born: ${DateFormat('MMM dd, yyyy').format(patient.dob)}',
+                    '${context.l10n.patientsBornLabel} ${DateFormat('MMM dd, yyyy').format(patient.dob)}',
                     style: theme.textTheme.bodyMedium?.copyWith(
                       color: colorScheme.onSurface.withValues(alpha: 0.5),
                     ),
@@ -124,7 +125,7 @@ class PatientDetailScreen extends StatelessWidget {
                     const SizedBox(height: 12),
                     _InfoChip(
                       icon: Icons.favorite,
-                      label: 'BP: ${patient.bloodPressure}',
+                      label: '${context.l10n.patientsBloodPressureLabel}: ${patient.bloodPressure}',
                       colorScheme: colorScheme,
                     ),
                   ],
@@ -137,13 +138,13 @@ class PatientDetailScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Quick Actions', style: theme.textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold)),
+                  Text(context.l10n.patientsQuickActions, style: theme.textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold)),
                   const SizedBox(height: 16),
                   Row(
                     children: [
                       Expanded(
                         child: _ActionCard(
-                          title: 'Medical History',
+                          title: context.l10n.patientsMedicalHistoryAction,
                           icon: Icons.medical_information_outlined,
                           color: colorScheme.primary,
                           onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const MedicalHistoryScreen())),
@@ -152,7 +153,7 @@ class PatientDetailScreen extends StatelessWidget {
                       const SizedBox(width: 12),
                       Expanded(
                         child: _ActionCard(
-                          title: 'New Encounter',
+                          title: context.l10n.patientsNewEncounterAction,
                           icon: Icons.add_circle_outline,
                           color: colorScheme.secondary,
                           onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const EncounterScreen())),
@@ -165,7 +166,7 @@ class PatientDetailScreen extends StatelessWidget {
                     children: [
                       Expanded(
                         child: _ActionCard(
-                          title: 'Questionnaires',
+                          title: context.l10n.patientsQuestionnairesAction,
                           icon: Icons.description_outlined,
                           color: const Color(0xFF9C27B0),
                           onTap: () => Navigator.push(
@@ -180,37 +181,37 @@ class PatientDetailScreen extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(width: 12),
-                      Expanded(child: _ActionCard(title: 'Appointments', icon: Icons.calendar_today, color: colorScheme.tertiary, onTap: () {})),
+                      Expanded(child: _ActionCard(title: context.l10n.patientsAppointmentsAction, icon: Icons.calendar_today, color: colorScheme.tertiary, onTap: () {})),
                     ],
                   ),
                   const SizedBox(height: 12),
                   Row(
                     children: [
-                      Expanded(child: _ActionCard(title: 'Documents', icon: Icons.folder_outlined, color: const Color(0xFFFFA726), onTap: () {})),
+                      Expanded(child: _ActionCard(title: context.l10n.patientsDocumentsAction, icon: Icons.folder_outlined, color: const Color(0xFFFFA726), onTap: () {})),
                       const SizedBox(width: 12),
-                      Expanded(child: _ActionCard(title: 'Reports', icon: Icons.analytics_outlined, color: const Color(0xFF43A047), onTap: () {})),
+                      Expanded(child: _ActionCard(title: context.l10n.patientsReportsAction, icon: Icons.analytics_outlined, color: const Color(0xFF43A047), onTap: () {})),
                     ],
                   ),
                   const SizedBox(height: 24),
-                  Text('Recent Encounters', style: theme.textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold)),
+                  Text(context.l10n.patientsRecentEncounters, style: theme.textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold)),
                   const SizedBox(height: 16),
                   _EncounterTile(
                     date: 'Jan 15, 2024',
-                    type: 'Routine Checkup',
+                    type: context.l10n.patientsEncounterTypeRoutineCheckup,
                     provider: 'Dr. Smith',
                     colorScheme: colorScheme,
                   ),
                   const SizedBox(height: 8),
                   _EncounterTile(
                     date: 'Dec 10, 2023',
-                    type: 'Dental Cleaning',
+                    type: context.l10n.patientsEncounterTypeDentalCleaning,
                     provider: 'Dr. Johnson',
                     colorScheme: colorScheme,
                   ),
                   const SizedBox(height: 8),
                   _EncounterTile(
                     date: 'Nov 5, 2023',
-                    type: 'Tooth Extraction',
+                    type: context.l10n.patientsEncounterTypeToothExtraction,
                     provider: 'Dr. Smith',
                     colorScheme: colorScheme,
                   ),

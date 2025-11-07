@@ -3,6 +3,7 @@ import 'package:flmhaiti_fall25team/screens/patients/patient_detail_screen.dart'
 import 'package:flmhaiti_fall25team/screens/patients/add_patient_screen.dart';
 import 'package:flmhaiti_fall25team/models/patient.dart';
 import 'package:flmhaiti_fall25team/services/patient_service.dart';
+import 'package:flmhaiti_fall25team/localization/l10n_extension.dart';
 
 class PatientListScreen extends StatefulWidget {
   const PatientListScreen({super.key});
@@ -72,14 +73,14 @@ class _PatientListScreenState extends State<PatientListScreen> {
     await _loadPatients();
   }
 
-  String _getGenderDisplayName(Gender gender) {
+  String _getGenderDisplayName(BuildContext context, Gender gender) {
     switch (gender) {
       case Gender.male:
-        return 'Male';
+        return context.l10n.genderMale;
       case Gender.female:
-        return 'Female';
+        return context.l10n.genderFemale;
       case Gender.other:
-        return 'Other';
+        return context.l10n.genderOther;
     }
   }
 
@@ -87,11 +88,12 @@ class _PatientListScreenState extends State<PatientListScreen> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
+    final l10n = context.l10n;
 
     return Scaffold(
       backgroundColor: colorScheme.surface,
       appBar: AppBar(
-        title: const Text('Patients'),
+        title: Text(l10n.patientsCardTitle),
         actions: [
           IconButton(
             icon: const Icon(Icons.refresh),
@@ -106,7 +108,7 @@ class _PatientListScreenState extends State<PatientListScreen> {
             child: TextField(
               controller: _searchController,
               decoration: InputDecoration(
-                hintText: 'Search patients...',
+                hintText: l10n.patientsSearchHint,
                 prefixIcon: Icon(Icons.search, color: colorScheme.primary),
                 border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
                 filled: true,
@@ -133,7 +135,7 @@ class _PatientListScreenState extends State<PatientListScreen> {
         backgroundColor: colorScheme.primary,
         foregroundColor: colorScheme.onPrimary,
         icon: const Icon(Icons.add),
-        label: const Text('New Patient'),
+        label: Text(l10n.patientsNewButtonLabel),
       ),
     );
   }
@@ -150,7 +152,7 @@ class _PatientListScreenState extends State<PatientListScreen> {
           children: [
             Icon(Icons.error_outline, size: 64, color: colorScheme.error),
             const SizedBox(height: 16),
-            Text('Failed to load patients',
+            Text(context.l10n.patientsLoadErrorTitle,
                 style: theme.textTheme.titleLarge?.copyWith(color: colorScheme.error)),
             const SizedBox(height: 8),
             Text(
@@ -163,7 +165,7 @@ class _PatientListScreenState extends State<PatientListScreen> {
             const SizedBox(height: 16),
             ElevatedButton(
               onPressed: _refreshPatients,
-              child: const Text('Retry'),
+              child: Text(context.l10n.commonRetry),
             ),
           ],
         ),
@@ -180,8 +182,8 @@ class _PatientListScreenState extends State<PatientListScreen> {
             const SizedBox(height: 16),
             Text(
               _searchQuery.isEmpty
-                  ? 'No patients found'
-                  : 'No patients match your search',
+                  ? context.l10n.patientsEmptyTitle
+                  : context.l10n.patientsSearchNoResultsTitle,
               style: theme.textTheme.titleLarge?.copyWith(
                 color: colorScheme.onSurface.withValues(alpha: 0.6),
               ),
@@ -189,8 +191,8 @@ class _PatientListScreenState extends State<PatientListScreen> {
             const SizedBox(height: 8),
             Text(
               _searchQuery.isEmpty
-                  ? 'Add your first patient to get started'
-                  : 'Try adjusting your search terms',
+                  ? context.l10n.patientsEmptySubtitle
+                  : context.l10n.patientsSearchNoResultsSubtitle,
               style: theme.textTheme.bodyMedium?.copyWith(
                 color: colorScheme.onSurface.withValues(alpha: 0.5),
               ),
@@ -245,7 +247,7 @@ class _PatientListScreenState extends State<PatientListScreen> {
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    '${_getGenderDisplayName(patient.gender)} • ${patient.age} years',
+                    '${_getGenderDisplayName(context, patient.gender)} • ${patient.age} ${context.l10n.patientsAgeYearsSuffix}',
                     style: theme.textTheme.bodyMedium?.copyWith(
                       color: colorScheme.onSurface.withValues(alpha: 0.6),
                     ),
