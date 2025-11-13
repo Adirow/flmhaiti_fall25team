@@ -301,4 +301,491 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get patientsDeleteError => 'Failed to delete patient';
+
+  @override
+  String questionnairesTitle(Object patientName) {
+    return 'Questionnaires - $patientName';
+  }
+
+  @override
+  String get questionnairesLoadErrorTitle => 'Failed to load questionnaires';
+
+  @override
+  String get questionnairesStartCardTitle => 'Start New Questionnaire';
+
+  @override
+  String get questionnairesNoTemplates =>
+      'No questionnaire templates available';
+
+  @override
+  String get questionnairesSelectDepartment => 'Select Department';
+
+  @override
+  String questionnairesNoTemplatesForDepartment(String department) {
+    return 'No templates available for $department';
+  }
+
+  @override
+  String get questionnairesSelectTemplate => 'Select Questionnaire';
+
+  @override
+  String get questionnairesStartButton => 'Start Questionnaire';
+
+  @override
+  String get questionnairesPreviousTitle => 'Previous Questionnaires';
+
+  @override
+  String get questionnairesNoHistory => 'No previous questionnaires';
+
+  @override
+  String questionnairesStartError(String error) {
+    return 'Failed to start questionnaire: $error';
+  }
+
+  @override
+  String get questionnaireSavingLabel => 'Saving...';
+
+  @override
+  String get questionnaireStatusSubmitted => 'SUBMITTED';
+
+  @override
+  String get questionnaireStatusDraft => 'DRAFT';
+
+  @override
+  String questionnaireAutoSaveFailed(String error) {
+    return 'Auto-save failed: $error';
+  }
+
+  @override
+  String get questionnaireSubmitSuccess =>
+      'Questionnaire submitted successfully!';
+
+  @override
+  String questionnaireSubmitError(String error) {
+    return 'Failed to submit questionnaire: $error';
+  }
+
+  @override
+  String get questionnaireLoadErrorTitle => 'Failed to load questionnaire';
+
+  @override
+  String get questionnaireEmptyTitle => 'No questions found';
+
+  @override
+  String get questionnaireEmptySubtitle =>
+      'This questionnaire appears to be empty';
+
+  @override
+  String get questionnaireSubmitButton => 'Submit Questionnaire';
+
+  @override
+  String get questionnaireSubmittedReadOnlyMessage =>
+      'This questionnaire has been submitted and is now read-only.';
+
+  @override
+  String questionnaireVersionLabel(String version) {
+    return 'Version $version';
+  }
+
+  @override
+  String get questionnaireSelectDate => 'Select date...';
+
+  @override
+  String get questionnaireTextHint => 'Enter your answer...';
+
+  @override
+  String get questionnaireNumberHint => 'Enter a number...';
+
+  @override
+  String get questionnaireChoiceHint => 'Select an option...';
+
+  @override
+  String get questionnaireBooleanYes => 'Yes';
+
+  @override
+  String get encountersTitle => 'Encounters';
+
+  @override
+  String get encountersCreateNew => 'New Encounter';
+
+  @override
+  String get encountersContinue => 'Continue';
+
+  @override
+  String get encountersStatusInProgress => 'In Progress';
+
+  @override
+  String get encountersStatusCompleted => 'Completed';
+
+  @override
+  String get encountersStatusDraft => 'Draft';
+
+  @override
+  String encountersLastUpdated(Object time) {
+    return 'Last updated $time';
+  }
+
+  @override
+  String get encountersNoEncounters => 'No encounters yet';
+
+  @override
+  String get encountersNoEncountersSubtitle =>
+      'Start by creating a new encounter';
+
+  @override
+  String get encountersLoadError => 'Failed to load encounters';
+
+  @override
+  String encountersStartError(Object error) {
+    return 'Failed to start encounter: $error';
+  }
+
+  @override
+  String get encountersDeleteConfirm => 'Delete encounter?';
+
+  @override
+  String get encountersDeleteMessage =>
+      'Are you sure you want to delete this encounter?';
+
+  @override
+  String get encountersDeleteSuccess => 'Encounter deleted';
+
+  @override
+  String get encountersDeleteError => 'Failed to delete encounter';
+
+  @override
+  String get encountersToolsTitle => 'Encounter Tools';
+
+  @override
+  String get encountersToolVitals => 'Vitals';
+
+  @override
+  String get encountersToolNotes => 'Notes';
+
+  @override
+  String get encountersToolMedications => 'Medications';
+
+  @override
+  String get encountersToolProcedures => 'Procedures';
+
+  @override
+  String get encountersSave => 'Save';
+
+  @override
+  String get encountersSubmit => 'Submit';
+
+  @override
+  String get encountersCancel => 'Cancel';
+
+  @override
+  String get formsTitle => 'Form Templates';
+
+  @override
+  String get formsCreateNew => 'Create Template';
+
+  @override
+  String get formsEdit => 'Edit';
+
+  @override
+  String get formsDelete => 'Delete';
+
+  @override
+  String get formsDuplicate => 'Duplicate';
+
+  @override
+  String get formsPublish => 'Publish';
+
+  @override
+  String get formsUnpublish => 'Unpublish';
+
+  @override
+  String get formsActiveBadge => 'Active';
+
+  @override
+  String get formsDraftBadge => 'Draft';
+
+  @override
+  String get formsNoTemplates => 'No form templates';
+
+  @override
+  String get formsNoTemplatesSubtitle =>
+      'Create your first template to get started';
+
+  @override
+  String get formsSearchHint => 'Search templates...';
+
+  @override
+  String formsLastUpdated(Object time) {
+    return 'Last updated $time';
+  }
+
+  @override
+  String get formsLoadError => 'Failed to load templates';
+
+  @override
+  String get formsCreateSuccess => 'Template created successfully';
+
+  @override
+  String get formsCreateError => 'Failed to create template';
+
+  @override
+  String get formsUpdateSuccess => 'Template updated successfully';
+
+  @override
+  String get formsUpdateError => 'Failed to update template';
+
+  @override
+  String get formsDeleteConfirm => 'Delete template?';
+
+  @override
+  String get formsDeleteMessage =>
+      'Are you sure you want to delete this template?';
+
+  @override
+  String get formsDeleteSuccess => 'Template deleted';
+
+  @override
+  String get formsDeleteError => 'Failed to delete template';
+
+  @override
+  String get encountersLoadingTitle => 'Loading...';
+
+  @override
+  String get encountersEditTitle => 'Edit Encounter';
+
+  @override
+  String get encountersNewTitle => 'New Encounter';
+
+  @override
+  String get encountersInitErrorTitle => 'Failed to initialize encounter';
+
+  @override
+  String encountersInitError(String error) {
+    return 'Failed to initialize encounter: $error';
+  }
+
+  @override
+  String get encountersInfoSectionTitle => 'Encounter Information';
+
+  @override
+  String get encountersExamTypeLabel => 'Exam Type';
+
+  @override
+  String get encountersChiefComplaintLabel => 'Chief Complaint';
+
+  @override
+  String get encountersChiefComplaintHint => 'Main reason for visit';
+
+  @override
+  String get encountersChiefComplaintRequired => 'Please enter chief complaint';
+
+  @override
+  String get encountersNotesLabel => 'Clinical Notes';
+
+  @override
+  String get encountersNotesHint => 'Additional observations and notes';
+
+  @override
+  String get encountersSavedSuccess => 'Encounter saved successfully';
+
+  @override
+  String get encountersErrorMissingPatient =>
+      'Patient information is missing. Please select a patient first.';
+
+  @override
+  String get encountersErrorNotLoggedIn =>
+      'Please log in to create an encounter.';
+
+  @override
+  String get encountersErrorMissingClinic =>
+      'Clinic information is missing. Please contact support.';
+
+  @override
+  String get encountersErrorDatabase =>
+      'Database error. Please check your connection and try again.';
+
+  @override
+  String encountersErrorSave(String error) {
+    return 'Failed to save encounter: $error';
+  }
+
+  @override
+  String get encountersCloseTool => 'Close Tool';
+
+  @override
+  String get encountersNoTools => 'No tools available';
+
+  @override
+  String get encountersNoToolsSubtitle =>
+      'Tools will appear here when configured for this department';
+
+  @override
+  String encountersToolLoadError(String toolId) {
+    return 'Failed to load tool: $toolId';
+  }
+
+  @override
+  String get encountersDepartmentsLoading => 'Loading departments...';
+
+  @override
+  String get encountersDepartmentsLoadError => 'Failed to load departments';
+
+  @override
+  String get encountersDepartmentsEmpty => 'No departments available';
+
+  @override
+  String get encountersDepartmentLabel => 'Department';
+
+  @override
+  String get formsStatusLabel => 'Status';
+
+  @override
+  String get formsStatusAll => 'All';
+
+  @override
+  String get formsStatusActive => 'Active';
+
+  @override
+  String get formsStatusArchived => 'Archived';
+
+  @override
+  String get formsNoTemplatesFound => 'No templates found';
+
+  @override
+  String get formsNoTemplatesSearch => 'No templates match your search';
+
+  @override
+  String get formsNoTemplatesSearchSubtitle =>
+      'Try adjusting your search terms';
+
+  @override
+  String formsDuplicateSuccess(String name) {
+    return 'Template \"$name\" duplicated successfully';
+  }
+
+  @override
+  String formsDuplicateError(String error) {
+    return 'Failed to duplicate template: $error';
+  }
+
+  @override
+  String get formsArchiveConfirmTitle => 'Archive Template';
+
+  @override
+  String formsArchiveConfirmMessage(String name) {
+    return 'Are you sure you want to archive \"$name\"? It will no longer be available for new forms.';
+  }
+
+  @override
+  String get formsArchiveAction => 'Archive';
+
+  @override
+  String formsArchiveSuccess(String name) {
+    return 'Template \"$name\" archived';
+  }
+
+  @override
+  String formsArchiveError(String error) {
+    return 'Failed to archive template: $error';
+  }
+
+  @override
+  String get formsDetailsArchivedBadge => 'ARCHIVED';
+
+  @override
+  String get formsNoDescription => 'No description';
+
+  @override
+  String get formsPopupEdit => 'Edit';
+
+  @override
+  String get formsPopupDuplicate => 'Duplicate';
+
+  @override
+  String get formsPopupArchive => 'Archive';
+
+  @override
+  String get formsSectionsTitle => 'Sections';
+
+  @override
+  String get formsSectionsAddTooltip => 'Add Section';
+
+  @override
+  String get formsSectionsEmptyTitle => 'No sections yet';
+
+  @override
+  String get formsSectionsEmptySubtitle => 'Add a section to get started';
+
+  @override
+  String get formsQuestionsPlaceholder => 'Select a section to edit questions';
+
+  @override
+  String get formsPreviewModeNotice => 'Preview mode – inputs are disabled';
+
+  @override
+  String formsSectionIndexLabel(int index) {
+    return 'Section $index';
+  }
+
+  @override
+  String get formsSectionRename => 'Rename';
+
+  @override
+  String get formsSectionDelete => 'Delete';
+
+  @override
+  String get formsSectionDeleteTitle => 'Delete Section';
+
+  @override
+  String formsSectionDeleteMessage(String name) {
+    return 'Are you sure you want to delete \"$name\"? This will also delete all questions in this section.';
+  }
+
+  @override
+  String get formsUnsavedBadge => 'UNSAVED';
+
+  @override
+  String get formsTemplateInfoTitle => 'Template Information';
+
+  @override
+  String get formsTemplateNameLabel => 'Template Name';
+
+  @override
+  String get formsTemplateNameRequired => 'Please enter a template name';
+
+  @override
+  String get formsTemplateNameHint => 'Enter template name';
+
+  @override
+  String get formsTemplateDescriptionLabel => 'Description';
+
+  @override
+  String get formsTemplateDescriptionHint => 'Enter template description';
+
+  @override
+  String get formsSaveSuccess => 'Template saved successfully';
+
+  @override
+  String formsSaveError(String error) {
+    return 'Failed to save template: $error';
+  }
+
+  @override
+  String get formsDiscardChangesTitle => 'Unsaved Changes';
+
+  @override
+  String get formsDiscardChangesMessage =>
+      'You have unsaved changes. Do you want to discard them?';
+
+  @override
+  String get formsDiscardButton => 'Discard';
+
+  @override
+  String get formsTabTemplate => 'Template';
+
+  @override
+  String get formsTabSections => 'Sections';
+
+  @override
+  String get formsTabPreview => 'Preview';
 }

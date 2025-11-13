@@ -3,6 +3,7 @@ import '../core/interfaces.dart';
 import '../core/encounter_context.dart';
 import '../core/tool_registry.dart';
 import '../core/department_registry.dart';
+import 'package:flmhaiti_fall25team/localization/l10n_extension.dart';
 
 class ToolGrid extends StatefulWidget {
   final EncounterContext encounterContext;
@@ -83,17 +84,19 @@ class _ToolGridState extends State<ToolGrid> {
   }
 
   Widget _buildHeader() {
+    final theme = Theme.of(context);
+    final l10n = context.l10n;
     return Row(
       children: [
         Icon(
           Icons.build_circle,
-          color: Theme.of(context).primaryColor,
+          color: theme.primaryColor,
           size: 24,
         ),
         const SizedBox(width: 8),
         Text(
-          'Clinical Tools',
-          style: Theme.of(context).textTheme.titleLarge?.copyWith(
+          l10n.encountersToolsTitle,
+          style: theme.textTheme.titleLarge?.copyWith(
                 fontWeight: FontWeight.bold,
               ),
         ),
@@ -102,7 +105,7 @@ class _ToolGridState extends State<ToolGrid> {
           IconButton(
             onPressed: _clearSelection,
             icon: const Icon(Icons.close),
-            tooltip: 'Close Tool',
+            tooltip: l10n.encountersCloseTool,
           ),
       ],
     );
@@ -206,6 +209,9 @@ class _ToolGridState extends State<ToolGrid> {
   }
 
   Widget _buildEmptyState() {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    final l10n = context.l10n;
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -213,21 +219,21 @@ class _ToolGridState extends State<ToolGrid> {
           Icon(
             Icons.build_circle_outlined,
             size: 64,
-            color: Theme.of(context).colorScheme.onSurface.withOpacity(0.3),
+            color: colorScheme.onSurface.withOpacity(0.3),
           ),
           const SizedBox(height: 16),
           Text(
-            'No tools available',
-            style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
+            l10n.encountersNoTools,
+            style: theme.textTheme.titleMedium?.copyWith(
+                  color: colorScheme.onSurface.withOpacity(0.6),
                 ),
           ),
           const SizedBox(height: 8),
           Text(
-            'Tools will appear here when configured for this department',
+            l10n.encountersNoToolsSubtitle,
             textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: Theme.of(context).colorScheme.onSurface.withOpacity(0.4),
+            style: theme.textTheme.bodySmall?.copyWith(
+                  color: colorScheme.onSurface.withOpacity(0.4),
                 ),
           ),
         ],
@@ -239,7 +245,7 @@ class _ToolGridState extends State<ToolGrid> {
     // 创建工具实例
     final tool = ToolRegistry.createTool(config.toolId, config);
     if (tool == null) {
-      _showError('Failed to load tool: ${config.toolId}');
+      _showError(context.l10n.encountersToolLoadError(config.toolId));
       return;
     }
 

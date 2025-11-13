@@ -8,6 +8,7 @@ import '../config/encounter_config.dart';
 import 'department_selector.dart';
 import 'tool_grid.dart';
 import '../../supabase/supabase_utils.dart';
+import 'package:flmhaiti_fall25team/localization/l10n_extension.dart';
 
 class NewEncounterScreen extends StatefulWidget {
   final String? patientId;
@@ -81,7 +82,7 @@ class _NewEncounterScreenState extends State<NewEncounterScreen> {
       setState(() => _isLoading = false);
     } catch (e) {
       setState(() => _isLoading = false);
-      _showError('Failed to initialize: $e');
+      _showError(context.l10n.encountersInitError('$e'));
     }
   }
 
@@ -110,7 +111,7 @@ class _NewEncounterScreenState extends State<NewEncounterScreen> {
   Widget build(BuildContext context) {
     if (_isLoading) {
       return Scaffold(
-        appBar: AppBar(title: const Text('Loading...')),
+        appBar: AppBar(title: Text(context.l10n.encountersLoadingTitle)),
         body: const Center(child: CircularProgressIndicator()),
       );
     }
@@ -125,8 +126,9 @@ class _NewEncounterScreenState extends State<NewEncounterScreen> {
   }
 
   PreferredSizeWidget _buildAppBar() {
+    final l10n = context.l10n;
     return AppBar(
-      title: Text(widget.encounterId != null ? 'Edit Encounter' : 'New Encounter'),
+      title: Text(widget.encounterId != null ? l10n.encountersEditTitle : l10n.encountersNewTitle),
       actions: [
         if (_isSaving)
           const Padding(
@@ -140,6 +142,7 @@ class _NewEncounterScreenState extends State<NewEncounterScreen> {
         else
           IconButton(
             icon: const Icon(Icons.save),
+            tooltip: l10n.encountersSave,
             onPressed: _saveEncounter,
           ),
       ],
@@ -147,13 +150,19 @@ class _NewEncounterScreenState extends State<NewEncounterScreen> {
   }
 
   Widget _buildErrorState() {
-    return const Center(
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    final l10n = context.l10n;
+    return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(Icons.error_outline, size: 64, color: Colors.red),
-          SizedBox(height: 16),
-          Text('Failed to initialize encounter'),
+          Icon(Icons.error_outline, size: 64, color: colorScheme.error),
+          const SizedBox(height: 16),
+          Text(
+            l10n.encountersInitErrorTitle,
+            style: theme.textTheme.titleLarge?.copyWith(color: colorScheme.error),
+          ),
         ],
       ),
     );
@@ -223,7 +232,7 @@ class _NewEncounterScreenState extends State<NewEncounterScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Encounter Information',
+            context.l10n.encountersInfoSectionTitle,
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
                   fontWeight: FontWeight.bold,
                 ),
@@ -241,7 +250,7 @@ class _NewEncounterScreenState extends State<NewEncounterScreen> {
           DropdownButtonFormField<String>(
             value: _selectedExamType,
             decoration: InputDecoration(
-              labelText: 'Exam Type',
+              labelText: context.l10n.encountersExamTypeLabel,
               prefixIcon: Icon(
                 Icons.medical_services_outlined,
                 color: Theme.of(context).primaryColor,
@@ -270,8 +279,8 @@ class _NewEncounterScreenState extends State<NewEncounterScreen> {
           TextFormField(
             controller: _chiefComplaintController,
             decoration: InputDecoration(
-              labelText: 'Chief Complaint *',
-              hintText: 'Main reason for visit',
+              labelText: context.l10n.encountersChiefComplaintLabel,
+              hintText: context.l10n.encountersChiefComplaintHint,
               prefixIcon: Icon(
                 Icons.notes,
                 color: Theme.of(context).primaryColor,
@@ -284,7 +293,7 @@ class _NewEncounterScreenState extends State<NewEncounterScreen> {
             ),
             maxLines: 3,
             validator: (value) => value == null || value.isEmpty
-                ? 'Please enter chief complaint'
+                ? context.l10n.encountersChiefComplaintRequired
                 : null,
           ),
           const SizedBox(height: 16),
@@ -293,8 +302,8 @@ class _NewEncounterScreenState extends State<NewEncounterScreen> {
           TextFormField(
             controller: _notesController,
             decoration: InputDecoration(
-              labelText: 'Clinical Notes',
-              hintText: 'Additional observations and notes',
+              labelText: context.l10n.encountersNotesLabel,
+              hintText: context.l10n.encountersNotesHint,
               prefixIcon: Icon(
                 Icons.description_outlined,
                 color: Theme.of(context).primaryColor,
@@ -428,24 +437,22 @@ class _NewEncounterScreenState extends State<NewEncounterScreen> {
       if (mounted) {
         Navigator.pop(context);
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Encounter saved successfully')),
+          SnackBar(content: Text(context.l10n.encountersSavedSuccess)),
         );
       }
     } catch (e) {
-      String errorMessage = 'Failed to save encounter';
-      
+      String errorMessage = context.l10n.encountersErrorSave(e.toString());
+
       if (e.toString().contains('Patient ID is required')) {
-        errorMessage = 'Patient information is missing. Please select a patient first.';
+        errorMessage = context.l10n.encountersErrorMissingPatient;
       } else if (e.toString().contains('User not logged in')) {
-        errorMessage = 'Please log in to create an encounter.';
+        errorMessage = context.l10n.encountersErrorNotLoggedIn;
       } else if (e.toString().contains('No clinic_id found')) {
-        errorMessage = 'Clinic information is missing. Please contact support.';
+        errorMessage = context.l10n.encountersErrorMissingClinic;
       } else if (e.toString().contains('PostgrestException')) {
-        errorMessage = 'Database error. Please check your connection and try again.';
-      } else {
-        errorMessage = 'Failed to save encounter: ${e.toString()}';
+        errorMessage = context.l10n.encountersErrorDatabase;
       }
-      
+
       _showError(errorMessage);
     } finally {
       if (mounted) {

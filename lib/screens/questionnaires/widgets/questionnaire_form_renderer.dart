@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flmhaiti_fall25team/models/form_template.dart';
+import 'package:flmhaiti_fall25team/localization/l10n_extension.dart';
 
 /// 🧩 This is a safer and improved version of the form renderer used for questionnaires.
 /// It fixes type mismatches (bool vs DateTime), ensures logicalId-based mapping,
@@ -316,7 +317,7 @@ class _QuestionnaireFormRendererState extends State<QuestionnaireFormRenderer> {
     }
     
     return SwitchListTile(
-      title: const Text('Yes'),
+      title: Text(context.l10n.questionnaireBooleanYes),
       value: val,
       onChanged: widget.isPreviewMode ? null : (v) => _updateAnswer(q.logicalId, v),
       contentPadding: EdgeInsets.zero,
@@ -329,7 +330,7 @@ class _QuestionnaireFormRendererState extends State<QuestionnaireFormRenderer> {
       controller: c,
       enabled: !widget.isPreviewMode,
       decoration: InputDecoration(
-        hintText: 'Enter your answer...',
+        hintText: context.l10n.questionnaireTextHint,
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
       ),
       maxLines: q.label.toLowerCase().contains('comment') ? 3 : 1,
@@ -343,7 +344,7 @@ class _QuestionnaireFormRendererState extends State<QuestionnaireFormRenderer> {
       controller: c,
       enabled: !widget.isPreviewMode,
       decoration: InputDecoration(
-        hintText: 'Enter a number...',
+        hintText: context.l10n.questionnaireNumberHint,
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
       ),
       keyboardType: TextInputType.number,
@@ -380,7 +381,7 @@ class _QuestionnaireFormRendererState extends State<QuestionnaireFormRenderer> {
             Text(
               value != null
                   ? '${value.day}/${value.month}/${value.year}'
-                  : 'Select date...',
+                  : context.l10n.questionnaireSelectDate,
               style: theme.textTheme.bodyLarge?.copyWith(
                 color: value != null ? null : Colors.grey.shade600,
               ),
@@ -404,7 +405,7 @@ class _QuestionnaireFormRendererState extends State<QuestionnaireFormRenderer> {
     return DropdownButtonFormField<String>(
       value: val,
       decoration: InputDecoration(
-        hintText: 'Select an option...',
+        hintText: context.l10n.questionnaireChoiceHint,
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
       ),
       items: choices.map((c) => DropdownMenuItem(value: c, child: Text(c))).toList(),

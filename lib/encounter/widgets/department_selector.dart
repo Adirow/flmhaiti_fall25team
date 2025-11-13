@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../models/department.dart';
 import '../services/department_service.dart';
+import 'package:flmhaiti_fall25team/localization/l10n_extension.dart';
 
 class DepartmentSelector extends StatefulWidget {
   final String? selectedDepartmentId;
@@ -69,27 +70,29 @@ class _DepartmentSelectorState extends State<DepartmentSelector> {
   }
 
   Widget _buildLoadingState() {
+    final l10n = context.l10n;
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         border: Border.all(color: Theme.of(context).dividerColor),
         borderRadius: BorderRadius.circular(12),
       ),
-      child: const Row(
+      child: Row(
         children: [
-          SizedBox(
+          const SizedBox(
             width: 20,
             height: 20,
             child: CircularProgressIndicator(strokeWidth: 2),
           ),
-          SizedBox(width: 12),
-          Text('Loading departments...'),
+          const SizedBox(width: 12),
+          Text(l10n.encountersDepartmentsLoading),
         ],
       ),
     );
   }
 
   Widget _buildErrorState() {
+    final l10n = context.l10n;
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
@@ -107,7 +110,7 @@ class _DepartmentSelectorState extends State<DepartmentSelector> {
           const SizedBox(width: 12),
           Expanded(
             child: Text(
-              'Failed to load departments',
+              l10n.encountersDepartmentsLoadError,
               style: TextStyle(
                 color: Theme.of(context).colorScheme.error,
               ),
@@ -124,17 +127,18 @@ class _DepartmentSelectorState extends State<DepartmentSelector> {
   }
 
   Widget _buildEmptyState() {
+    final l10n = context.l10n;
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         border: Border.all(color: Theme.of(context).dividerColor),
         borderRadius: BorderRadius.circular(12),
       ),
-      child: const Row(
+      child: Row(
         children: [
-          Icon(Icons.info_outline, size: 20),
-          SizedBox(width: 12),
-          Text('No departments available'),
+          const Icon(Icons.info_outline, size: 20),
+          const SizedBox(width: 12),
+          Text(l10n.encountersDepartmentsEmpty),
         ],
       ),
     );
@@ -154,7 +158,7 @@ class _DepartmentSelectorState extends State<DepartmentSelector> {
       child: DropdownButtonFormField<Department>(
         value: selectedDepartment,
         decoration: InputDecoration(
-          labelText: 'Department',
+          labelText: context.l10n.encountersDepartmentLabel,
           prefixIcon: Icon(
             Icons.local_hospital,
             color: Theme.of(context).primaryColor,

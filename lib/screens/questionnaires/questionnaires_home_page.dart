@@ -4,6 +4,7 @@ import 'package:flmhaiti_fall25team/models/questionnaire_session.dart';
 import 'package:flmhaiti_fall25team/repositories/questionnaire_repository.dart';
 import 'package:flmhaiti_fall25team/repositories/questionnaire_repository_debug.dart';
 import 'package:flmhaiti_fall25team/screens/questionnaires/questionnaire_fill_page.dart';
+import 'package:flmhaiti_fall25team/localization/l10n_extension.dart';
 
 class QuestionnairesHomePage extends StatefulWidget {
   final String patientId;
@@ -171,7 +172,7 @@ class _QuestionnairesHomePageState extends State<QuestionnairesHomePage> {
       setState(() => _isCreatingSession = false);
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Failed to start questionnaire: $e'),
+          content: Text(context.l10n.questionnairesStartError('$e')),
           backgroundColor: Colors.red,
         ),
       );
@@ -201,11 +202,12 @@ class _QuestionnairesHomePageState extends State<QuestionnairesHomePage> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
+    final l10n = context.l10n;
 
     return Scaffold(
       backgroundColor: colorScheme.surface,
       appBar: AppBar(
-        title: Text('Questionnaires - ${widget.patientName}'),
+        title: Text(l10n.questionnairesTitle(widget.patientName)),
         actions: [
           IconButton(
             icon: const Icon(Icons.refresh),
@@ -230,6 +232,7 @@ class _QuestionnairesHomePageState extends State<QuestionnairesHomePage> {
   }
 
   Widget _buildErrorView(ThemeData theme, ColorScheme colorScheme) {
+    final l10n = context.l10n;
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -237,7 +240,7 @@ class _QuestionnairesHomePageState extends State<QuestionnairesHomePage> {
           Icon(Icons.error_outline, size: 64, color: colorScheme.error),
           const SizedBox(height: 16),
           Text(
-            'Failed to load questionnaires',
+            l10n.questionnairesLoadErrorTitle,
             style: theme.textTheme.titleLarge?.copyWith(color: colorScheme.error),
           ),
           const SizedBox(height: 8),
@@ -251,7 +254,7 @@ class _QuestionnairesHomePageState extends State<QuestionnairesHomePage> {
           const SizedBox(height: 16),
           ElevatedButton(
             onPressed: _loadInitialData,
-            child: const Text('Retry'),
+            child: Text(l10n.commonRetry),
           ),
         ],
       ),
@@ -259,6 +262,7 @@ class _QuestionnairesHomePageState extends State<QuestionnairesHomePage> {
   }
 
   Widget _buildNewQuestionnaireCard(ThemeData theme, ColorScheme colorScheme) {
+    final l10n = context.l10n;
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(24),
@@ -270,7 +274,7 @@ class _QuestionnairesHomePageState extends State<QuestionnairesHomePage> {
                 Icon(Icons.add_circle_outline, color: colorScheme.primary),
                 const SizedBox(width: 8),
                 Text(
-                  'Start New Questionnaire',
+                  l10n.questionnairesStartCardTitle,
                   style: theme.textTheme.titleLarge?.copyWith(
                     fontWeight: FontWeight.bold,
                     color: colorScheme.primary,
@@ -285,7 +289,7 @@ class _QuestionnairesHomePageState extends State<QuestionnairesHomePage> {
               const Center(child: CircularProgressIndicator())
             else if (_departments.isEmpty)
               Text(
-                'No questionnaire templates available',
+                l10n.questionnairesNoTemplates,
                 style: theme.textTheme.bodyMedium?.copyWith(
                   color: colorScheme.onSurface.withValues(alpha: 0.6),
                 ),
@@ -294,7 +298,7 @@ class _QuestionnairesHomePageState extends State<QuestionnairesHomePage> {
               DropdownButtonFormField<Department>(
                 value: _selectedDepartment,
                 decoration: InputDecoration(
-                  labelText: 'Select Department',
+                  labelText: l10n.questionnairesSelectDepartment,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
@@ -318,7 +322,7 @@ class _QuestionnairesHomePageState extends State<QuestionnairesHomePage> {
                   const Center(child: CircularProgressIndicator())
                 else if (_templates.isEmpty)
                   Text(
-                    'No templates available for ${_selectedDepartment!.name}',
+                    l10n.questionnairesNoTemplatesForDepartment(_selectedDepartment!.name),
                     style: theme.textTheme.bodyMedium?.copyWith(
                       color: colorScheme.onSurface.withValues(alpha: 0.6),
                     ),
@@ -327,7 +331,7 @@ class _QuestionnairesHomePageState extends State<QuestionnairesHomePage> {
                   DropdownButtonFormField<FormTemplate>(
                     value: _selectedTemplate,
                     decoration: InputDecoration(
-                      labelText: 'Select Questionnaire',
+                      labelText: l10n.questionnairesSelectTemplate,
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),
@@ -367,7 +371,7 @@ class _QuestionnairesHomePageState extends State<QuestionnairesHomePage> {
                               width: 20,
                               child: CircularProgressIndicator(strokeWidth: 2),
                             )
-                          : const Text('Start Questionnaire'),
+                          : Text(l10n.questionnairesStartButton),
                     ),
                   ),
                 ],
@@ -380,11 +384,12 @@ class _QuestionnairesHomePageState extends State<QuestionnairesHomePage> {
   }
 
   Widget _buildSessionsHistory(ThemeData theme, ColorScheme colorScheme) {
+    final l10n = context.l10n;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Previous Questionnaires',
+          l10n.questionnairesPreviousTitle,
           style: theme.textTheme.titleLarge?.copyWith(
             fontWeight: FontWeight.bold,
           ),
@@ -407,7 +412,7 @@ class _QuestionnairesHomePageState extends State<QuestionnairesHomePage> {
                     ),
                     const SizedBox(height: 16),
                     Text(
-                      'No previous questionnaires',
+                      l10n.questionnairesNoHistory,
                       style: theme.textTheme.titleMedium?.copyWith(
                         color: colorScheme.onSurface.withValues(alpha: 0.6),
                       ),

@@ -94,5 +94,265 @@
   "patientsDeleteConfirmationMessage": "Èske ou sèten ou vle efase {name}? Aksyon sa a pa kapab anile.",
   "commonDelete": "Efase",
   "patientsDeleteSuccess": "Pasyan efase avèk siksè",
-  "patientsDeleteError": "Echwe pou efase pasyan an"
+  "patientsDeleteError": "Echwe pou efase pasyan an",
+  "questionnairesTitle": "Kesyonè - {patientName}",
+  "@questionnairesTitle": {
+    "description": "Tit paj kesyonè a ak non pasyan an"
+  },
+  "questionnairesLoadErrorTitle": "Pa t kapab chaje kesyonè yo",
+  "questionnairesStartCardTitle": "Kòmanse nouvo kesyonè",
+  "questionnairesNoTemplates": "Pa gen modèl kesyonè disponib",
+  "questionnairesSelectDepartment": "Chwazi depatman",
+  "questionnairesNoTemplatesForDepartment": "Pa gen modèl disponib pou {department}",
+  "@questionnairesNoTemplatesForDepartment": {
+    "description": "Mesaj lè pa gen modèl pou yon depatman",
+    "placeholders": {
+      "department": {
+        "type": "String"
+      }
+    }
+  },
+  "questionnairesSelectTemplate": "Chwazi kesyonè",
+  "questionnairesStartButton": "Kòmanse kesyonè a",
+  "questionnairesPreviousTitle": "Kesyonè anvan yo",
+  "questionnairesNoHistory": "Pa gen okenn kesyonè anvan",
+  "questionnairesStartError": "Echwe pou kòmanse kesyonè a : {error}",
+  "@questionnairesStartError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "questionnaireSavingLabel": "Ap sove...",
+  "questionnaireStatusSubmitted": "SOUMÈT",
+  "questionnaireStatusDraft": "BROUYON",
+  "questionnaireAutoSaveFailed": "Auto-sove echwe : {error}",
+  "@questionnaireAutoSaveFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "questionnaireSubmitSuccess": "Kesyonè a soumèt ak siksè!",
+  "questionnaireSubmitError": "Echwe pou soumèt kesyonè a : {error}",
+  "@questionnaireSubmitError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "questionnaireLoadErrorTitle": "Pa t kapab chaje kesyonè a",
+  "questionnaireEmptyTitle": "Pa jwenn okenn kesyon",
+  "questionnaireEmptySubtitle": "Kesyonè sa a sanble vid",
+  "questionnaireSubmitButton": "Soumèt kesyonè a",
+  "questionnaireSubmittedReadOnlyMessage": "Kesyonè sa a deja soumèt epi kounye a li sèlman pou lekti.",
+  "questionnaireVersionLabel": "Vèsyon {version}",
+  "@questionnaireVersionLabel": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "questionnaireSelectDate": "Chwazi dat...",
+  "questionnaireTextHint": "Antre repons ou...",
+  "questionnaireNumberHint": "Antre yon nimewo...",
+  "questionnaireChoiceHint": "Chwazi yon opsyon...",
+  "questionnaireBooleanYes": "Wi",
+  "encountersTitle": "Vizit",
+  "encountersCreateNew": "Nouvo vizit",
+  "encountersContinue": "Kontinye",
+  "encountersStatusInProgress": "An pwogrè",
+  "encountersStatusCompleted": "Fini",
+  "encountersStatusDraft": "Brouyon",
+  "encountersLastUpdated": "Dènye mizajou {time}",
+  "encountersNoEncounters": "Poko gen okenn vizit",
+  "encountersNoEncountersSubtitle": "Kòmanse pa kreye yon nouvo vizit",
+  "encountersLoadError": "Echwe pou chaje vizit yo",
+  "encountersStartError": "Echwe pou kòmanse vizit la : {error}",
+  "encountersDeleteConfirm": "Efase vizit la?",
+  "encountersDeleteMessage": "Èske ou vle vrèman efase vizit sa a?",
+  "encountersDeleteSuccess": "Vizit efase",
+  "encountersDeleteError": "Echwe pou efase vizit la",
+  "encountersToolsTitle": "Zouti klinik",
+  "encountersToolVitals": "Siy vital",
+  "encountersToolNotes": "Nòt",
+  "encountersToolMedications": "Medikaman",
+  "encountersToolProcedures": "Pwosedi",
+  "encountersSave": "Sove",
+  "encountersSubmit": "Soumèt",
+  "encountersCancel": "Anile",
+  "formsTitle": "Modèl fòm",
+  "formsCreateNew": "Kreye modèl",
+  "formsEdit": "Modifye",
+  "formsDelete": "Efase",
+  "formsDuplicate": "Duplike",
+  "formsPublish": "Pibliye",
+  "formsUnpublish": "Retire",
+  "formsActiveBadge": "Aktif",
+  "formsDraftBadge": "Brouyon",
+  "formsNoTemplates": "Pa gen okenn modèl fòm",
+  "formsNoTemplatesSubtitle": "Kreye premye modèl ou pou kòmanse",
+  "formsSearchHint": "Chèche modèl...",
+  "formsLastUpdated": "Dènye mizajou {time}",
+  "formsLoadError": "Echwe pou chaje modèl yo",
+  "formsCreateSuccess": "Modèl kreye avèk siksè",
+  "formsCreateError": "Echwe pou kreye modèl la",
+  "formsUpdateSuccess": "Modèl mete ajou avèk siksè",
+  "formsUpdateError": "Echwe pou mete ajou modèl la",
+  "formsDeleteConfirm": "Efase modèl la?",
+  "formsDeleteMessage": "Èske ou vle vrèman efase modèl sa a?",
+  "formsDeleteSuccess": "Modèl efase",
+  "formsDeleteError": "Echwe pou efase modèl la",
+  "encountersLoadingTitle": "Ap chaje...",
+  "encountersEditTitle": "Modifye vizit",
+  "encountersNewTitle": "Nouvo vizit",
+  "encountersInitErrorTitle": "Pa t kapab inisyalize vizit la",
+  "encountersInitError": "Pa t kapab inisyalize vizit la : {error}",
+  "@encountersInitError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "encountersInfoSectionTitle": "Enfòmasyon sou vizit la",
+  "encountersExamTypeLabel": "Kalite egzamen",
+  "encountersChiefComplaintLabel": "Rezon prensipal",
+  "encountersChiefComplaintHint": "Rezon prensipal vizit la",
+  "encountersChiefComplaintRequired": "Tanpri antre rezon prensipal la",
+  "encountersNotesLabel": "Nòt klinik",
+  "encountersNotesHint": "Obsèvasyon ak nòt siplemantè",
+  "encountersSavedSuccess": "Vizit sove avèk siksè",
+  "encountersErrorMissingPatient": "Enfòmasyon pasyan an pa disponib. Tanpri chwazi yon pasyan anvan.",
+  "encountersErrorNotLoggedIn": "Tanpri konekte pou kreye yon vizit.",
+  "encountersErrorMissingClinic": "Enfòmasyon sou klinik la manke. Tanpri kontakte sipò.",
+  "encountersErrorDatabase": "Erè baz done. Tanpri tcheke koneksyon ou epi eseye ankò.",
+  "encountersErrorSave": "Echwe pou sove vizit la : {error}",
+  "@encountersErrorSave": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "encountersCloseTool": "Fèmen zouti a",
+  "encountersNoTools": "Pa gen okenn zouti disponib",
+  "encountersNoToolsSubtitle": "Zouti yo ap parèt isit la lè yo konfigire pou depatman sa a",
+  "encountersToolLoadError": "Echwe pou chaje zouti a : {toolId}",
+  "@encountersToolLoadError": {
+    "placeholders": {
+      "toolId": {
+        "type": "String"
+      }
+    }
+  },
+  "encountersDepartmentsLoading": "Ap chaje depatman yo...",
+  "encountersDepartmentsLoadError": "Echwe pou chaje depatman yo",
+  "encountersDepartmentsEmpty": "Pa gen okenn depatman disponib",
+  "encountersDepartmentLabel": "Depatman",
+  "formsStatusLabel": "Estati",
+  "formsStatusAll": "Tout",
+  "formsStatusActive": "Aktif",
+  "formsStatusArchived": "Achive",
+  "formsNoTemplatesFound": "Pa jwenn okenn modèl",
+  "formsNoTemplatesSearch": "Pa gen okenn modèl ki matche rechèch ou",
+  "formsNoTemplatesSearchSubtitle": "Eseye ajiste tèm rechèch ou",
+  "formsDuplicateSuccess": "Modèl \"{name}\" duplike avèk siksè",
+  "@formsDuplicateSuccess": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "formsDuplicateError": "Echwe pou duplike modèl la : {error}",
+  "@formsDuplicateError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "formsArchiveConfirmTitle": "Achive modèl la",
+  "formsArchiveConfirmMessage": "Èske ou vle achive \"{name}\"? Li pap disponib ankò pou nouvo fòm.",
+  "@formsArchiveConfirmMessage": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "formsArchiveAction": "Achive",
+  "formsArchiveSuccess": "Modèl \"{name}\" achive",
+  "@formsArchiveSuccess": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "formsArchiveError": "Echwe pou achive modèl la : {error}",
+  "@formsArchiveError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "formsDetailsArchivedBadge": "ACHIVE",
+  "formsNoDescription": "Pa gen deskripsyon",
+  "formsPopupEdit": "Modifye",
+  "formsPopupDuplicate": "Duplike",
+  "formsPopupArchive": "Achive",
+  "formsSectionsTitle": "Seksyon yo",
+  "formsSectionsAddTooltip": "Ajoute seksyon",
+  "formsSectionsEmptyTitle": "Poko gen okenn seksyon",
+  "formsSectionsEmptySubtitle": "Ajoute yon seksyon pou kòmanse",
+  "formsQuestionsPlaceholder": "Chwazi yon seksyon pou modifye kesyon yo",
+  "formsPreviewModeNotice": "Mòd aperçu – chan yo dezaktive",
+  "formsSectionIndexLabel": "Seksyon {index}",
+  "@formsSectionIndexLabel": {
+    "placeholders": {
+      "index": {
+        "type": "int"
+      }
+    }
+  },
+  "formsSectionRename": "Renome",
+  "formsSectionDelete": "Efase",
+  "formsSectionDeleteTitle": "Efase seksyon an",
+  "formsSectionDeleteMessage": "Èske ou vle efase \"{name}\"? Sa ap efase tou tout kesyon ki nan seksyon sa a.",
+  "@formsSectionDeleteMessage": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "formsUnsavedBadge": "PA SOVE",
+  "formsTemplateInfoTitle": "Enfòmasyon sou modèl la",
+  "formsTemplateNameLabel": "Non modèl la",
+  "formsTemplateNameRequired": "Tanpri antre non modèl la",
+  "formsTemplateNameHint": "Antre non modèl la",
+  "formsTemplateDescriptionLabel": "Deskripsyon",
+  "formsTemplateDescriptionHint": "Antre deskripsyon modèl la",
+  "formsSaveSuccess": "Modèl sove avèk siksè",
+  "formsSaveError": "Echwe pou sove modèl la : {error}",
+  "@formsSaveError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "formsDiscardChangesTitle": "Chanjman pa sove",
+  "formsDiscardChangesMessage": "Ou gen chanjman ki pa sove. Ou vle revoke yo?",
+  "formsDiscardButton": "Revoke",
+  "formsTabTemplate": "Modèl",
+  "formsTabSections": "Seksyon",
+  "formsTabPreview": "Aperçu"
 }

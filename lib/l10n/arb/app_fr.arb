@@ -94,5 +94,265 @@
   "patientsDeleteConfirmationMessage": "Voulez-vous vraiment supprimer {name} ? Cette action est irréversible.",
   "commonDelete": "Supprimer",
   "patientsDeleteSuccess": "Patient supprimé avec succès",
-  "patientsDeleteError": "Échec de la suppression du patient"
+  "patientsDeleteError": "Échec de la suppression du patient",
+  "questionnairesTitle": "Questionnaires - {patientName}",
+  "@questionnairesTitle": {
+    "description": "Titre de la page des questionnaires avec le nom du patient"
+  },
+  "questionnairesLoadErrorTitle": "Échec du chargement des questionnaires",
+  "questionnairesStartCardTitle": "Commencer un nouveau questionnaire",
+  "questionnairesNoTemplates": "Aucun modèle de questionnaire disponible",
+  "questionnairesSelectDepartment": "Sélectionner un département",
+  "questionnairesNoTemplatesForDepartment": "Aucun modèle disponible pour {department}",
+  "@questionnairesNoTemplatesForDepartment": {
+    "description": "Message lorsqu'il n'y a pas de modèles pour un département",
+    "placeholders": {
+      "department": {
+        "type": "String"
+      }
+    }
+  },
+  "questionnairesSelectTemplate": "Sélectionner un questionnaire",
+  "questionnairesStartButton": "Démarrer le questionnaire",
+  "questionnairesPreviousTitle": "Questionnaires précédents",
+  "questionnairesNoHistory": "Aucun questionnaire précédent",
+  "questionnairesStartError": "Échec du démarrage du questionnaire : {error}",
+  "@questionnairesStartError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "questionnaireSavingLabel": "Enregistrement...",
+  "questionnaireStatusSubmitted": "SOUMIS",
+  "questionnaireStatusDraft": "BROUILLON",
+  "questionnaireAutoSaveFailed": "Échec de l'enregistrement automatique : {error}",
+  "@questionnaireAutoSaveFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "questionnaireSubmitSuccess": "Questionnaire soumis avec succès !",
+  "questionnaireSubmitError": "Échec de la soumission du questionnaire : {error}",
+  "@questionnaireSubmitError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "questionnaireLoadErrorTitle": "Échec du chargement du questionnaire",
+  "questionnaireEmptyTitle": "Aucune question trouvée",
+  "questionnaireEmptySubtitle": "Ce questionnaire semble vide",
+  "questionnaireSubmitButton": "Soumettre le questionnaire",
+  "questionnaireSubmittedReadOnlyMessage": "Ce questionnaire a été soumis et est désormais en lecture seule.",
+  "questionnaireVersionLabel": "Version {version}",
+  "@questionnaireVersionLabel": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "questionnaireSelectDate": "Sélectionner une date...",
+  "questionnaireTextHint": "Entrez votre réponse...",
+  "questionnaireNumberHint": "Entrez un nombre...",
+  "questionnaireChoiceHint": "Sélectionnez une option...",
+  "questionnaireBooleanYes": "Oui",
+  "encountersTitle": "Consultations",
+  "encountersCreateNew": "Nouvelle consultation",
+  "encountersContinue": "Continuer",
+  "encountersStatusInProgress": "En cours",
+  "encountersStatusCompleted": "Terminée",
+  "encountersStatusDraft": "Brouillon",
+  "encountersLastUpdated": "Dernière mise à jour {time}",
+  "encountersNoEncounters": "Aucune consultation pour le moment",
+  "encountersNoEncountersSubtitle": "Commencez en créant une nouvelle consultation",
+  "encountersLoadError": "Échec du chargement des consultations",
+  "encountersStartError": "Échec du démarrage de la consultation : {error}",
+  "encountersDeleteConfirm": "Supprimer la consultation ?",
+  "encountersDeleteMessage": "Voulez-vous vraiment supprimer cette consultation ?",
+  "encountersDeleteSuccess": "Consultation supprimée",
+  "encountersDeleteError": "Échec de la suppression de la consultation",
+  "encountersToolsTitle": "Outils cliniques",
+  "encountersToolVitals": "Signes vitaux",
+  "encountersToolNotes": "Notes",
+  "encountersToolMedications": "Médicaments",
+  "encountersToolProcedures": "Procédures",
+  "encountersSave": "Enregistrer",
+  "encountersSubmit": "Soumettre",
+  "encountersCancel": "Annuler",
+  "formsTitle": "Modèles de formulaires",
+  "formsCreateNew": "Créer un modèle",
+  "formsEdit": "Modifier",
+  "formsDelete": "Supprimer",
+  "formsDuplicate": "Dupliquer",
+  "formsPublish": "Publier",
+  "formsUnpublish": "Retirer",
+  "formsActiveBadge": "Actif",
+  "formsDraftBadge": "Brouillon",
+  "formsNoTemplates": "Aucun modèle de formulaire",
+  "formsNoTemplatesSubtitle": "Créez votre premier modèle pour commencer",
+  "formsSearchHint": "Rechercher des modèles...",
+  "formsLastUpdated": "Dernière mise à jour {time}",
+  "formsLoadError": "Échec du chargement des modèles",
+  "formsCreateSuccess": "Modèle créé avec succès",
+  "formsCreateError": "Échec de la création du modèle",
+  "formsUpdateSuccess": "Modèle mis à jour avec succès",
+  "formsUpdateError": "Échec de la mise à jour du modèle",
+  "formsDeleteConfirm": "Supprimer le modèle ?",
+  "formsDeleteMessage": "Voulez-vous vraiment supprimer ce modèle ?",
+  "formsDeleteSuccess": "Modèle supprimé",
+  "formsDeleteError": "Échec de la suppression du modèle",
+  "encountersLoadingTitle": "Chargement...",
+  "encountersEditTitle": "Modifier la consultation",
+  "encountersNewTitle": "Nouvelle consultation",
+  "encountersInitErrorTitle": "Échec de l'initialisation de la consultation",
+  "encountersInitError": "Échec de l'initialisation de la consultation : {error}",
+  "@encountersInitError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "encountersInfoSectionTitle": "Informations sur la consultation",
+  "encountersExamTypeLabel": "Type d'examen",
+  "encountersChiefComplaintLabel": "Motif principal",
+  "encountersChiefComplaintHint": "Raison principale de la visite",
+  "encountersChiefComplaintRequired": "Veuillez saisir le motif principal",
+  "encountersNotesLabel": "Notes cliniques",
+  "encountersNotesHint": "Observations et notes supplémentaires",
+  "encountersSavedSuccess": "Consultation enregistrée avec succès",
+  "encountersErrorMissingPatient": "Informations patient manquantes. Veuillez d'abord sélectionner un patient.",
+  "encountersErrorNotLoggedIn": "Veuillez vous connecter pour créer une consultation.",
+  "encountersErrorMissingClinic": "Informations sur la clinique manquantes. Veuillez contacter le support.",
+  "encountersErrorDatabase": "Erreur de base de données. Vérifiez votre connexion et réessayez.",
+  "encountersErrorSave": "Échec de l'enregistrement de la consultation : {error}",
+  "@encountersErrorSave": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "encountersCloseTool": "Fermer l'outil",
+  "encountersNoTools": "Aucun outil disponible",
+  "encountersNoToolsSubtitle": "Les outils apparaîtront ici lorsqu'ils seront configurés pour ce service",
+  "encountersToolLoadError": "Échec du chargement de l'outil : {toolId}",
+  "@encountersToolLoadError": {
+    "placeholders": {
+      "toolId": {
+        "type": "String"
+      }
+    }
+  },
+  "encountersDepartmentsLoading": "Chargement des services...",
+  "encountersDepartmentsLoadError": "Échec du chargement des services",
+  "encountersDepartmentsEmpty": "Aucun service disponible",
+  "encountersDepartmentLabel": "Service",
+  "formsStatusLabel": "Statut",
+  "formsStatusAll": "Tous",
+  "formsStatusActive": "Actifs",
+  "formsStatusArchived": "Archivés",
+  "formsNoTemplatesFound": "Aucun modèle trouvé",
+  "formsNoTemplatesSearch": "Aucun modèle ne correspond à votre recherche",
+  "formsNoTemplatesSearchSubtitle": "Essayez d'ajuster vos termes de recherche",
+  "formsDuplicateSuccess": "Modèle « {name} » dupliqué avec succès",
+  "@formsDuplicateSuccess": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "formsDuplicateError": "Échec de la duplication du modèle : {error}",
+  "@formsDuplicateError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "formsArchiveConfirmTitle": "Archiver le modèle",
+  "formsArchiveConfirmMessage": "Voulez-vous vraiment archiver « {name} » ? Il ne sera plus disponible pour de nouveaux formulaires.",
+  "@formsArchiveConfirmMessage": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "formsArchiveAction": "Archiver",
+  "formsArchiveSuccess": "Modèle « {name} » archivé",
+  "@formsArchiveSuccess": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "formsArchiveError": "Échec de l'archivage du modèle : {error}",
+  "@formsArchiveError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "formsDetailsArchivedBadge": "ARCHIVÉ",
+  "formsNoDescription": "Aucune description",
+  "formsPopupEdit": "Modifier",
+  "formsPopupDuplicate": "Dupliquer",
+  "formsPopupArchive": "Archiver",
+  "formsSectionsTitle": "Sections",
+  "formsSectionsAddTooltip": "Ajouter une section",
+  "formsSectionsEmptyTitle": "Aucune section pour le moment",
+  "formsSectionsEmptySubtitle": "Ajoutez une section pour commencer",
+  "formsQuestionsPlaceholder": "Sélectionnez une section pour modifier les questions",
+  "formsPreviewModeNotice": "Mode aperçu – les champs sont désactivés",
+  "formsSectionIndexLabel": "Section {index}",
+  "@formsSectionIndexLabel": {
+    "placeholders": {
+      "index": {
+        "type": "int"
+      }
+    }
+  },
+  "formsSectionRename": "Renommer",
+  "formsSectionDelete": "Supprimer",
+  "formsSectionDeleteTitle": "Supprimer la section",
+  "formsSectionDeleteMessage": "Voulez-vous vraiment supprimer « {name} » ? Cela supprimera aussi toutes les questions de cette section.",
+  "@formsSectionDeleteMessage": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "formsUnsavedBadge": "NON ENREGISTRÉ",
+  "formsTemplateInfoTitle": "Informations sur le modèle",
+  "formsTemplateNameLabel": "Nom du modèle",
+  "formsTemplateNameRequired": "Veuillez saisir un nom de modèle",
+  "formsTemplateNameHint": "Saisissez le nom du modèle",
+  "formsTemplateDescriptionLabel": "Description",
+  "formsTemplateDescriptionHint": "Entrez la description du modèle",
+  "formsSaveSuccess": "Modèle enregistré avec succès",
+  "formsSaveError": "Échec de l'enregistrement du modèle : {error}",
+  "@formsSaveError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "formsDiscardChangesTitle": "Modifications non enregistrées",
+  "formsDiscardChangesMessage": "Vous avez des modifications non enregistrées. Voulez-vous les abandonner ?",
+  "formsDiscardButton": "Abandonner",
+  "formsTabTemplate": "Modèle",
+  "formsTabSections": "Sections",
+  "formsTabPreview": "Aperçu"
 }

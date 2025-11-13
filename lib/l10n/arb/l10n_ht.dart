@@ -302,4 +302,487 @@ class AppLocalizationsHt extends AppLocalizations {
 
   @override
   String get patientsDeleteError => 'Echwe pou efase pasyan an';
+
+  @override
+  String questionnairesTitle(Object patientName) {
+    return 'Kesyonè - $patientName';
+  }
+
+  @override
+  String get questionnairesLoadErrorTitle => 'Pa t kapab chaje kesyonè yo';
+
+  @override
+  String get questionnairesStartCardTitle => 'Kòmanse nouvo kesyonè';
+
+  @override
+  String get questionnairesNoTemplates => 'Pa gen modèl kesyonè disponib';
+
+  @override
+  String get questionnairesSelectDepartment => 'Chwazi depatman';
+
+  @override
+  String questionnairesNoTemplatesForDepartment(String department) {
+    return 'Pa gen modèl disponib pou $department';
+  }
+
+  @override
+  String get questionnairesSelectTemplate => 'Chwazi kesyonè';
+
+  @override
+  String get questionnairesStartButton => 'Kòmanse kesyonè a';
+
+  @override
+  String get questionnairesPreviousTitle => 'Kesyonè anvan yo';
+
+  @override
+  String get questionnairesNoHistory => 'Pa gen okenn kesyonè anvan';
+
+  @override
+  String questionnairesStartError(String error) {
+    return 'Echwe pou kòmanse kesyonè a : $error';
+  }
+
+  @override
+  String get questionnaireSavingLabel => 'Ap sove...';
+
+  @override
+  String get questionnaireStatusSubmitted => 'SOUMÈT';
+
+  @override
+  String get questionnaireStatusDraft => 'BROUYON';
+
+  @override
+  String questionnaireAutoSaveFailed(String error) {
+    return 'Auto-sove echwe : $error';
+  }
+
+  @override
+  String get questionnaireSubmitSuccess => 'Kesyonè a soumèt ak siksè!';
+
+  @override
+  String questionnaireSubmitError(String error) {
+    return 'Echwe pou soumèt kesyonè a : $error';
+  }
+
+  @override
+  String get questionnaireLoadErrorTitle => 'Pa t kapab chaje kesyonè a';
+
+  @override
+  String get questionnaireEmptyTitle => 'Pa jwenn okenn kesyon';
+
+  @override
+  String get questionnaireEmptySubtitle => 'Kesyonè sa a sanble vid';
+
+  @override
+  String get questionnaireSubmitButton => 'Soumèt kesyonè a';
+
+  @override
+  String get questionnaireSubmittedReadOnlyMessage =>
+      'Kesyonè sa a deja soumèt epi kounye a li sèlman pou lekti.';
+
+  @override
+  String questionnaireVersionLabel(String version) {
+    return 'Vèsyon $version';
+  }
+
+  @override
+  String get questionnaireSelectDate => 'Chwazi dat...';
+
+  @override
+  String get questionnaireTextHint => 'Antre repons ou...';
+
+  @override
+  String get questionnaireNumberHint => 'Antre yon nimewo...';
+
+  @override
+  String get questionnaireChoiceHint => 'Chwazi yon opsyon...';
+
+  @override
+  String get questionnaireBooleanYes => 'Wi';
+
+  @override
+  String get encountersTitle => 'Vizit';
+
+  @override
+  String get encountersCreateNew => 'Nouvo vizit';
+
+  @override
+  String get encountersContinue => 'Kontinye';
+
+  @override
+  String get encountersStatusInProgress => 'An pwogrè';
+
+  @override
+  String get encountersStatusCompleted => 'Fini';
+
+  @override
+  String get encountersStatusDraft => 'Brouyon';
+
+  @override
+  String encountersLastUpdated(Object time) {
+    return 'Dènye mizajou $time';
+  }
+
+  @override
+  String get encountersNoEncounters => 'Poko gen okenn vizit';
+
+  @override
+  String get encountersNoEncountersSubtitle =>
+      'Kòmanse pa kreye yon nouvo vizit';
+
+  @override
+  String get encountersLoadError => 'Echwe pou chaje vizit yo';
+
+  @override
+  String encountersStartError(Object error) {
+    return 'Echwe pou kòmanse vizit la : $error';
+  }
+
+  @override
+  String get encountersDeleteConfirm => 'Efase vizit la?';
+
+  @override
+  String get encountersDeleteMessage => 'Èske ou vle vrèman efase vizit sa a?';
+
+  @override
+  String get encountersDeleteSuccess => 'Vizit efase';
+
+  @override
+  String get encountersDeleteError => 'Echwe pou efase vizit la';
+
+  @override
+  String get encountersToolsTitle => 'Zouti klinik';
+
+  @override
+  String get encountersToolVitals => 'Siy vital';
+
+  @override
+  String get encountersToolNotes => 'Nòt';
+
+  @override
+  String get encountersToolMedications => 'Medikaman';
+
+  @override
+  String get encountersToolProcedures => 'Pwosedi';
+
+  @override
+  String get encountersSave => 'Sove';
+
+  @override
+  String get encountersSubmit => 'Soumèt';
+
+  @override
+  String get encountersCancel => 'Anile';
+
+  @override
+  String get formsTitle => 'Modèl fòm';
+
+  @override
+  String get formsCreateNew => 'Kreye modèl';
+
+  @override
+  String get formsEdit => 'Modifye';
+
+  @override
+  String get formsDelete => 'Efase';
+
+  @override
+  String get formsDuplicate => 'Duplike';
+
+  @override
+  String get formsPublish => 'Pibliye';
+
+  @override
+  String get formsUnpublish => 'Retire';
+
+  @override
+  String get formsActiveBadge => 'Aktif';
+
+  @override
+  String get formsDraftBadge => 'Brouyon';
+
+  @override
+  String get formsNoTemplates => 'Pa gen okenn modèl fòm';
+
+  @override
+  String get formsNoTemplatesSubtitle => 'Kreye premye modèl ou pou kòmanse';
+
+  @override
+  String get formsSearchHint => 'Chèche modèl...';
+
+  @override
+  String formsLastUpdated(Object time) {
+    return 'Dènye mizajou $time';
+  }
+
+  @override
+  String get formsLoadError => 'Echwe pou chaje modèl yo';
+
+  @override
+  String get formsCreateSuccess => 'Modèl kreye avèk siksè';
+
+  @override
+  String get formsCreateError => 'Echwe pou kreye modèl la';
+
+  @override
+  String get formsUpdateSuccess => 'Modèl mete ajou avèk siksè';
+
+  @override
+  String get formsUpdateError => 'Echwe pou mete ajou modèl la';
+
+  @override
+  String get formsDeleteConfirm => 'Efase modèl la?';
+
+  @override
+  String get formsDeleteMessage => 'Èske ou vle vrèman efase modèl sa a?';
+
+  @override
+  String get formsDeleteSuccess => 'Modèl efase';
+
+  @override
+  String get formsDeleteError => 'Echwe pou efase modèl la';
+
+  @override
+  String get encountersLoadingTitle => 'Ap chaje...';
+
+  @override
+  String get encountersEditTitle => 'Modifye vizit';
+
+  @override
+  String get encountersNewTitle => 'Nouvo vizit';
+
+  @override
+  String get encountersInitErrorTitle => 'Pa t kapab inisyalize vizit la';
+
+  @override
+  String encountersInitError(String error) {
+    return 'Pa t kapab inisyalize vizit la : $error';
+  }
+
+  @override
+  String get encountersInfoSectionTitle => 'Enfòmasyon sou vizit la';
+
+  @override
+  String get encountersExamTypeLabel => 'Kalite egzamen';
+
+  @override
+  String get encountersChiefComplaintLabel => 'Rezon prensipal';
+
+  @override
+  String get encountersChiefComplaintHint => 'Rezon prensipal vizit la';
+
+  @override
+  String get encountersChiefComplaintRequired =>
+      'Tanpri antre rezon prensipal la';
+
+  @override
+  String get encountersNotesLabel => 'Nòt klinik';
+
+  @override
+  String get encountersNotesHint => 'Obsèvasyon ak nòt siplemantè';
+
+  @override
+  String get encountersSavedSuccess => 'Vizit sove avèk siksè';
+
+  @override
+  String get encountersErrorMissingPatient =>
+      'Enfòmasyon pasyan an pa disponib. Tanpri chwazi yon pasyan anvan.';
+
+  @override
+  String get encountersErrorNotLoggedIn =>
+      'Tanpri konekte pou kreye yon vizit.';
+
+  @override
+  String get encountersErrorMissingClinic =>
+      'Enfòmasyon sou klinik la manke. Tanpri kontakte sipò.';
+
+  @override
+  String get encountersErrorDatabase =>
+      'Erè baz done. Tanpri tcheke koneksyon ou epi eseye ankò.';
+
+  @override
+  String encountersErrorSave(String error) {
+    return 'Echwe pou sove vizit la : $error';
+  }
+
+  @override
+  String get encountersCloseTool => 'Fèmen zouti a';
+
+  @override
+  String get encountersNoTools => 'Pa gen okenn zouti disponib';
+
+  @override
+  String get encountersNoToolsSubtitle =>
+      'Zouti yo ap parèt isit la lè yo konfigire pou depatman sa a';
+
+  @override
+  String encountersToolLoadError(String toolId) {
+    return 'Echwe pou chaje zouti a : $toolId';
+  }
+
+  @override
+  String get encountersDepartmentsLoading => 'Ap chaje depatman yo...';
+
+  @override
+  String get encountersDepartmentsLoadError => 'Echwe pou chaje depatman yo';
+
+  @override
+  String get encountersDepartmentsEmpty => 'Pa gen okenn depatman disponib';
+
+  @override
+  String get encountersDepartmentLabel => 'Depatman';
+
+  @override
+  String get formsStatusLabel => 'Estati';
+
+  @override
+  String get formsStatusAll => 'Tout';
+
+  @override
+  String get formsStatusActive => 'Aktif';
+
+  @override
+  String get formsStatusArchived => 'Achive';
+
+  @override
+  String get formsNoTemplatesFound => 'Pa jwenn okenn modèl';
+
+  @override
+  String get formsNoTemplatesSearch =>
+      'Pa gen okenn modèl ki matche rechèch ou';
+
+  @override
+  String get formsNoTemplatesSearchSubtitle => 'Eseye ajiste tèm rechèch ou';
+
+  @override
+  String formsDuplicateSuccess(String name) {
+    return 'Modèl \"$name\" duplike avèk siksè';
+  }
+
+  @override
+  String formsDuplicateError(String error) {
+    return 'Echwe pou duplike modèl la : $error';
+  }
+
+  @override
+  String get formsArchiveConfirmTitle => 'Achive modèl la';
+
+  @override
+  String formsArchiveConfirmMessage(String name) {
+    return 'Èske ou vle achive \"$name\"? Li pap disponib ankò pou nouvo fòm.';
+  }
+
+  @override
+  String get formsArchiveAction => 'Achive';
+
+  @override
+  String formsArchiveSuccess(String name) {
+    return 'Modèl \"$name\" achive';
+  }
+
+  @override
+  String formsArchiveError(String error) {
+    return 'Echwe pou achive modèl la : $error';
+  }
+
+  @override
+  String get formsDetailsArchivedBadge => 'ACHIVE';
+
+  @override
+  String get formsNoDescription => 'Pa gen deskripsyon';
+
+  @override
+  String get formsPopupEdit => 'Modifye';
+
+  @override
+  String get formsPopupDuplicate => 'Duplike';
+
+  @override
+  String get formsPopupArchive => 'Achive';
+
+  @override
+  String get formsSectionsTitle => 'Seksyon yo';
+
+  @override
+  String get formsSectionsAddTooltip => 'Ajoute seksyon';
+
+  @override
+  String get formsSectionsEmptyTitle => 'Poko gen okenn seksyon';
+
+  @override
+  String get formsSectionsEmptySubtitle => 'Ajoute yon seksyon pou kòmanse';
+
+  @override
+  String get formsQuestionsPlaceholder =>
+      'Chwazi yon seksyon pou modifye kesyon yo';
+
+  @override
+  String get formsPreviewModeNotice => 'Mòd aperçu – chan yo dezaktive';
+
+  @override
+  String formsSectionIndexLabel(int index) {
+    return 'Seksyon $index';
+  }
+
+  @override
+  String get formsSectionRename => 'Renome';
+
+  @override
+  String get formsSectionDelete => 'Efase';
+
+  @override
+  String get formsSectionDeleteTitle => 'Efase seksyon an';
+
+  @override
+  String formsSectionDeleteMessage(String name) {
+    return 'Èske ou vle efase \"$name\"? Sa ap efase tou tout kesyon ki nan seksyon sa a.';
+  }
+
+  @override
+  String get formsUnsavedBadge => 'PA SOVE';
+
+  @override
+  String get formsTemplateInfoTitle => 'Enfòmasyon sou modèl la';
+
+  @override
+  String get formsTemplateNameLabel => 'Non modèl la';
+
+  @override
+  String get formsTemplateNameRequired => 'Tanpri antre non modèl la';
+
+  @override
+  String get formsTemplateNameHint => 'Antre non modèl la';
+
+  @override
+  String get formsTemplateDescriptionLabel => 'Deskripsyon';
+
+  @override
+  String get formsTemplateDescriptionHint => 'Antre deskripsyon modèl la';
+
+  @override
+  String get formsSaveSuccess => 'Modèl sove avèk siksè';
+
+  @override
+  String formsSaveError(String error) {
+    return 'Echwe pou sove modèl la : $error';
+  }
+
+  @override
+  String get formsDiscardChangesTitle => 'Chanjman pa sove';
+
+  @override
+  String get formsDiscardChangesMessage =>
+      'Ou gen chanjman ki pa sove. Ou vle revoke yo?';
+
+  @override
+  String get formsDiscardButton => 'Revoke';
+
+  @override
+  String get formsTabTemplate => 'Modèl';
+
+  @override
+  String get formsTabSections => 'Seksyon';
+
+  @override
+  String get formsTabPreview => 'Aperçu';
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flmhaiti_fall25team/models/form_template.dart';
 import 'package:flmhaiti_fall25team/repositories/form_repository.dart';
 import 'package:flmhaiti_fall25team/screens/forms/template_editor_page.dart';
+import 'package:flmhaiti_fall25team/localization/l10n_extension.dart';
 
 class TemplateListPage extends StatefulWidget {
   const TemplateListPage({super.key});
@@ -140,7 +141,7 @@ class _TemplateListPageState extends State<TemplateListPage> {
       await _formRepository.duplicateTemplate(template.id);
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Template "${template.name}" duplicated successfully'),
+          content: Text(context.l10n.formsDuplicateSuccess(template.name)),
           backgroundColor: Colors.green,
         ),
       );
@@ -149,7 +150,7 @@ class _TemplateListPageState extends State<TemplateListPage> {
       setState(() => _isLoading = false);
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Failed to duplicate template: $e'),
+          content: Text(context.l10n.formsDuplicateError(e.toString())),
           backgroundColor: Colors.red,
         ),
       );
@@ -160,20 +161,17 @@ class _TemplateListPageState extends State<TemplateListPage> {
     final confirmed = await showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Archive Template'),
-        content: Text(
-          'Are you sure you want to archive "${template.name}"? '
-          'It will no longer be available for new forms.',
-        ),
+        title: Text(context.l10n.formsArchiveConfirmTitle),
+        content: Text(context.l10n.formsArchiveConfirmMessage(template.name)),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context, false),
-            child: const Text('Cancel'),
+            child: Text(context.l10n.commonCancel),
           ),
           TextButton(
             onPressed: () => Navigator.pop(context, true),
             style: TextButton.styleFrom(foregroundColor: Colors.orange),
-            child: const Text('Archive'),
+            child: Text(context.l10n.formsArchiveAction),
           ),
         ],
       ),
@@ -184,7 +182,7 @@ class _TemplateListPageState extends State<TemplateListPage> {
         await _formRepository.archiveTemplate(template.id);
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Template "${template.name}" archived'),
+            content: Text(context.l10n.formsArchiveSuccess(template.name)),
             backgroundColor: Colors.orange,
           ),
         );
@@ -192,7 +190,7 @@ class _TemplateListPageState extends State<TemplateListPage> {
       } catch (e) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Failed to archive template: $e'),
+            content: Text(context.l10n.formsArchiveError(e.toString())),
             backgroundColor: Colors.red,
           ),
         );
@@ -204,11 +202,12 @@ class _TemplateListPageState extends State<TemplateListPage> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
+    final l10n = context.l10n;
 
     return Scaffold(
       backgroundColor: colorScheme.surface,
       appBar: AppBar(
-        title: const Text('Form Templates'),
+        title: Text(l10n.formsTitle),
         actions: [
           IconButton(
             icon: const Icon(Icons.refresh),
@@ -228,7 +227,7 @@ class _TemplateListPageState extends State<TemplateListPage> {
                 TextField(
                   controller: _searchController,
                   decoration: InputDecoration(
-                    hintText: 'Search templates...',
+                    hintText: l10n.formsSearchHint,
                     prefixIcon: Icon(Icons.search, color: colorScheme.primary),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
@@ -248,7 +247,7 @@ class _TemplateListPageState extends State<TemplateListPage> {
                       child: DropdownButtonFormField<Department>(
                         value: _selectedDepartment,
                         decoration: InputDecoration(
-                          labelText: 'Department',
+                          labelText: l10n.encountersDepartmentLabel,
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(12),
                           ),
@@ -271,17 +270,17 @@ class _TemplateListPageState extends State<TemplateListPage> {
                       child: DropdownButtonFormField<bool?>(
                         value: _activeFilter,
                         decoration: InputDecoration(
-                          labelText: 'Status',
+                          labelText: l10n.formsStatusLabel,
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(12),
                           ),
                           filled: true,
                           fillColor: colorScheme.surface,
                         ),
-                        items: const [
-                          DropdownMenuItem(value: null, child: Text('All')),
-                          DropdownMenuItem(value: true, child: Text('Active')),
-                          DropdownMenuItem(value: false, child: Text('Archived')),
+                        items: [
+                          DropdownMenuItem(value: null, child: Text(l10n.formsStatusAll)),
+                          DropdownMenuItem(value: true, child: Text(l10n.formsStatusActive)),
+                          DropdownMenuItem(value: false, child: Text(l10n.formsStatusArchived)),
                         ],
                         onChanged: _onActiveFilterChanged,
                       ),
@@ -303,7 +302,7 @@ class _TemplateListPageState extends State<TemplateListPage> {
         backgroundColor: colorScheme.primary,
         foregroundColor: colorScheme.onPrimary,
         icon: const Icon(Icons.add),
-        label: const Text('New Template'),
+        label: Text(l10n.formsCreateNew),
       ),
     );
   }
@@ -314,6 +313,7 @@ class _TemplateListPageState extends State<TemplateListPage> {
     }
 
     if (_error != null) {
+      final l10n = context.l10n;
       return Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -321,7 +321,7 @@ class _TemplateListPageState extends State<TemplateListPage> {
             Icon(Icons.error_outline, size: 64, color: colorScheme.error),
             const SizedBox(height: 16),
             Text(
-              'Failed to load templates',
+              l10n.formsLoadError,
               style: theme.textTheme.titleLarge?.copyWith(color: colorScheme.error),
             ),
             const SizedBox(height: 8),
@@ -335,7 +335,7 @@ class _TemplateListPageState extends State<TemplateListPage> {
             const SizedBox(height: 16),
             ElevatedButton(
               onPressed: _loadTemplates,
-              child: const Text('Retry'),
+              child: Text(context.l10n.commonRetry),
             ),
           ],
         ),
@@ -343,6 +343,7 @@ class _TemplateListPageState extends State<TemplateListPage> {
     }
 
     if (_filteredTemplates.isEmpty) {
+      final l10n = context.l10n;
       return Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -354,7 +355,7 @@ class _TemplateListPageState extends State<TemplateListPage> {
             ),
             const SizedBox(height: 16),
             Text(
-              _searchQuery.isEmpty ? 'No templates found' : 'No templates match your search',
+              _searchQuery.isEmpty ? l10n.formsNoTemplatesFound : l10n.formsNoTemplatesSearch,
               style: theme.textTheme.titleLarge?.copyWith(
                 color: colorScheme.onSurface.withValues(alpha: 0.6),
               ),
@@ -362,8 +363,8 @@ class _TemplateListPageState extends State<TemplateListPage> {
             const SizedBox(height: 8),
             Text(
               _searchQuery.isEmpty 
-                  ? 'Create your first template to get started'
-                  : 'Try adjusting your search terms',
+                  ? l10n.formsNoTemplatesSubtitle
+                  : l10n.formsNoTemplatesSearchSubtitle,
               style: theme.textTheme.bodyMedium?.copyWith(
                 color: colorScheme.onSurface.withValues(alpha: 0.5),
               ),
@@ -406,6 +407,7 @@ class _TemplateCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
+    final l10n = context.l10n;
 
     return Container(
       margin: const EdgeInsets.only(bottom: 12),
@@ -459,7 +461,7 @@ class _TemplateCard extends StatelessWidget {
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Text(
-                      'ARCHIVED',
+                      l10n.formsDetailsArchivedBadge,
                       style: theme.textTheme.labelSmall?.copyWith(
                         color: Colors.orange,
                         fontWeight: FontWeight.bold,
@@ -475,7 +477,7 @@ class _TemplateCard extends StatelessWidget {
                 Text(
                   template.description.isNotEmpty 
                       ? template.description 
-                      : 'No description',
+                      : l10n.formsNoDescription,
                   style: theme.textTheme.bodyMedium?.copyWith(
                     color: colorScheme.onSurface.withValues(alpha: 0.6),
                   ),
@@ -513,28 +515,28 @@ class _TemplateCard extends StatelessWidget {
                 }
               },
               itemBuilder: (context) => [
-                const PopupMenuItem(
+                PopupMenuItem(
                   value: 'edit',
                   child: ListTile(
-                    leading: Icon(Icons.edit),
-                    title: Text('Edit'),
+                    leading: const Icon(Icons.edit),
+                    title: Text(l10n.formsPopupEdit),
                     contentPadding: EdgeInsets.zero,
                   ),
                 ),
-                const PopupMenuItem(
+                PopupMenuItem(
                   value: 'duplicate',
                   child: ListTile(
-                    leading: Icon(Icons.copy),
-                    title: Text('Duplicate'),
+                    leading: const Icon(Icons.copy),
+                    title: Text(l10n.formsPopupDuplicate),
                     contentPadding: EdgeInsets.zero,
                   ),
                 ),
                 if (template.isActive)
-                  const PopupMenuItem(
+                  PopupMenuItem(
                     value: 'archive',
                     child: ListTile(
-                      leading: Icon(Icons.archive, color: Colors.orange),
-                      title: Text('Archive', style: TextStyle(color: Colors.orange)),
+                      leading: const Icon(Icons.archive, color: Colors.orange),
+                      title: Text(l10n.formsPopupArchive, style: const TextStyle(color: Colors.orange)),
                       contentPadding: EdgeInsets.zero,
                     ),
                   ),

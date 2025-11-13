@@ -4,6 +4,8 @@ import 'package:flmhaiti_fall25team/models/form_template.dart';
 import 'package:flmhaiti_fall25team/models/questionnaire_session.dart';
 import 'package:flmhaiti_fall25team/repositories/questionnaire_repository.dart';
 import 'package:flmhaiti_fall25team/screens/questionnaires/widgets/questionnaire_form_renderer.dart';
+import 'package:flmhaiti_fall25team/localization/l10n_extension.dart';
+
 class QuestionnaireFillPage extends StatefulWidget {
   final QuestionnaireSession session;
 
@@ -118,7 +120,7 @@ class _QuestionnaireFillPageState extends State<QuestionnaireFillPage> {
       // Show error but don't interrupt user flow
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Auto-save failed: $e'),
+          content: Text(context.l10n.questionnaireAutoSaveFailed('$e')),
           backgroundColor: Colors.orange,
           duration: const Duration(seconds: 2),
         ),
@@ -138,8 +140,8 @@ class _QuestionnaireFillPageState extends State<QuestionnaireFillPage> {
       await _repository.submitSession(widget.session.id);
       
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Questionnaire submitted successfully!'),
+        SnackBar(
+          content: Text(context.l10n.questionnaireSubmitSuccess),
           backgroundColor: Colors.green,
         ),
       );
@@ -149,7 +151,7 @@ class _QuestionnaireFillPageState extends State<QuestionnaireFillPage> {
       setState(() => _isSubmitting = false);
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Failed to submit questionnaire: $e'),
+          content: Text(context.l10n.questionnaireSubmitError('$e')),
           backgroundColor: Colors.red,
         ),
       );
@@ -168,6 +170,7 @@ class _QuestionnaireFillPageState extends State<QuestionnaireFillPage> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
+    final l10n = context.l10n;
 
     return WillPopScope(
       onWillPop: _onWillPop,
@@ -191,7 +194,7 @@ class _QuestionnaireFillPageState extends State<QuestionnaireFillPage> {
                       ),
                       const SizedBox(width: 8),
                       Text(
-                        'Saving...',
+                        l10n.questionnaireSavingLabel,
                         style: theme.textTheme.bodySmall,
                       ),
                     ],
@@ -212,7 +215,9 @@ class _QuestionnaireFillPageState extends State<QuestionnaireFillPage> {
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Text(
-                    widget.session.isCompleted ? 'SUBMITTED' : 'DRAFT',
+                    widget.session.isCompleted
+                        ? l10n.questionnaireStatusSubmitted
+                        : l10n.questionnaireStatusDraft,
                     style: theme.textTheme.labelSmall?.copyWith(
                       color: widget.session.isCompleted ? Colors.green : Colors.orange,
                       fontWeight: FontWeight.bold,
@@ -232,6 +237,7 @@ class _QuestionnaireFillPageState extends State<QuestionnaireFillPage> {
   }
 
   Widget _buildBody(ThemeData theme, ColorScheme colorScheme) {
+    final l10n = context.l10n;
     if (_isLoading) {
       return const Center(child: CircularProgressIndicator());
     }
@@ -244,7 +250,7 @@ class _QuestionnaireFillPageState extends State<QuestionnaireFillPage> {
             Icon(Icons.error_outline, size: 64, color: colorScheme.error),
             const SizedBox(height: 16),
             Text(
-              'Failed to load questionnaire',
+              l10n.questionnaireLoadErrorTitle,
               style: theme.textTheme.titleLarge?.copyWith(color: colorScheme.error),
             ),
             const SizedBox(height: 8),
@@ -258,7 +264,7 @@ class _QuestionnaireFillPageState extends State<QuestionnaireFillPage> {
             const SizedBox(height: 16),
             ElevatedButton(
               onPressed: _loadQuestionnaireData,
-              child: const Text('Retry'),
+              child: Text(l10n.commonRetry),
             ),
           ],
         ),
@@ -277,14 +283,14 @@ class _QuestionnaireFillPageState extends State<QuestionnaireFillPage> {
             ),
             const SizedBox(height: 16),
             Text(
-              'No questions found',
+              l10n.questionnaireEmptyTitle,
               style: theme.textTheme.titleLarge?.copyWith(
                 color: colorScheme.onSurface.withValues(alpha: 0.6),
               ),
             ),
             const SizedBox(height: 8),
             Text(
-              'This questionnaire appears to be empty',
+              l10n.questionnaireEmptySubtitle,
               style: theme.textTheme.bodyMedium?.copyWith(
                 color: colorScheme.onSurface.withValues(alpha: 0.5),
               ),
@@ -333,7 +339,7 @@ class _QuestionnaireFillPageState extends State<QuestionnaireFillPage> {
                     const SizedBox(width: 8),
                     _InfoChip(
                       icon: Icons.numbers,
-                      label: 'Version ${widget.session.templateVersion}',
+                      label: l10n.questionnaireVersionLabel('${widget.session.templateVersion}'),
                       colorScheme: colorScheme,
                     ),
                   ],
@@ -353,7 +359,7 @@ class _QuestionnaireFillPageState extends State<QuestionnaireFillPage> {
                         const SizedBox(width: 8),
                         Expanded(
                           child: Text(
-                            'This questionnaire has been submitted and is now read-only.',
+                            l10n.questionnaireSubmittedReadOnlyMessage,
                             style: theme.textTheme.bodyMedium?.copyWith(
                               color: Colors.green.shade700,
                             ),
@@ -385,6 +391,7 @@ class _QuestionnaireFillPageState extends State<QuestionnaireFillPage> {
   }
 
   Widget _buildSubmitButton(ThemeData theme, ColorScheme colorScheme) {
+    final l10n = context.l10n;
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
@@ -416,9 +423,9 @@ class _QuestionnaireFillPageState extends State<QuestionnaireFillPage> {
                       valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
                     ),
                   )
-                : const Text(
-                    'Submit Questionnaire',
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                : Text(
+                    l10n.questionnaireSubmitButton,
+                    style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                   ),
           ),
         ),

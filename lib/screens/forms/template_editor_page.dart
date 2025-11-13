@@ -4,6 +4,7 @@ import 'package:flmhaiti_fall25team/repositories/form_repository.dart';
 import 'package:flmhaiti_fall25team/screens/forms/widgets/section_editor_widget.dart';
 import 'package:flmhaiti_fall25team/screens/forms/widgets/question_editor_widget.dart';
 import 'package:flmhaiti_fall25team/screens/forms/widgets/form_preview_widget.dart';
+import 'package:flmhaiti_fall25team/localization/l10n_extension.dart';
 
 class TemplateEditorPage extends StatefulWidget {
   final FormTemplate? template;
@@ -92,7 +93,7 @@ class _TemplateEditorPageState extends State<TemplateEditorPage>
       setState(() => _isLoading = false);
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Failed to load template data: $e'),
+          content: Text(context.l10n.formsLoadError),
           backgroundColor: Colors.red,
         ),
       );
@@ -222,8 +223,8 @@ class _TemplateEditorPageState extends State<TemplateEditorPage>
   Future<void> _saveTemplate() async {
     if (_nameController.text.trim().isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Please enter a template name'),
+        SnackBar(
+          content: Text(context.l10n.formsTemplateNameRequired),
           backgroundColor: Colors.red,
         ),
       );
@@ -251,8 +252,8 @@ class _TemplateEditorPageState extends State<TemplateEditorPage>
       });
 
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Template saved successfully'),
+        SnackBar(
+          content: Text(context.l10n.formsSaveSuccess),
           backgroundColor: Colors.green,
         ),
       );
@@ -262,7 +263,7 @@ class _TemplateEditorPageState extends State<TemplateEditorPage>
       setState(() => _isLoading = false);
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Failed to save template: $e'),
+          content: Text(context.l10n.formsSaveError(e.toString())),
           backgroundColor: Colors.red,
         ),
       );
@@ -275,17 +276,17 @@ class _TemplateEditorPageState extends State<TemplateEditorPage>
     final result = await showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Unsaved Changes'),
-        content: const Text('You have unsaved changes. Do you want to discard them?'),
+        title: Text(context.l10n.formsDiscardChangesTitle),
+        content: Text(context.l10n.formsDiscardChangesMessage),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context, false),
-            child: const Text('Cancel'),
+            child: Text(context.l10n.commonCancel),
           ),
           TextButton(
             onPressed: () => Navigator.pop(context, true),
             style: TextButton.styleFrom(foregroundColor: Colors.red),
-            child: const Text('Discard'),
+            child: Text(context.l10n.formsDiscardButton),
           ),
         ],
       ),
@@ -298,13 +299,14 @@ class _TemplateEditorPageState extends State<TemplateEditorPage>
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
+    final l10n = context.l10n;
 
     return WillPopScope(
       onWillPop: _onWillPop,
       child: Scaffold(
         backgroundColor: colorScheme.surface,
         appBar: AppBar(
-          title: Text(widget.template != null ? 'Edit Template' : 'New Template'),
+          title: Text(widget.template != null ? l10n.formsEdit : l10n.formsCreateNew),
           actions: [
             if (_hasUnsavedChanges)
               Container(
@@ -317,7 +319,7 @@ class _TemplateEditorPageState extends State<TemplateEditorPage>
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Text(
-                      'UNSAVED',
+                      l10n.formsUnsavedBadge,
                       style: theme.textTheme.labelSmall?.copyWith(
                         color: Colors.orange,
                         fontWeight: FontWeight.bold,
@@ -333,10 +335,10 @@ class _TemplateEditorPageState extends State<TemplateEditorPage>
           ],
           bottom: TabBar(
             controller: _tabController,
-            tabs: const [
-              Tab(text: 'Template', icon: Icon(Icons.settings)),
-              Tab(text: 'Sections', icon: Icon(Icons.view_list)),
-              Tab(text: 'Preview', icon: Icon(Icons.preview)),
+            tabs: [
+              Tab(text: l10n.formsTabTemplate, icon: const Icon(Icons.settings)),
+              Tab(text: l10n.formsTabSections, icon: const Icon(Icons.view_list)),
+              Tab(text: l10n.formsTabPreview, icon: const Icon(Icons.preview)),
             ],
           ),
         ),
@@ -355,6 +357,7 @@ class _TemplateEditorPageState extends State<TemplateEditorPage>
   }
 
   Widget _buildTemplateTab(ThemeData theme, ColorScheme colorScheme) {
+    final l10n = context.l10n;
     return SingleChildScrollView(
       padding: const EdgeInsets.all(16),
       child: Column(
@@ -367,7 +370,7 @@ class _TemplateEditorPageState extends State<TemplateEditorPage>
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Template Information',
+                    l10n.formsTemplateInfoTitle,
                     style: theme.textTheme.titleLarge?.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
@@ -376,10 +379,10 @@ class _TemplateEditorPageState extends State<TemplateEditorPage>
                   
                   TextFormField(
                     controller: _nameController,
-                    decoration: const InputDecoration(
-                      labelText: 'Template Name *',
-                      hintText: 'Enter template name',
-                      border: OutlineInputBorder(),
+                    decoration: InputDecoration(
+                      labelText: '${l10n.formsTemplateNameLabel} *',
+                      hintText: l10n.formsTemplateNameHint,
+                      border: const OutlineInputBorder(),
                     ),
                     onChanged: _onTemplateNameChanged,
                   ),
@@ -387,9 +390,9 @@ class _TemplateEditorPageState extends State<TemplateEditorPage>
                   
                   DropdownButtonFormField<Department>(
                     value: _template.department,
-                    decoration: const InputDecoration(
-                      labelText: 'Department',
-                      border: OutlineInputBorder(),
+                    decoration: InputDecoration(
+                      labelText: l10n.encountersDepartmentLabel,
+                      border: const OutlineInputBorder(),
                     ),
                     items: Department.values.map((dept) {
                       return DropdownMenuItem(
@@ -405,10 +408,10 @@ class _TemplateEditorPageState extends State<TemplateEditorPage>
                   
                   TextFormField(
                     controller: _descriptionController,
-                    decoration: const InputDecoration(
-                      labelText: 'Description',
-                      hintText: 'Enter template description',
-                      border: OutlineInputBorder(),
+                    decoration: InputDecoration(
+                      labelText: l10n.formsTemplateDescriptionLabel,
+                      hintText: l10n.formsTemplateDescriptionHint,
+                      border: const OutlineInputBorder(),
                     ),
                     maxLines: 3,
                     onChanged: _onTemplateDescriptionChanged,
@@ -420,13 +423,13 @@ class _TemplateEditorPageState extends State<TemplateEditorPage>
                       children: [
                         _InfoChip(
                           icon: Icons.numbers,
-                          label: 'Version ${_template.version}',
+                          label: l10n.questionnaireVersionLabel('${_template.version}'),
                           colorScheme: colorScheme,
                         ),
                         const SizedBox(width: 8),
                         _InfoChip(
                           icon: _template.isActive ? Icons.check_circle : Icons.archive,
-                          label: _template.isActive ? 'Active' : 'Archived',
+                          label: _template.isActive ? l10n.formsStatusActive : l10n.formsStatusArchived,
                           colorScheme: colorScheme,
                         ),
                       ],
@@ -442,6 +445,7 @@ class _TemplateEditorPageState extends State<TemplateEditorPage>
   }
 
   Widget _buildSectionsTab(ThemeData theme, ColorScheme colorScheme) {
+    final l10n = context.l10n;
     return Row(
       children: [
         // Sections panel
@@ -467,7 +471,7 @@ class _TemplateEditorPageState extends State<TemplateEditorPage>
                   child: Row(
                     children: [
                       Text(
-                        'Sections',
+                        l10n.formsSectionsTitle,
                         style: theme.textTheme.titleMedium?.copyWith(
                           fontWeight: FontWeight.bold,
                         ),
@@ -476,7 +480,7 @@ class _TemplateEditorPageState extends State<TemplateEditorPage>
                       IconButton(
                         icon: const Icon(Icons.add),
                         onPressed: _addSection,
-                        tooltip: 'Add Section',
+                        tooltip: l10n.formsSectionsAddTooltip,
                       ),
                     ],
                   ),
@@ -524,7 +528,7 @@ class _TemplateEditorPageState extends State<TemplateEditorPage>
                         ),
                         const SizedBox(height: 16),
                         Text(
-                          'Select a section to edit questions',
+                          l10n.formsQuestionsPlaceholder,
                           style: theme.textTheme.titleMedium?.copyWith(
                             color: colorScheme.onSurface.withValues(alpha: 0.6),
                           ),

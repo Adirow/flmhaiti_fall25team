@@ -675,6 +675,870 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Failed to delete patient'**
   String get patientsDeleteError;
+
+  /// Title for questionnaires page with patient name
+  ///
+  /// In en, this message translates to:
+  /// **'Questionnaires - {patientName}'**
+  String questionnairesTitle(Object patientName);
+
+  /// No description provided for @questionnairesLoadErrorTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to load questionnaires'**
+  String get questionnairesLoadErrorTitle;
+
+  /// No description provided for @questionnairesStartCardTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Start New Questionnaire'**
+  String get questionnairesStartCardTitle;
+
+  /// No description provided for @questionnairesNoTemplates.
+  ///
+  /// In en, this message translates to:
+  /// **'No questionnaire templates available'**
+  String get questionnairesNoTemplates;
+
+  /// No description provided for @questionnairesSelectDepartment.
+  ///
+  /// In en, this message translates to:
+  /// **'Select Department'**
+  String get questionnairesSelectDepartment;
+
+  /// Message when no templates for a department
+  ///
+  /// In en, this message translates to:
+  /// **'No templates available for {department}'**
+  String questionnairesNoTemplatesForDepartment(String department);
+
+  /// No description provided for @questionnairesSelectTemplate.
+  ///
+  /// In en, this message translates to:
+  /// **'Select Questionnaire'**
+  String get questionnairesSelectTemplate;
+
+  /// No description provided for @questionnairesStartButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Start Questionnaire'**
+  String get questionnairesStartButton;
+
+  /// No description provided for @questionnairesPreviousTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Previous Questionnaires'**
+  String get questionnairesPreviousTitle;
+
+  /// No description provided for @questionnairesNoHistory.
+  ///
+  /// In en, this message translates to:
+  /// **'No previous questionnaires'**
+  String get questionnairesNoHistory;
+
+  /// No description provided for @questionnairesStartError.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to start questionnaire: {error}'**
+  String questionnairesStartError(String error);
+
+  /// No description provided for @questionnaireSavingLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Saving...'**
+  String get questionnaireSavingLabel;
+
+  /// No description provided for @questionnaireStatusSubmitted.
+  ///
+  /// In en, this message translates to:
+  /// **'SUBMITTED'**
+  String get questionnaireStatusSubmitted;
+
+  /// No description provided for @questionnaireStatusDraft.
+  ///
+  /// In en, this message translates to:
+  /// **'DRAFT'**
+  String get questionnaireStatusDraft;
+
+  /// No description provided for @questionnaireAutoSaveFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Auto-save failed: {error}'**
+  String questionnaireAutoSaveFailed(String error);
+
+  /// No description provided for @questionnaireSubmitSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Questionnaire submitted successfully!'**
+  String get questionnaireSubmitSuccess;
+
+  /// No description provided for @questionnaireSubmitError.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to submit questionnaire: {error}'**
+  String questionnaireSubmitError(String error);
+
+  /// No description provided for @questionnaireLoadErrorTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to load questionnaire'**
+  String get questionnaireLoadErrorTitle;
+
+  /// No description provided for @questionnaireEmptyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No questions found'**
+  String get questionnaireEmptyTitle;
+
+  /// No description provided for @questionnaireEmptySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'This questionnaire appears to be empty'**
+  String get questionnaireEmptySubtitle;
+
+  /// No description provided for @questionnaireSubmitButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Submit Questionnaire'**
+  String get questionnaireSubmitButton;
+
+  /// No description provided for @questionnaireSubmittedReadOnlyMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'This questionnaire has been submitted and is now read-only.'**
+  String get questionnaireSubmittedReadOnlyMessage;
+
+  /// No description provided for @questionnaireVersionLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Version {version}'**
+  String questionnaireVersionLabel(String version);
+
+  /// No description provided for @questionnaireSelectDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Select date...'**
+  String get questionnaireSelectDate;
+
+  /// No description provided for @questionnaireTextHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your answer...'**
+  String get questionnaireTextHint;
+
+  /// No description provided for @questionnaireNumberHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a number...'**
+  String get questionnaireNumberHint;
+
+  /// No description provided for @questionnaireChoiceHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Select an option...'**
+  String get questionnaireChoiceHint;
+
+  /// No description provided for @questionnaireBooleanYes.
+  ///
+  /// In en, this message translates to:
+  /// **'Yes'**
+  String get questionnaireBooleanYes;
+
+  /// No description provided for @encountersTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Encounters'**
+  String get encountersTitle;
+
+  /// No description provided for @encountersCreateNew.
+  ///
+  /// In en, this message translates to:
+  /// **'New Encounter'**
+  String get encountersCreateNew;
+
+  /// No description provided for @encountersContinue.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue'**
+  String get encountersContinue;
+
+  /// No description provided for @encountersStatusInProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'In Progress'**
+  String get encountersStatusInProgress;
+
+  /// No description provided for @encountersStatusCompleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed'**
+  String get encountersStatusCompleted;
+
+  /// No description provided for @encountersStatusDraft.
+  ///
+  /// In en, this message translates to:
+  /// **'Draft'**
+  String get encountersStatusDraft;
+
+  /// No description provided for @encountersLastUpdated.
+  ///
+  /// In en, this message translates to:
+  /// **'Last updated {time}'**
+  String encountersLastUpdated(Object time);
+
+  /// No description provided for @encountersNoEncounters.
+  ///
+  /// In en, this message translates to:
+  /// **'No encounters yet'**
+  String get encountersNoEncounters;
+
+  /// No description provided for @encountersNoEncountersSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Start by creating a new encounter'**
+  String get encountersNoEncountersSubtitle;
+
+  /// No description provided for @encountersLoadError.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to load encounters'**
+  String get encountersLoadError;
+
+  /// No description provided for @encountersStartError.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to start encounter: {error}'**
+  String encountersStartError(Object error);
+
+  /// No description provided for @encountersDeleteConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete encounter?'**
+  String get encountersDeleteConfirm;
+
+  /// No description provided for @encountersDeleteMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to delete this encounter?'**
+  String get encountersDeleteMessage;
+
+  /// No description provided for @encountersDeleteSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Encounter deleted'**
+  String get encountersDeleteSuccess;
+
+  /// No description provided for @encountersDeleteError.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to delete encounter'**
+  String get encountersDeleteError;
+
+  /// No description provided for @encountersToolsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Encounter Tools'**
+  String get encountersToolsTitle;
+
+  /// No description provided for @encountersToolVitals.
+  ///
+  /// In en, this message translates to:
+  /// **'Vitals'**
+  String get encountersToolVitals;
+
+  /// No description provided for @encountersToolNotes.
+  ///
+  /// In en, this message translates to:
+  /// **'Notes'**
+  String get encountersToolNotes;
+
+  /// No description provided for @encountersToolMedications.
+  ///
+  /// In en, this message translates to:
+  /// **'Medications'**
+  String get encountersToolMedications;
+
+  /// No description provided for @encountersToolProcedures.
+  ///
+  /// In en, this message translates to:
+  /// **'Procedures'**
+  String get encountersToolProcedures;
+
+  /// No description provided for @encountersSave.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get encountersSave;
+
+  /// No description provided for @encountersSubmit.
+  ///
+  /// In en, this message translates to:
+  /// **'Submit'**
+  String get encountersSubmit;
+
+  /// No description provided for @encountersCancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get encountersCancel;
+
+  /// No description provided for @formsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Form Templates'**
+  String get formsTitle;
+
+  /// No description provided for @formsCreateNew.
+  ///
+  /// In en, this message translates to:
+  /// **'Create Template'**
+  String get formsCreateNew;
+
+  /// No description provided for @formsEdit.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit'**
+  String get formsEdit;
+
+  /// No description provided for @formsDelete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get formsDelete;
+
+  /// No description provided for @formsDuplicate.
+  ///
+  /// In en, this message translates to:
+  /// **'Duplicate'**
+  String get formsDuplicate;
+
+  /// No description provided for @formsPublish.
+  ///
+  /// In en, this message translates to:
+  /// **'Publish'**
+  String get formsPublish;
+
+  /// No description provided for @formsUnpublish.
+  ///
+  /// In en, this message translates to:
+  /// **'Unpublish'**
+  String get formsUnpublish;
+
+  /// No description provided for @formsActiveBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'Active'**
+  String get formsActiveBadge;
+
+  /// No description provided for @formsDraftBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'Draft'**
+  String get formsDraftBadge;
+
+  /// No description provided for @formsNoTemplates.
+  ///
+  /// In en, this message translates to:
+  /// **'No form templates'**
+  String get formsNoTemplates;
+
+  /// No description provided for @formsNoTemplatesSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Create your first template to get started'**
+  String get formsNoTemplatesSubtitle;
+
+  /// No description provided for @formsSearchHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Search templates...'**
+  String get formsSearchHint;
+
+  /// No description provided for @formsLastUpdated.
+  ///
+  /// In en, this message translates to:
+  /// **'Last updated {time}'**
+  String formsLastUpdated(Object time);
+
+  /// No description provided for @formsLoadError.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to load templates'**
+  String get formsLoadError;
+
+  /// No description provided for @formsCreateSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Template created successfully'**
+  String get formsCreateSuccess;
+
+  /// No description provided for @formsCreateError.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to create template'**
+  String get formsCreateError;
+
+  /// No description provided for @formsUpdateSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Template updated successfully'**
+  String get formsUpdateSuccess;
+
+  /// No description provided for @formsUpdateError.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to update template'**
+  String get formsUpdateError;
+
+  /// No description provided for @formsDeleteConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete template?'**
+  String get formsDeleteConfirm;
+
+  /// No description provided for @formsDeleteMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to delete this template?'**
+  String get formsDeleteMessage;
+
+  /// No description provided for @formsDeleteSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Template deleted'**
+  String get formsDeleteSuccess;
+
+  /// No description provided for @formsDeleteError.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to delete template'**
+  String get formsDeleteError;
+
+  /// No description provided for @encountersLoadingTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading...'**
+  String get encountersLoadingTitle;
+
+  /// No description provided for @encountersEditTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Encounter'**
+  String get encountersEditTitle;
+
+  /// No description provided for @encountersNewTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'New Encounter'**
+  String get encountersNewTitle;
+
+  /// No description provided for @encountersInitErrorTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to initialize encounter'**
+  String get encountersInitErrorTitle;
+
+  /// No description provided for @encountersInitError.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to initialize encounter: {error}'**
+  String encountersInitError(String error);
+
+  /// No description provided for @encountersInfoSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Encounter Information'**
+  String get encountersInfoSectionTitle;
+
+  /// No description provided for @encountersExamTypeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Exam Type'**
+  String get encountersExamTypeLabel;
+
+  /// No description provided for @encountersChiefComplaintLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Chief Complaint'**
+  String get encountersChiefComplaintLabel;
+
+  /// No description provided for @encountersChiefComplaintHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Main reason for visit'**
+  String get encountersChiefComplaintHint;
+
+  /// No description provided for @encountersChiefComplaintRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter chief complaint'**
+  String get encountersChiefComplaintRequired;
+
+  /// No description provided for @encountersNotesLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Clinical Notes'**
+  String get encountersNotesLabel;
+
+  /// No description provided for @encountersNotesHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Additional observations and notes'**
+  String get encountersNotesHint;
+
+  /// No description provided for @encountersSavedSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Encounter saved successfully'**
+  String get encountersSavedSuccess;
+
+  /// No description provided for @encountersErrorMissingPatient.
+  ///
+  /// In en, this message translates to:
+  /// **'Patient information is missing. Please select a patient first.'**
+  String get encountersErrorMissingPatient;
+
+  /// No description provided for @encountersErrorNotLoggedIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Please log in to create an encounter.'**
+  String get encountersErrorNotLoggedIn;
+
+  /// No description provided for @encountersErrorMissingClinic.
+  ///
+  /// In en, this message translates to:
+  /// **'Clinic information is missing. Please contact support.'**
+  String get encountersErrorMissingClinic;
+
+  /// No description provided for @encountersErrorDatabase.
+  ///
+  /// In en, this message translates to:
+  /// **'Database error. Please check your connection and try again.'**
+  String get encountersErrorDatabase;
+
+  /// No description provided for @encountersErrorSave.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to save encounter: {error}'**
+  String encountersErrorSave(String error);
+
+  /// No description provided for @encountersCloseTool.
+  ///
+  /// In en, this message translates to:
+  /// **'Close Tool'**
+  String get encountersCloseTool;
+
+  /// No description provided for @encountersNoTools.
+  ///
+  /// In en, this message translates to:
+  /// **'No tools available'**
+  String get encountersNoTools;
+
+  /// No description provided for @encountersNoToolsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Tools will appear here when configured for this department'**
+  String get encountersNoToolsSubtitle;
+
+  /// No description provided for @encountersToolLoadError.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to load tool: {toolId}'**
+  String encountersToolLoadError(String toolId);
+
+  /// No description provided for @encountersDepartmentsLoading.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading departments...'**
+  String get encountersDepartmentsLoading;
+
+  /// No description provided for @encountersDepartmentsLoadError.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to load departments'**
+  String get encountersDepartmentsLoadError;
+
+  /// No description provided for @encountersDepartmentsEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No departments available'**
+  String get encountersDepartmentsEmpty;
+
+  /// No description provided for @encountersDepartmentLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Department'**
+  String get encountersDepartmentLabel;
+
+  /// No description provided for @formsStatusLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Status'**
+  String get formsStatusLabel;
+
+  /// No description provided for @formsStatusAll.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get formsStatusAll;
+
+  /// No description provided for @formsStatusActive.
+  ///
+  /// In en, this message translates to:
+  /// **'Active'**
+  String get formsStatusActive;
+
+  /// No description provided for @formsStatusArchived.
+  ///
+  /// In en, this message translates to:
+  /// **'Archived'**
+  String get formsStatusArchived;
+
+  /// No description provided for @formsNoTemplatesFound.
+  ///
+  /// In en, this message translates to:
+  /// **'No templates found'**
+  String get formsNoTemplatesFound;
+
+  /// No description provided for @formsNoTemplatesSearch.
+  ///
+  /// In en, this message translates to:
+  /// **'No templates match your search'**
+  String get formsNoTemplatesSearch;
+
+  /// No description provided for @formsNoTemplatesSearchSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Try adjusting your search terms'**
+  String get formsNoTemplatesSearchSubtitle;
+
+  /// No description provided for @formsDuplicateSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Template \"{name}\" duplicated successfully'**
+  String formsDuplicateSuccess(String name);
+
+  /// No description provided for @formsDuplicateError.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to duplicate template: {error}'**
+  String formsDuplicateError(String error);
+
+  /// No description provided for @formsArchiveConfirmTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Archive Template'**
+  String get formsArchiveConfirmTitle;
+
+  /// No description provided for @formsArchiveConfirmMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to archive \"{name}\"? It will no longer be available for new forms.'**
+  String formsArchiveConfirmMessage(String name);
+
+  /// No description provided for @formsArchiveAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Archive'**
+  String get formsArchiveAction;
+
+  /// No description provided for @formsArchiveSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Template \"{name}\" archived'**
+  String formsArchiveSuccess(String name);
+
+  /// No description provided for @formsArchiveError.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to archive template: {error}'**
+  String formsArchiveError(String error);
+
+  /// No description provided for @formsDetailsArchivedBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'ARCHIVED'**
+  String get formsDetailsArchivedBadge;
+
+  /// No description provided for @formsNoDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'No description'**
+  String get formsNoDescription;
+
+  /// No description provided for @formsPopupEdit.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit'**
+  String get formsPopupEdit;
+
+  /// No description provided for @formsPopupDuplicate.
+  ///
+  /// In en, this message translates to:
+  /// **'Duplicate'**
+  String get formsPopupDuplicate;
+
+  /// No description provided for @formsPopupArchive.
+  ///
+  /// In en, this message translates to:
+  /// **'Archive'**
+  String get formsPopupArchive;
+
+  /// No description provided for @formsSectionsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Sections'**
+  String get formsSectionsTitle;
+
+  /// No description provided for @formsSectionsAddTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'Add Section'**
+  String get formsSectionsAddTooltip;
+
+  /// No description provided for @formsSectionsEmptyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No sections yet'**
+  String get formsSectionsEmptyTitle;
+
+  /// No description provided for @formsSectionsEmptySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a section to get started'**
+  String get formsSectionsEmptySubtitle;
+
+  /// No description provided for @formsQuestionsPlaceholder.
+  ///
+  /// In en, this message translates to:
+  /// **'Select a section to edit questions'**
+  String get formsQuestionsPlaceholder;
+
+  /// No description provided for @formsPreviewModeNotice.
+  ///
+  /// In en, this message translates to:
+  /// **'Preview mode – inputs are disabled'**
+  String get formsPreviewModeNotice;
+
+  /// No description provided for @formsSectionIndexLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Section {index}'**
+  String formsSectionIndexLabel(int index);
+
+  /// No description provided for @formsSectionRename.
+  ///
+  /// In en, this message translates to:
+  /// **'Rename'**
+  String get formsSectionRename;
+
+  /// No description provided for @formsSectionDelete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get formsSectionDelete;
+
+  /// No description provided for @formsSectionDeleteTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete Section'**
+  String get formsSectionDeleteTitle;
+
+  /// No description provided for @formsSectionDeleteMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to delete \"{name}\"? This will also delete all questions in this section.'**
+  String formsSectionDeleteMessage(String name);
+
+  /// No description provided for @formsUnsavedBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'UNSAVED'**
+  String get formsUnsavedBadge;
+
+  /// No description provided for @formsTemplateInfoTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Template Information'**
+  String get formsTemplateInfoTitle;
+
+  /// No description provided for @formsTemplateNameLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Template Name'**
+  String get formsTemplateNameLabel;
+
+  /// No description provided for @formsTemplateNameRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a template name'**
+  String get formsTemplateNameRequired;
+
+  /// No description provided for @formsTemplateNameHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter template name'**
+  String get formsTemplateNameHint;
+
+  /// No description provided for @formsTemplateDescriptionLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Description'**
+  String get formsTemplateDescriptionLabel;
+
+  /// No description provided for @formsTemplateDescriptionHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter template description'**
+  String get formsTemplateDescriptionHint;
+
+  /// No description provided for @formsSaveSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Template saved successfully'**
+  String get formsSaveSuccess;
+
+  /// No description provided for @formsSaveError.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to save template: {error}'**
+  String formsSaveError(String error);
+
+  /// No description provided for @formsDiscardChangesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Unsaved Changes'**
+  String get formsDiscardChangesTitle;
+
+  /// No description provided for @formsDiscardChangesMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'You have unsaved changes. Do you want to discard them?'**
+  String get formsDiscardChangesMessage;
+
+  /// No description provided for @formsDiscardButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Discard'**
+  String get formsDiscardButton;
+
+  /// No description provided for @formsTabTemplate.
+  ///
+  /// In en, this message translates to:
+  /// **'Template'**
+  String get formsTabTemplate;
+
+  /// No description provided for @formsTabSections.
+  ///
+  /// In en, this message translates to:
+  /// **'Sections'**
+  String get formsTabSections;
+
+  /// No description provided for @formsTabPreview.
+  ///
+  /// In en, this message translates to:
+  /// **'Preview'**
+  String get formsTabPreview;
 }
 
 class _AppLocalizationsDelegate

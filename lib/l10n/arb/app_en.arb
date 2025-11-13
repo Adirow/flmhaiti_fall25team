@@ -94,5 +94,265 @@
   "patientsDeleteConfirmationMessage": "Are you sure you want to delete {name}? This action cannot be undone.",
   "commonDelete": "Delete",
   "patientsDeleteSuccess": "Patient deleted successfully",
-  "patientsDeleteError": "Failed to delete patient"
+  "patientsDeleteError": "Failed to delete patient",
+  "questionnairesTitle": "Questionnaires - {patientName}",
+  "@questionnairesTitle": {
+    "description": "Title for questionnaires page with patient name"
+  },
+  "questionnairesLoadErrorTitle": "Failed to load questionnaires",
+  "questionnairesStartCardTitle": "Start New Questionnaire",
+  "questionnairesNoTemplates": "No questionnaire templates available",
+  "questionnairesSelectDepartment": "Select Department",
+  "questionnairesNoTemplatesForDepartment": "No templates available for {department}",
+  "@questionnairesNoTemplatesForDepartment": {
+    "description": "Message when no templates for a department",
+    "placeholders": {
+      "department": {
+        "type": "String"
+      }
+    }
+  },
+  "questionnairesSelectTemplate": "Select Questionnaire",
+  "questionnairesStartButton": "Start Questionnaire",
+  "questionnairesPreviousTitle": "Previous Questionnaires",
+  "questionnairesNoHistory": "No previous questionnaires",
+  "questionnairesStartError": "Failed to start questionnaire: {error}",
+  "@questionnairesStartError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "questionnaireSavingLabel": "Saving...",
+  "questionnaireStatusSubmitted": "SUBMITTED",
+  "questionnaireStatusDraft": "DRAFT",
+  "questionnaireAutoSaveFailed": "Auto-save failed: {error}",
+  "@questionnaireAutoSaveFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "questionnaireSubmitSuccess": "Questionnaire submitted successfully!",
+  "questionnaireSubmitError": "Failed to submit questionnaire: {error}",
+  "@questionnaireSubmitError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "questionnaireLoadErrorTitle": "Failed to load questionnaire",
+  "questionnaireEmptyTitle": "No questions found",
+  "questionnaireEmptySubtitle": "This questionnaire appears to be empty",
+  "questionnaireSubmitButton": "Submit Questionnaire",
+  "questionnaireSubmittedReadOnlyMessage": "This questionnaire has been submitted and is now read-only.",
+  "questionnaireVersionLabel": "Version {version}",
+  "@questionnaireVersionLabel": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "questionnaireSelectDate": "Select date...",
+  "questionnaireTextHint": "Enter your answer...",
+  "questionnaireNumberHint": "Enter a number...",
+  "questionnaireChoiceHint": "Select an option...",
+  "questionnaireBooleanYes": "Yes",
+  "encountersTitle": "Encounters",
+  "encountersCreateNew": "New Encounter",
+  "encountersContinue": "Continue",
+  "encountersStatusInProgress": "In Progress",
+  "encountersStatusCompleted": "Completed",
+  "encountersStatusDraft": "Draft",
+  "encountersLastUpdated": "Last updated {time}",
+  "encountersNoEncounters": "No encounters yet",
+  "encountersNoEncountersSubtitle": "Start by creating a new encounter",
+  "encountersLoadError": "Failed to load encounters",
+  "encountersStartError": "Failed to start encounter: {error}",
+  "encountersDeleteConfirm": "Delete encounter?",
+  "encountersDeleteMessage": "Are you sure you want to delete this encounter?",
+  "encountersDeleteSuccess": "Encounter deleted",
+  "encountersDeleteError": "Failed to delete encounter",
+  "encountersToolsTitle": "Encounter Tools",
+  "encountersToolVitals": "Vitals",
+  "encountersToolNotes": "Notes",
+  "encountersToolMedications": "Medications",
+  "encountersToolProcedures": "Procedures",
+  "encountersSave": "Save",
+  "encountersSubmit": "Submit",
+  "encountersCancel": "Cancel",
+  "formsTitle": "Form Templates",
+  "formsCreateNew": "Create Template",
+  "formsEdit": "Edit",
+  "formsDelete": "Delete",
+  "formsDuplicate": "Duplicate",
+  "formsPublish": "Publish",
+  "formsUnpublish": "Unpublish",
+  "formsActiveBadge": "Active",
+  "formsDraftBadge": "Draft",
+  "formsNoTemplates": "No form templates",
+  "formsNoTemplatesSubtitle": "Create your first template to get started",
+  "formsSearchHint": "Search templates...",
+  "formsLastUpdated": "Last updated {time}",
+  "formsLoadError": "Failed to load templates",
+  "formsCreateSuccess": "Template created successfully",
+  "formsCreateError": "Failed to create template",
+  "formsUpdateSuccess": "Template updated successfully",
+  "formsUpdateError": "Failed to update template",
+  "formsDeleteConfirm": "Delete template?",
+  "formsDeleteMessage": "Are you sure you want to delete this template?",
+  "formsDeleteSuccess": "Template deleted",
+  "formsDeleteError": "Failed to delete template",
+  "encountersLoadingTitle": "Loading...",
+  "encountersEditTitle": "Edit Encounter",
+  "encountersNewTitle": "New Encounter",
+  "encountersInitErrorTitle": "Failed to initialize encounter",
+  "encountersInitError": "Failed to initialize encounter: {error}",
+  "@encountersInitError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "encountersInfoSectionTitle": "Encounter Information",
+  "encountersExamTypeLabel": "Exam Type",
+  "encountersChiefComplaintLabel": "Chief Complaint",
+  "encountersChiefComplaintHint": "Main reason for visit",
+  "encountersChiefComplaintRequired": "Please enter chief complaint",
+  "encountersNotesLabel": "Clinical Notes",
+  "encountersNotesHint": "Additional observations and notes",
+  "encountersSavedSuccess": "Encounter saved successfully",
+  "encountersErrorMissingPatient": "Patient information is missing. Please select a patient first.",
+  "encountersErrorNotLoggedIn": "Please log in to create an encounter.",
+  "encountersErrorMissingClinic": "Clinic information is missing. Please contact support.",
+  "encountersErrorDatabase": "Database error. Please check your connection and try again.",
+  "encountersErrorSave": "Failed to save encounter: {error}",
+  "@encountersErrorSave": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "encountersCloseTool": "Close Tool",
+  "encountersNoTools": "No tools available",
+  "encountersNoToolsSubtitle": "Tools will appear here when configured for this department",
+  "encountersToolLoadError": "Failed to load tool: {toolId}",
+  "@encountersToolLoadError": {
+    "placeholders": {
+      "toolId": {
+        "type": "String"
+      }
+    }
+  },
+  "encountersDepartmentsLoading": "Loading departments...",
+  "encountersDepartmentsLoadError": "Failed to load departments",
+  "encountersDepartmentsEmpty": "No departments available",
+  "encountersDepartmentLabel": "Department",
+  "formsStatusLabel": "Status",
+  "formsStatusAll": "All",
+  "formsStatusActive": "Active",
+  "formsStatusArchived": "Archived",
+  "formsNoTemplatesFound": "No templates found",
+  "formsNoTemplatesSearch": "No templates match your search",
+  "formsNoTemplatesSearchSubtitle": "Try adjusting your search terms",
+  "formsDuplicateSuccess": "Template \"{name}\" duplicated successfully",
+  "@formsDuplicateSuccess": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "formsDuplicateError": "Failed to duplicate template: {error}",
+  "@formsDuplicateError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "formsArchiveConfirmTitle": "Archive Template",
+  "formsArchiveConfirmMessage": "Are you sure you want to archive \"{name}\"? It will no longer be available for new forms.",
+  "@formsArchiveConfirmMessage": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "formsArchiveAction": "Archive",
+  "formsArchiveSuccess": "Template \"{name}\" archived",
+  "@formsArchiveSuccess": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "formsArchiveError": "Failed to archive template: {error}",
+  "@formsArchiveError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "formsDetailsArchivedBadge": "ARCHIVED",
+  "formsNoDescription": "No description",
+  "formsPopupEdit": "Edit",
+  "formsPopupDuplicate": "Duplicate",
+  "formsPopupArchive": "Archive",
+  "formsSectionsTitle": "Sections",
+  "formsSectionsAddTooltip": "Add Section",
+  "formsSectionsEmptyTitle": "No sections yet",
+  "formsSectionsEmptySubtitle": "Add a section to get started",
+  "formsQuestionsPlaceholder": "Select a section to edit questions",
+  "formsPreviewModeNotice": "Preview mode – inputs are disabled",
+  "formsSectionIndexLabel": "Section {index}",
+  "@formsSectionIndexLabel": {
+    "placeholders": {
+      "index": {
+        "type": "int"
+      }
+    }
+  },
+  "formsSectionRename": "Rename",
+  "formsSectionDelete": "Delete",
+  "formsSectionDeleteTitle": "Delete Section",
+  "formsSectionDeleteMessage": "Are you sure you want to delete \"{name}\"? This will also delete all questions in this section.",
+  "@formsSectionDeleteMessage": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "formsUnsavedBadge": "UNSAVED",
+  "formsTemplateInfoTitle": "Template Information",
+  "formsTemplateNameLabel": "Template Name",
+  "formsTemplateNameRequired": "Please enter a template name",
+  "formsTemplateNameHint": "Enter template name",
+  "formsTemplateDescriptionLabel": "Description",
+  "formsTemplateDescriptionHint": "Enter template description",
+  "formsSaveSuccess": "Template saved successfully",
+  "formsSaveError": "Failed to save template: {error}",
+  "@formsSaveError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "formsDiscardChangesTitle": "Unsaved Changes",
+  "formsDiscardChangesMessage": "You have unsaved changes. Do you want to discard them?",
+  "formsDiscardButton": "Discard",
+  "formsTabTemplate": "Template",
+  "formsTabSections": "Sections",
+  "formsTabPreview": "Preview"
 }

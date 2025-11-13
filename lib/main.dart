@@ -4,7 +4,7 @@ import 'package:flmhaiti_fall25team/theme.dart';
 import 'package:flmhaiti_fall25team/screens/auth/login_screen.dart';
 import 'package:flmhaiti_fall25team/supabase/supabase_config.dart';
 import 'package:flmhaiti_fall25team/encounter/config/encounter_config.dart';
-import 'package:flmhaiti_fall25team/l10n/l10n.dart';
+import 'package:flmhaiti_fall25team/l10n/arb/l10n.dart';
 import 'package:flmhaiti_fall25team/localization/locale_controller.dart';
 import 'package:flmhaiti_fall25team/localization/locale_scope.dart';
 import 'package:flmhaiti_fall25team/localization/haitian_localization_delegates.dart';

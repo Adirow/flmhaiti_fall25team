@@ -308,4 +308,498 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get patientsDeleteError => 'Échec de la suppression du patient';
+
+  @override
+  String questionnairesTitle(Object patientName) {
+    return 'Questionnaires - $patientName';
+  }
+
+  @override
+  String get questionnairesLoadErrorTitle =>
+      'Échec du chargement des questionnaires';
+
+  @override
+  String get questionnairesStartCardTitle =>
+      'Commencer un nouveau questionnaire';
+
+  @override
+  String get questionnairesNoTemplates =>
+      'Aucun modèle de questionnaire disponible';
+
+  @override
+  String get questionnairesSelectDepartment => 'Sélectionner un département';
+
+  @override
+  String questionnairesNoTemplatesForDepartment(String department) {
+    return 'Aucun modèle disponible pour $department';
+  }
+
+  @override
+  String get questionnairesSelectTemplate => 'Sélectionner un questionnaire';
+
+  @override
+  String get questionnairesStartButton => 'Démarrer le questionnaire';
+
+  @override
+  String get questionnairesPreviousTitle => 'Questionnaires précédents';
+
+  @override
+  String get questionnairesNoHistory => 'Aucun questionnaire précédent';
+
+  @override
+  String questionnairesStartError(String error) {
+    return 'Échec du démarrage du questionnaire : $error';
+  }
+
+  @override
+  String get questionnaireSavingLabel => 'Enregistrement...';
+
+  @override
+  String get questionnaireStatusSubmitted => 'SOUMIS';
+
+  @override
+  String get questionnaireStatusDraft => 'BROUILLON';
+
+  @override
+  String questionnaireAutoSaveFailed(String error) {
+    return 'Échec de l\'enregistrement automatique : $error';
+  }
+
+  @override
+  String get questionnaireSubmitSuccess => 'Questionnaire soumis avec succès !';
+
+  @override
+  String questionnaireSubmitError(String error) {
+    return 'Échec de la soumission du questionnaire : $error';
+  }
+
+  @override
+  String get questionnaireLoadErrorTitle =>
+      'Échec du chargement du questionnaire';
+
+  @override
+  String get questionnaireEmptyTitle => 'Aucune question trouvée';
+
+  @override
+  String get questionnaireEmptySubtitle => 'Ce questionnaire semble vide';
+
+  @override
+  String get questionnaireSubmitButton => 'Soumettre le questionnaire';
+
+  @override
+  String get questionnaireSubmittedReadOnlyMessage =>
+      'Ce questionnaire a été soumis et est désormais en lecture seule.';
+
+  @override
+  String questionnaireVersionLabel(String version) {
+    return 'Version $version';
+  }
+
+  @override
+  String get questionnaireSelectDate => 'Sélectionner une date...';
+
+  @override
+  String get questionnaireTextHint => 'Entrez votre réponse...';
+
+  @override
+  String get questionnaireNumberHint => 'Entrez un nombre...';
+
+  @override
+  String get questionnaireChoiceHint => 'Sélectionnez une option...';
+
+  @override
+  String get questionnaireBooleanYes => 'Oui';
+
+  @override
+  String get encountersTitle => 'Consultations';
+
+  @override
+  String get encountersCreateNew => 'Nouvelle consultation';
+
+  @override
+  String get encountersContinue => 'Continuer';
+
+  @override
+  String get encountersStatusInProgress => 'En cours';
+
+  @override
+  String get encountersStatusCompleted => 'Terminée';
+
+  @override
+  String get encountersStatusDraft => 'Brouillon';
+
+  @override
+  String encountersLastUpdated(Object time) {
+    return 'Dernière mise à jour $time';
+  }
+
+  @override
+  String get encountersNoEncounters => 'Aucune consultation pour le moment';
+
+  @override
+  String get encountersNoEncountersSubtitle =>
+      'Commencez en créant une nouvelle consultation';
+
+  @override
+  String get encountersLoadError => 'Échec du chargement des consultations';
+
+  @override
+  String encountersStartError(Object error) {
+    return 'Échec du démarrage de la consultation : $error';
+  }
+
+  @override
+  String get encountersDeleteConfirm => 'Supprimer la consultation ?';
+
+  @override
+  String get encountersDeleteMessage =>
+      'Voulez-vous vraiment supprimer cette consultation ?';
+
+  @override
+  String get encountersDeleteSuccess => 'Consultation supprimée';
+
+  @override
+  String get encountersDeleteError =>
+      'Échec de la suppression de la consultation';
+
+  @override
+  String get encountersToolsTitle => 'Outils cliniques';
+
+  @override
+  String get encountersToolVitals => 'Signes vitaux';
+
+  @override
+  String get encountersToolNotes => 'Notes';
+
+  @override
+  String get encountersToolMedications => 'Médicaments';
+
+  @override
+  String get encountersToolProcedures => 'Procédures';
+
+  @override
+  String get encountersSave => 'Enregistrer';
+
+  @override
+  String get encountersSubmit => 'Soumettre';
+
+  @override
+  String get encountersCancel => 'Annuler';
+
+  @override
+  String get formsTitle => 'Modèles de formulaires';
+
+  @override
+  String get formsCreateNew => 'Créer un modèle';
+
+  @override
+  String get formsEdit => 'Modifier';
+
+  @override
+  String get formsDelete => 'Supprimer';
+
+  @override
+  String get formsDuplicate => 'Dupliquer';
+
+  @override
+  String get formsPublish => 'Publier';
+
+  @override
+  String get formsUnpublish => 'Retirer';
+
+  @override
+  String get formsActiveBadge => 'Actif';
+
+  @override
+  String get formsDraftBadge => 'Brouillon';
+
+  @override
+  String get formsNoTemplates => 'Aucun modèle de formulaire';
+
+  @override
+  String get formsNoTemplatesSubtitle =>
+      'Créez votre premier modèle pour commencer';
+
+  @override
+  String get formsSearchHint => 'Rechercher des modèles...';
+
+  @override
+  String formsLastUpdated(Object time) {
+    return 'Dernière mise à jour $time';
+  }
+
+  @override
+  String get formsLoadError => 'Échec du chargement des modèles';
+
+  @override
+  String get formsCreateSuccess => 'Modèle créé avec succès';
+
+  @override
+  String get formsCreateError => 'Échec de la création du modèle';
+
+  @override
+  String get formsUpdateSuccess => 'Modèle mis à jour avec succès';
+
+  @override
+  String get formsUpdateError => 'Échec de la mise à jour du modèle';
+
+  @override
+  String get formsDeleteConfirm => 'Supprimer le modèle ?';
+
+  @override
+  String get formsDeleteMessage => 'Voulez-vous vraiment supprimer ce modèle ?';
+
+  @override
+  String get formsDeleteSuccess => 'Modèle supprimé';
+
+  @override
+  String get formsDeleteError => 'Échec de la suppression du modèle';
+
+  @override
+  String get encountersLoadingTitle => 'Chargement...';
+
+  @override
+  String get encountersEditTitle => 'Modifier la consultation';
+
+  @override
+  String get encountersNewTitle => 'Nouvelle consultation';
+
+  @override
+  String get encountersInitErrorTitle =>
+      'Échec de l\'initialisation de la consultation';
+
+  @override
+  String encountersInitError(String error) {
+    return 'Échec de l\'initialisation de la consultation : $error';
+  }
+
+  @override
+  String get encountersInfoSectionTitle => 'Informations sur la consultation';
+
+  @override
+  String get encountersExamTypeLabel => 'Type d\'examen';
+
+  @override
+  String get encountersChiefComplaintLabel => 'Motif principal';
+
+  @override
+  String get encountersChiefComplaintHint => 'Raison principale de la visite';
+
+  @override
+  String get encountersChiefComplaintRequired =>
+      'Veuillez saisir le motif principal';
+
+  @override
+  String get encountersNotesLabel => 'Notes cliniques';
+
+  @override
+  String get encountersNotesHint => 'Observations et notes supplémentaires';
+
+  @override
+  String get encountersSavedSuccess => 'Consultation enregistrée avec succès';
+
+  @override
+  String get encountersErrorMissingPatient =>
+      'Informations patient manquantes. Veuillez d\'abord sélectionner un patient.';
+
+  @override
+  String get encountersErrorNotLoggedIn =>
+      'Veuillez vous connecter pour créer une consultation.';
+
+  @override
+  String get encountersErrorMissingClinic =>
+      'Informations sur la clinique manquantes. Veuillez contacter le support.';
+
+  @override
+  String get encountersErrorDatabase =>
+      'Erreur de base de données. Vérifiez votre connexion et réessayez.';
+
+  @override
+  String encountersErrorSave(String error) {
+    return 'Échec de l\'enregistrement de la consultation : $error';
+  }
+
+  @override
+  String get encountersCloseTool => 'Fermer l\'outil';
+
+  @override
+  String get encountersNoTools => 'Aucun outil disponible';
+
+  @override
+  String get encountersNoToolsSubtitle =>
+      'Les outils apparaîtront ici lorsqu\'ils seront configurés pour ce service';
+
+  @override
+  String encountersToolLoadError(String toolId) {
+    return 'Échec du chargement de l\'outil : $toolId';
+  }
+
+  @override
+  String get encountersDepartmentsLoading => 'Chargement des services...';
+
+  @override
+  String get encountersDepartmentsLoadError =>
+      'Échec du chargement des services';
+
+  @override
+  String get encountersDepartmentsEmpty => 'Aucun service disponible';
+
+  @override
+  String get encountersDepartmentLabel => 'Service';
+
+  @override
+  String get formsStatusLabel => 'Statut';
+
+  @override
+  String get formsStatusAll => 'Tous';
+
+  @override
+  String get formsStatusActive => 'Actifs';
+
+  @override
+  String get formsStatusArchived => 'Archivés';
+
+  @override
+  String get formsNoTemplatesFound => 'Aucun modèle trouvé';
+
+  @override
+  String get formsNoTemplatesSearch =>
+      'Aucun modèle ne correspond à votre recherche';
+
+  @override
+  String get formsNoTemplatesSearchSubtitle =>
+      'Essayez d\'ajuster vos termes de recherche';
+
+  @override
+  String formsDuplicateSuccess(String name) {
+    return 'Modèle « $name » dupliqué avec succès';
+  }
+
+  @override
+  String formsDuplicateError(String error) {
+    return 'Échec de la duplication du modèle : $error';
+  }
+
+  @override
+  String get formsArchiveConfirmTitle => 'Archiver le modèle';
+
+  @override
+  String formsArchiveConfirmMessage(String name) {
+    return 'Voulez-vous vraiment archiver « $name » ? Il ne sera plus disponible pour de nouveaux formulaires.';
+  }
+
+  @override
+  String get formsArchiveAction => 'Archiver';
+
+  @override
+  String formsArchiveSuccess(String name) {
+    return 'Modèle « $name » archivé';
+  }
+
+  @override
+  String formsArchiveError(String error) {
+    return 'Échec de l\'archivage du modèle : $error';
+  }
+
+  @override
+  String get formsDetailsArchivedBadge => 'ARCHIVÉ';
+
+  @override
+  String get formsNoDescription => 'Aucune description';
+
+  @override
+  String get formsPopupEdit => 'Modifier';
+
+  @override
+  String get formsPopupDuplicate => 'Dupliquer';
+
+  @override
+  String get formsPopupArchive => 'Archiver';
+
+  @override
+  String get formsSectionsTitle => 'Sections';
+
+  @override
+  String get formsSectionsAddTooltip => 'Ajouter une section';
+
+  @override
+  String get formsSectionsEmptyTitle => 'Aucune section pour le moment';
+
+  @override
+  String get formsSectionsEmptySubtitle => 'Ajoutez une section pour commencer';
+
+  @override
+  String get formsQuestionsPlaceholder =>
+      'Sélectionnez une section pour modifier les questions';
+
+  @override
+  String get formsPreviewModeNotice =>
+      'Mode aperçu – les champs sont désactivés';
+
+  @override
+  String formsSectionIndexLabel(int index) {
+    return 'Section $index';
+  }
+
+  @override
+  String get formsSectionRename => 'Renommer';
+
+  @override
+  String get formsSectionDelete => 'Supprimer';
+
+  @override
+  String get formsSectionDeleteTitle => 'Supprimer la section';
+
+  @override
+  String formsSectionDeleteMessage(String name) {
+    return 'Voulez-vous vraiment supprimer « $name » ? Cela supprimera aussi toutes les questions de cette section.';
+  }
+
+  @override
+  String get formsUnsavedBadge => 'NON ENREGISTRÉ';
+
+  @override
+  String get formsTemplateInfoTitle => 'Informations sur le modèle';
+
+  @override
+  String get formsTemplateNameLabel => 'Nom du modèle';
+
+  @override
+  String get formsTemplateNameRequired => 'Veuillez saisir un nom de modèle';
+
+  @override
+  String get formsTemplateNameHint => 'Saisissez le nom du modèle';
+
+  @override
+  String get formsTemplateDescriptionLabel => 'Description';
+
+  @override
+  String get formsTemplateDescriptionHint => 'Entrez la description du modèle';
+
+  @override
+  String get formsSaveSuccess => 'Modèle enregistré avec succès';
+
+  @override
+  String formsSaveError(String error) {
+    return 'Échec de l\'enregistrement du modèle : $error';
+  }
+
+  @override
+  String get formsDiscardChangesTitle => 'Modifications non enregistrées';
+
+  @override
+  String get formsDiscardChangesMessage =>
+      'Vous avez des modifications non enregistrées. Voulez-vous les abandonner ?';
+
+  @override
+  String get formsDiscardButton => 'Abandonner';
+
+  @override
+  String get formsTabTemplate => 'Modèle';
+
+  @override
+  String get formsTabSections => 'Sections';
+
+  @override
+  String get formsTabPreview => 'Aperçu';
 }
