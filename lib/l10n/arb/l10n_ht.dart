@@ -61,6 +61,27 @@ class AppLocalizationsHt extends AppLocalizations {
       'Devlope pa ekip Capstone CMU Heinz College';
 
   @override
+  String get dashboardProfileTitle => 'Pwofil';
+
+  @override
+  String get dashboardProfileNameLabel => 'Non itilizatè';
+
+  @override
+  String get dashboardProfileRoleLabel => 'Wòl';
+
+  @override
+  String get dashboardProfileEmailLabel => 'Imèl / Non itilizatè';
+
+  @override
+  String get dashboardProfileLogout => 'Dekonekte';
+
+  @override
+  String get dashboardProfileLoading => 'Ap chaje pwofil la...';
+
+  @override
+  String get dashboardProfileError => 'Pa kapab chaje pwofil la';
+
+  @override
   String get patientsCardTitle => 'Pasyan';
 
   @override

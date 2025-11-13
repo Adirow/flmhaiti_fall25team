@@ -61,6 +61,27 @@ class AppLocalizationsEn extends AppLocalizations {
       'Developed by CMU Heinz College Capstone Team';
 
   @override
+  String get dashboardProfileTitle => 'Profile';
+
+  @override
+  String get dashboardProfileNameLabel => 'User Name';
+
+  @override
+  String get dashboardProfileRoleLabel => 'Role';
+
+  @override
+  String get dashboardProfileEmailLabel => 'Email / Username';
+
+  @override
+  String get dashboardProfileLogout => 'Logout';
+
+  @override
+  String get dashboardProfileLoading => 'Loading profile...';
+
+  @override
+  String get dashboardProfileError => 'Unable to load profile';
+
+  @override
   String get patientsCardTitle => 'Patients';
 
   @override

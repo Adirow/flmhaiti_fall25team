@@ -63,6 +63,27 @@ class AppLocalizationsFr extends AppLocalizations {
       'Développé par l\'équipe Capstone du CMU Heinz College';
 
   @override
+  String get dashboardProfileTitle => 'Profil';
+
+  @override
+  String get dashboardProfileNameLabel => 'Nom de l\'utilisateur';
+
+  @override
+  String get dashboardProfileRoleLabel => 'Rôle';
+
+  @override
+  String get dashboardProfileEmailLabel => 'E-mail / Nom d\'utilisateur';
+
+  @override
+  String get dashboardProfileLogout => 'Se déconnecter';
+
+  @override
+  String get dashboardProfileLoading => 'Chargement du profil...';
+
+  @override
+  String get dashboardProfileError => 'Impossible de charger le profil';
+
+  @override
   String get patientsCardTitle => 'Patients';
 
   @override

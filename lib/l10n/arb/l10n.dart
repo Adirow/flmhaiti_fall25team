@@ -202,6 +202,48 @@ abstract class AppLocalizations {
   /// **'Developed by CMU Heinz College Capstone Team'**
   String get dashboardSubheading;
 
+  /// No description provided for @dashboardProfileTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile'**
+  String get dashboardProfileTitle;
+
+  /// No description provided for @dashboardProfileNameLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'User Name'**
+  String get dashboardProfileNameLabel;
+
+  /// No description provided for @dashboardProfileRoleLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Role'**
+  String get dashboardProfileRoleLabel;
+
+  /// No description provided for @dashboardProfileEmailLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Email / Username'**
+  String get dashboardProfileEmailLabel;
+
+  /// No description provided for @dashboardProfileLogout.
+  ///
+  /// In en, this message translates to:
+  /// **'Logout'**
+  String get dashboardProfileLogout;
+
+  /// No description provided for @dashboardProfileLoading.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading profile...'**
+  String get dashboardProfileLoading;
+
+  /// No description provided for @dashboardProfileError.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to load profile'**
+  String get dashboardProfileError;
+
   /// No description provided for @patientsCardTitle.
   ///
   /// In en, this message translates to:
