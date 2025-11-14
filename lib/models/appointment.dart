@@ -1,5 +1,34 @@
 enum AppointmentStatus { scheduled, confirmed, inProgress, completed, cancelled }
 
+extension AppointmentStatusX on AppointmentStatus {
+  static const Map<AppointmentStatus, String> _dbValues = {
+    AppointmentStatus.scheduled: 'scheduled',
+    AppointmentStatus.confirmed: 'confirmed',
+    AppointmentStatus.inProgress: 'in_progress',
+    AppointmentStatus.completed: 'completed',
+    AppointmentStatus.cancelled: 'cancelled',
+  };
+
+  String get dbValue => _dbValues[this]!;
+
+  static AppointmentStatus fromDbValue(String value) {
+    switch (value) {
+      case 'scheduled':
+        return AppointmentStatus.scheduled;
+      case 'confirmed':
+        return AppointmentStatus.confirmed;
+      case 'in_progress':
+        return AppointmentStatus.inProgress;
+      case 'completed':
+        return AppointmentStatus.completed;
+      case 'cancelled':
+        return AppointmentStatus.cancelled;
+      default:
+        throw ArgumentError('Unknown appointment status: $value');
+    }
+  }
+}
+
 class Appointment {
   final String id;
   final String patientId;
@@ -30,7 +59,7 @@ class Appointment {
     reason: json['reason'] as String? ?? '',
     startTime: DateTime.parse(json['start_time'] as String),
     endTime: json['end_time'] != null ? DateTime.parse(json['end_time'] as String) : null,
-    status: AppointmentStatus.values.firstWhere((e) => e.name == json['status']),
+    status: AppointmentStatusX.fromDbValue(json['status'] as String),
     createdAt: DateTime.parse(json['created_at'] as String),
     updatedAt: DateTime.parse(json['updated_at'] as String),
   );
@@ -42,7 +71,7 @@ class Appointment {
     'reason': reason,
     'start_time': startTime.toIso8601String(),
     'end_time': endTime?.toIso8601String(),
-    'status': status.name,
+    'status': status.dbValue,
     'created_at': createdAt.toIso8601String(),
     'updated_at': updatedAt.toIso8601String(),
   };
