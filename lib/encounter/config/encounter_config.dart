@@ -108,6 +108,24 @@ class EncounterConfig {
           'show_numbering': true,
           'enable_conditions': true,
           'default_view': 'adult',
+          'available_conditions': [
+            'healthy',
+            'caries',
+            'filled',
+            'crown',
+            'missing',
+            'implant',
+            'root_canal',
+          ],
+          'color_coding': {
+            'healthy': '#4CAF50',
+            'caries': '#F44336',
+            'filled': '#2196F3',
+            'crown': '#FF9800',
+            'missing': '#9E9E9E',
+            'implant': '#9C27B0',
+            'root_canal': '#795548',
+          },
         },
         displayOrder: 1,
         isRequired: false,
@@ -122,6 +140,38 @@ class EncounterConfig {
         config: {
           'template': 'dental',
           'required_fields': ['examination', 'diagnosis', 'treatment_plan'],
+          'sections': [
+            {
+              'title': 'Chief Complaint',
+              'field': 'chief_complaint',
+              'type': 'textarea',
+              'required': true,
+            },
+            {
+              'title': 'Clinical Examination',
+              'field': 'examination',
+              'type': 'textarea',
+              'required': true,
+            },
+            {
+              'title': 'Diagnosis',
+              'field': 'diagnosis',
+              'type': 'textarea',
+              'required': true,
+            },
+            {
+              'title': 'Treatment Plan',
+              'field': 'treatment_plan',
+              'type': 'textarea',
+              'required': true,
+            },
+            {
+              'title': 'Notes',
+              'field': 'notes',
+              'type': 'textarea',
+              'required': false,
+            },
+          ],
         },
         displayOrder: 2,
         isRequired: true,
@@ -138,6 +188,24 @@ class EncounterConfig {
           'show_anatomy_labels': true,
           'enable_annotations': true,
           'default_view': 'frontal',
+          'available_findings': [
+            'normal',
+            'inflammation',
+            'mass',
+            'cyst',
+            'fibroid',
+            'polyp',
+            'adhesions',
+          ],
+          'color_coding': {
+            'normal': '#4CAF50',
+            'inflammation': '#FF5722',
+            'mass': '#9C27B0',
+            'cyst': '#2196F3',
+            'fibroid': '#795548',
+            'polyp': '#FF9800',
+            'adhesions': '#607D8B',
+          },
         },
         displayOrder: 1,
         isRequired: false,
@@ -152,6 +220,44 @@ class EncounterConfig {
         config: {
           'template': 'gynecology',
           'required_fields': ['examination', 'assessment'],
+          'sections': [
+            {
+              'title': 'Chief Complaint',
+              'field': 'chief_complaint',
+              'type': 'textarea',
+              'required': true,
+            },
+            {
+              'title': 'Menstrual History',
+              'field': 'menstrual_history',
+              'type': 'textarea',
+              'required': false,
+            },
+            {
+              'title': 'Physical Examination',
+              'field': 'examination',
+              'type': 'textarea',
+              'required': true,
+            },
+            {
+              'title': 'Assessment',
+              'field': 'assessment',
+              'type': 'textarea',
+              'required': true,
+            },
+            {
+              'title': 'Plan',
+              'field': 'plan',
+              'type': 'textarea',
+              'required': false,
+            },
+            {
+              'title': 'Follow-up',
+              'field': 'followup',
+              'type': 'textarea',
+              'required': false,
+            },
+          ],
         },
         displayOrder: 2,
         isRequired: true,
@@ -161,18 +267,6 @@ class EncounterConfig {
 
   // 获取默认科室
   static String getDefaultDepartment() => 'dental';
-
-  // 获取科室的默认工具
-  static List<String> getDefaultToolsForDepartment(String departmentId) {
-    switch (departmentId) {
-      case 'dental':
-        return ['tooth_map', 'progress_notes'];
-      case 'gynecology':
-        return ['pelvic_diagram', 'progress_notes'];
-      default:
-        return ['progress_notes'];
-    }
-  }
 
   // 验证配置
   static bool validateConfiguration() {
@@ -227,20 +321,9 @@ class EncounterConfig {
   static bool get isInitialized => _isInitialized;
 }
 
-// 配置常量
+// 配置常量 - Fallback values
 class EncounterConstants {
-  // 默认配置
-  static const String defaultDepartment = 'dental';
-  static const String defaultStatus = 'active';
-  
-  // 工具配置
-  static const Map<String, dynamic> defaultToolConfig = {
-    'auto_save': true,
-    'save_interval': 30, // seconds
-    'validation_enabled': true,
-  };
-  
-  // 科室配置
+  // 科室配置 - 仅作为 fallback，实际应使用 Department 实例的 examTypes
   static const Map<String, List<String>> departmentExamTypes = {
     'dental': [
       'Routine Checkup',
@@ -261,13 +344,5 @@ class EncounterConstants {
       'Fertility Consultation',
       'Emergency Visit',
     ],
-  };
-  
-  // UI 配置
-  static const Map<String, dynamic> uiConfig = {
-    'tool_grid_columns': 2,
-    'tool_card_height': 120.0,
-    'auto_save_indicator': true,
-    'show_tool_descriptions': true,
   };
 }

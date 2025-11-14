@@ -105,7 +105,7 @@ class DentalDepartment implements IDepartment {
     // 验证进度记录
     final progressData = context.getToolData<Map<String, dynamic>>('progress_notes');
     if (progressData != null) {
-      final requiredFields = ['examination', 'diagnosis'];
+      final requiredFields = ['examination', 'diagnosis', 'treatment_plan'];
       for (final field in requiredFields) {
         if (progressData[field]?.toString().isEmpty ?? true) {
           return false;
@@ -114,74 +114,5 @@ class DentalDepartment implements IDepartment {
     }
 
     return true;
-  }
-
-  @override
-  Map<String, dynamic> getToolConfig(String toolId) {
-    switch (toolId) {
-      case 'tooth_map':
-        return {
-          'show_numbering': true,
-          'enable_conditions': true,
-          'default_view': 'adult',
-          'available_conditions': [
-            'healthy',
-            'caries',
-            'filled',
-            'crown',
-            'missing',
-            'implant',
-            'root_canal',
-          ],
-          'color_coding': {
-            'healthy': '#4CAF50',
-            'caries': '#F44336',
-            'filled': '#2196F3',
-            'crown': '#FF9800',
-            'missing': '#9E9E9E',
-            'implant': '#9C27B0',
-            'root_canal': '#795548',
-          },
-        };
-      case 'progress_notes':
-        return {
-          'template': 'dental',
-          'required_fields': ['examination', 'diagnosis', 'treatment_plan'],
-          'sections': [
-            {
-              'title': 'Chief Complaint',
-              'field': 'chief_complaint',
-              'type': 'textarea',
-              'required': true,
-            },
-            {
-              'title': 'Clinical Examination',
-              'field': 'examination',
-              'type': 'textarea',
-              'required': true,
-            },
-            {
-              'title': 'Diagnosis',
-              'field': 'diagnosis',
-              'type': 'textarea',
-              'required': true,
-            },
-            {
-              'title': 'Treatment Plan',
-              'field': 'treatment_plan',
-              'type': 'textarea',
-              'required': false,
-            },
-            {
-              'title': 'Notes',
-              'field': 'notes',
-              'type': 'textarea',
-              'required': false,
-            },
-          ],
-        };
-      default:
-        return {};
-    }
   }
 }

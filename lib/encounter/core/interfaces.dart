@@ -31,9 +31,6 @@ abstract class IDepartment {
   
   // 科室特定的验证逻辑
   bool validateEncounter(EncounterContext context) => true;
-  
-  // 科室特定的工具配置
-  Map<String, dynamic> getToolConfig(String toolId) => {};
 }
 
 // 工具配置类

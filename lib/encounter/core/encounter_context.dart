@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'package:flutter/foundation.dart';
 
+typedef ToolLeaveGuard = Future<bool> Function();
+
 class EncounterContext {
   final String encounterId;
   final String patientId;
@@ -9,6 +11,7 @@ class EncounterContext {
 
   // 工具数据管理
   final Map<String, dynamic> _toolData = {};
+  final Map<String, ToolLeaveGuard> _leaveGuards = {};
 
   // 状态管理
   final ValueNotifier<bool> _isDirty = ValueNotifier(false);
@@ -47,6 +50,27 @@ class EncounterContext {
     _eventBus.add(ToolDataClearedEvent(toolId));
   }
 
+  void registerLeaveGuard(String toolId, ToolLeaveGuard guard) {
+    _leaveGuards[toolId] = guard;
+  }
+
+  void unregisterLeaveGuard(String toolId) {
+    _leaveGuards.remove(toolId);
+  }
+
+  Future<bool> canDeactivateTool(String toolId) async {
+    final guard = _leaveGuards[toolId];
+    if (guard == null) {
+      return true;
+    }
+
+    try {
+      return await guard();
+    } catch (_) {
+      return true;
+    }
+  }
+
   // 状态管理
   void markSaving() {
     _isSaving.value = true;
@@ -73,6 +97,7 @@ class EncounterContext {
     _isDirty.dispose();
     _isSaving.dispose();
     _eventBus.close();
+    _leaveGuards.clear();
   }
 }
 

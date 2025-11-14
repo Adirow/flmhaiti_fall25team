@@ -256,6 +256,18 @@ class _ToolGridState extends State<ToolGrid> {
   }
 
   void _selectTool(ToolConfig config) {
+    _handleToolSelection(config);
+  }
+
+  Future<void> _handleToolSelection(ToolConfig config) async {
+    if (_selectedToolId != null && _selectedToolId!.isNotEmpty) {
+      final canLeave =
+          await widget.encounterContext.canDeactivateTool(_selectedToolId!);
+      if (!canLeave) {
+        return;
+      }
+    }
+
     // 创建工具实例
     final tool = ToolRegistry.createTool(config.toolId, config);
     if (tool == null) {
@@ -263,29 +275,41 @@ class _ToolGridState extends State<ToolGrid> {
       return;
     }
 
-    // 构建工具 Widget
     final toolWidget = tool.buildWidget(widget.encounterContext);
-    
+
     setState(() {
       _selectedToolId = config.toolId;
     });
 
-    // 通知父组件
     widget.onToolSelected?.call(config.toolId, toolWidget);
-
-    // 发送工具激活事件
     widget.encounterContext.emitEvent(ToolActivatedEvent(config.toolId));
   }
 
   void _clearSelection() {
-    if (_selectedToolId != null) {
-      widget.encounterContext.emitEvent(ToolDeactivatedEvent(_selectedToolId!));
+    if (_selectedToolId == null) {
+      return;
     }
-    
+
+    _handleClearSelection();
+  }
+
+  Future<void> _handleClearSelection() async {
+    final currentToolId = _selectedToolId;
+    if (currentToolId == null) {
+      return;
+    }
+
+    final canLeave = await widget.encounterContext.canDeactivateTool(currentToolId);
+    if (!canLeave) {
+      return;
+    }
+
+    widget.encounterContext.emitEvent(ToolDeactivatedEvent(currentToolId));
+
     setState(() {
       _selectedToolId = null;
     });
-    
+
     widget.onToolSelected?.call('', const SizedBox.shrink());
   }
 

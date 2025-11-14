@@ -3,6 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:path_drawing/path_drawing.dart';
 
+import 'package:flmhaiti_fall25team/supabase/supabase_utils.dart';
+
 import '../../core/base_tool_widget.dart';
 import '../../core/encounter_context.dart';
 import '../../core/interfaces.dart';
@@ -88,6 +90,106 @@ class ToothRegion {
   Offset get center => bounds.center;
 }
 
+class ToothMapSnapshot {
+  final String encounterId;
+  final String patientId;
+  final String userId;
+  final String chartType;
+  final Map<int, String> teethConditions;
+  final String selectedCondition;
+  final DateTime updatedAt;
+
+  const ToothMapSnapshot({
+    required this.encounterId,
+    required this.patientId,
+    required this.userId,
+    required this.chartType,
+    required this.teethConditions,
+    required this.selectedCondition,
+    required this.updatedAt,
+  });
+
+  ToothMapSnapshot copyWith({
+    String? encounterId,
+    String? patientId,
+    String? userId,
+    String? chartType,
+    Map<int, String>? teethConditions,
+    String? selectedCondition,
+    DateTime? updatedAt,
+  }) {
+    return ToothMapSnapshot(
+      encounterId: encounterId ?? this.encounterId,
+      patientId: patientId ?? this.patientId,
+      userId: userId ?? this.userId,
+      chartType: chartType ?? this.chartType,
+      teethConditions: teethConditions ?? this.teethConditions,
+      selectedCondition: selectedCondition ?? this.selectedCondition,
+      updatedAt: updatedAt ?? this.updatedAt,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'encounter_id': encounterId,
+      'patient_id': patientId,
+      'user_id': userId,
+      'chart_type': chartType,
+      'teeth_conditions': teethConditions.map(
+        (key, value) => MapEntry(key.toString(), value),
+      ),
+      'selected_condition': selectedCondition,
+      'updated_at': updatedAt.toIso8601String(),
+    };
+  }
+
+  Map<String, dynamic> toSupabasePayload() {
+    return {
+      'encounter_id': encounterId,
+      'patient_id': patientId,
+      'user_id': userId,
+      'chart_type': chartType,
+      'teeth_conditions': teethConditions,
+      'selected_condition': selectedCondition,
+      'updated_at': updatedAt.toUtc().toIso8601String(),
+    };
+  }
+
+  factory ToothMapSnapshot.fromJson(Map<String, dynamic> json) {
+    return ToothMapSnapshot(
+      encounterId: json['encounter_id'] as String,
+      patientId: json['patient_id'] as String,
+      userId: json['user_id'] as String,
+      chartType: json['chart_type'] as String? ?? 'adult',
+      teethConditions: Map<String, dynamic>.from(
+        json['teeth_conditions'] as Map? ?? {},
+      ).map((key, value) => MapEntry(int.parse(key), value.toString())),
+      selectedCondition: json['selected_condition'] as String? ?? 'healthy',
+      updatedAt: DateTime.tryParse(json['updated_at'] as String? ?? '') ??
+          DateTime.now(),
+    );
+  }
+
+  @override
+  String toString() {
+    return 'ToothMapSnapshot(encounterId: ' +
+        encounterId +
+        ', patientId: ' +
+        patientId +
+        ', userId: ' +
+        userId +
+        ', chartType: ' +
+        chartType +
+        ', selectedCondition: ' +
+        selectedCondition +
+        ', updatedAt: ' +
+        updatedAt.toIso8601String() +
+        ', teethConditions: ' +
+        teethConditions.toString() +
+        ')';
+  }
+}
+
 class ToothMapWidgetState extends BaseToolWidgetState<ToothMapWidget> {
   Map<int, String> _teethConditions = {};
   String _selectedCondition = 'healthy';
@@ -96,12 +198,15 @@ class ToothMapWidgetState extends BaseToolWidgetState<ToothMapWidget> {
   Map<int, ToothRegion> _toothRegions = {};
   bool _toothRegionsLoaded = false;
   String? _toothRegionsLoadError;
+  ToothMapSnapshot? _lastSavedSnapshot;
+  bool _hasUnsavedChanges = false;
 
   @override
   void initState() {
     super.initState();
     _initializeConditions();
     _loadToothRegions();
+    widget.context.registerLeaveGuard(widget.config.toolId, _onToolLeaveRequest);
   }
 
   void _initializeConditions() {
@@ -473,12 +578,14 @@ class ToothMapWidgetState extends BaseToolWidgetState<ToothMapWidget> {
       } else {
         _teethConditions[toothNumber] = _selectedCondition;
       }
+      _markUnsavedChanges();
     });
   }
 
   void _clearAllConditions() {
     setState(() {
       _teethConditions.clear();
+      _markUnsavedChanges();
     });
   }
 
@@ -488,35 +595,155 @@ class ToothMapWidgetState extends BaseToolWidgetState<ToothMapWidget> {
 
   @override
   Future<Map<String, dynamic>> saveToolData() async {
+    final String userId = await _resolveUserId();
+    final ToothMapSnapshot snapshot = _createSnapshot(userId: userId);
+
+    setState(() {
+      _lastSavedSnapshot = snapshot;
+      _hasUnsavedChanges = false;
+    });
+
     return {
-      'teeth_conditions': _teethConditions,
-      'selected_condition': _selectedCondition,
-      'last_updated': DateTime.now().toIso8601String(),
-      'chart_type': 'adult',
+      'snapshot': snapshot.toJson(),
+      'snapshot_user_id': userId,
+      'teeth_conditions': snapshot.teethConditions.map(
+        (key, value) => MapEntry(key.toString(), value),
+      ),
+      'selected_condition': snapshot.selectedCondition,
+      'last_updated': snapshot.updatedAt.toIso8601String(),
+      'chart_type': snapshot.chartType,
     };
   }
 
   @override
   Future<void> loadToolData(Map<String, dynamic> data) async {
-    if (data['teeth_conditions'] != null) {
-      _teethConditions = Map<int, String>.from(
-        (data['teeth_conditions'] as Map).map(
-          (key, value) => MapEntry(int.parse(key.toString()), value.toString()),
-        ),
+    ToothMapSnapshot? snapshot;
+
+    if (data['snapshot'] is Map) {
+      snapshot = ToothMapSnapshot.fromJson(
+        Map<String, dynamic>.from(data['snapshot'] as Map),
       );
     }
-    
-    if (data['selected_condition'] != null) {
-      _selectedCondition = data['selected_condition'] as String;
+
+    if (snapshot == null) {
+      final rawConditions = data['teeth_conditions'];
+      final Map<int, String> parsedConditions = {};
+
+      if (rawConditions is Map) {
+        rawConditions.forEach((key, value) {
+          final int? toothNumber = int.tryParse(key.toString());
+          if (toothNumber != null) {
+            parsedConditions[toothNumber] = value.toString();
+          }
+        });
+      }
+
+      _selectedCondition = data['selected_condition'] as String? ?? 'healthy';
+      snapshot = ToothMapSnapshot(
+        encounterId: widget.context.encounterId,
+        patientId: widget.context.patientId,
+        userId: data['snapshot_user_id'] as String? ?? 'local_user',
+        chartType: data['chart_type'] as String? ?? _resolveChartType(),
+        teethConditions: parsedConditions,
+        selectedCondition: _selectedCondition,
+        updatedAt: DateTime.tryParse(data['last_updated'] as String? ?? '') ??
+            DateTime.now(),
+      );
     }
-    
-    setState(() {});
+
+    setState(() {
+      _teethConditions = Map<int, String>.from(snapshot!.teethConditions);
+      _selectedCondition = snapshot.selectedCondition;
+      _lastSavedSnapshot = snapshot;
+      _hasUnsavedChanges = false;
+    });
   }
 
   @override
   bool validateToolData() {
     // 牙位图数据总是有效的，即使是空的
     return true;
+  }
+
+  Future<String> _resolveUserId() async {
+    try {
+      return await SupabaseUtils.getCurrentUserId();
+    } catch (_) {
+      return widget.context.metadata['user_id'] as String? ?? 'local_user';
+    }
+  }
+
+  String _resolveChartType() {
+    return widget.config.config['chart_type'] as String? ?? 'adult';
+  }
+
+  ToothMapSnapshot _createSnapshot({
+    required String userId,
+    DateTime? updatedAt,
+  }) {
+    return ToothMapSnapshot(
+      encounterId: widget.context.encounterId,
+      patientId: widget.context.patientId,
+      userId: userId,
+      chartType: _resolveChartType(),
+      teethConditions: Map<int, String>.from(_teethConditions),
+      selectedCondition: _selectedCondition,
+      updatedAt: updatedAt ?? DateTime.now(),
+    );
+  }
+
+  ToothMapSnapshot? get lastSavedSnapshot => _lastSavedSnapshot;
+
+  Map<String, dynamic>? get supabasePayload =>
+      _lastSavedSnapshot?.toSupabasePayload();
+
+  void _markUnsavedChanges() {
+    if (!_hasUnsavedChanges) {
+      setState(() {
+        _hasUnsavedChanges = true;
+      });
+    }
+  }
+
+  Future<bool> _onToolLeaveRequest() async {
+    if (!_hasUnsavedChanges) {
+      return true;
+    }
+
+    if (!mounted) {
+      return true;
+    }
+
+    final bool? shouldLeave = await showDialog<bool>(
+      context: context,
+      builder: (dialogContext) {
+        return AlertDialog(
+          title: const Text('Unsaved Changes'),
+          content: const Text(
+            'You have unsaved changes on the tooth map. Do you want to discard them?',
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(dialogContext).pop(false),
+              child: const Text('Stay'),
+            ),
+            TextButton(
+              onPressed: () => Navigator.of(dialogContext).pop(true),
+              child: const Text('Discard'),
+            ),
+          ],
+        );
+      },
+    );
+
+    if (shouldLeave == true) {
+      setState(() {
+        _hasUnsavedChanges = false;
+      });
+      return true;
+    }
+
+    return false;
   }
 }
 
