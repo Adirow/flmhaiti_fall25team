@@ -64,7 +64,25 @@ class _AppointmentFormScreenState extends State<AppointmentFormScreen> {
     try {
       final patients = await _patientService.getAllPatients();
       setState(() {
-        _patients = patients;
+        final updatedPatients = List<Patient>.from(patients);
+
+        if (_selectedPatient != null) {
+          final existingIndex =
+              updatedPatients.indexWhere((p) => p.id == _selectedPatient!.id);
+          if (existingIndex != -1) {
+            _selectedPatient = updatedPatients[existingIndex];
+          } else {
+            updatedPatients.insert(0, _selectedPatient!);
+          }
+        } else if (widget.appointment != null) {
+          final existingIndex = updatedPatients
+              .indexWhere((p) => p.id == widget.appointment!.patientId);
+          if (existingIndex != -1) {
+            _selectedPatient = updatedPatients[existingIndex];
+          }
+        }
+
+        _patients = updatedPatients;
         _isLoadingPatients = false;
       });
     } catch (e) {
@@ -82,7 +100,14 @@ class _AppointmentFormScreenState extends State<AppointmentFormScreen> {
       final patient = await _patientService.getPatientById(patientId);
       if (patient != null) {
         setState(() {
-          _selectedPatient = patient;
+          final existingIndex =
+              _patients.indexWhere((p) => p.id == patient.id);
+          if (existingIndex != -1) {
+            _selectedPatient = _patients[existingIndex];
+          } else {
+            _patients = [patient, ..._patients];
+            _selectedPatient = patient;
+          }
         });
       }
     } catch (e) {
