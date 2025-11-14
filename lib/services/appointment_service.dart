@@ -208,7 +208,7 @@ class AppointmentService {
     try {
       final result = await SupabaseService.update(
         'appointments',
-        {'status': status.name},
+        {'status': status.dbValue},
         filters: {'id': appointmentId},
       );
       
@@ -249,7 +249,7 @@ class AppointmentService {
         {
           'start_time': newStartTime.toIso8601String(),
           'end_time': newEndTime.toIso8601String(),
-          'status': AppointmentStatus.scheduled.name,
+          'status': AppointmentStatus.scheduled.dbValue,
         },
         filters: {'id': appointmentId},
       );
@@ -392,7 +392,7 @@ class AppointmentService {
           .from('appointments')
           .select('*')
           .inFilter('patient_id', patientIds)
-          .eq('status', status.name)
+          .eq('status', status.dbValue)
           .order('start_time');
       
       return data.map<Appointment>((json) => Appointment.fromJson(json)).toList();
@@ -418,7 +418,7 @@ class AppointmentService {
           .from('appointments')
           .select('id')
           .eq('provider_id', providerId)
-          .neq('status', AppointmentStatus.cancelled.name)
+          .neq('status', AppointmentStatus.cancelled.dbValue)
           .lt('start_time', endTime.toIso8601String())
           .gt('end_time', startTime.toIso8601String());
 
@@ -452,7 +452,7 @@ class AppointmentService {
           .from('appointments')
           .select('start_time, end_time')
           .eq('provider_id', providerId)
-          .neq('status', AppointmentStatus.cancelled.name)
+          .neq('status', AppointmentStatus.cancelled.dbValue)
           .gte('start_time', DateTime(date.year, date.month, date.day).toIso8601String())
           .lt('start_time', DateTime(date.year, date.month, date.day + 1).toIso8601String());
 
