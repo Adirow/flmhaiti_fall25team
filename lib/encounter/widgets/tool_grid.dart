@@ -61,21 +61,35 @@ class _ToolGridState extends State<ToolGrid> {
         _buildHeader(),
         const SizedBox(height: 16),
         Expanded(
-          child: GridView.builder(
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: MediaQuery.of(context).size.width > 1600 ? 3 : 2,
-              childAspectRatio: 1.0,
-              crossAxisSpacing: 12,
-              mainAxisSpacing: 12,
-            ),
-            itemCount: _toolConfigs.length,
-            itemBuilder: (context, index) {
-              final config = _toolConfigs[index];
-              final metadata = _toolMetadata[config.toolId];
-              
-              if (metadata == null) return const SizedBox.shrink();
-              
-              return _buildToolCard(config, metadata);
+          child: LayoutBuilder(
+            builder: (context, constraints) {
+              final availableWidth = constraints.maxWidth;
+              final spacing = 12.0;
+              final crossAxisCount = availableWidth > 1600 ? 3 : 2;
+              final tileWidth = (availableWidth - (crossAxisCount - 1) * spacing) / crossAxisCount;
+              const targetTileHeight = 160.0;
+              final computedAspectRatio = tileWidth / targetTileHeight;
+              final childAspectRatio = computedAspectRatio.isFinite && computedAspectRatio > 0
+                  ? computedAspectRatio
+                  : 1.0;
+
+              return GridView.builder(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: crossAxisCount,
+                  childAspectRatio: childAspectRatio,
+                  crossAxisSpacing: spacing,
+                  mainAxisSpacing: spacing,
+                ),
+                itemCount: _toolConfigs.length,
+                itemBuilder: (context, index) {
+                  final config = _toolConfigs[index];
+                  final metadata = _toolMetadata[config.toolId];
+
+                  if (metadata == null) return const SizedBox.shrink();
+
+                  return _buildToolCard(config, metadata);
+                },
+              );
             },
           ),
         ),

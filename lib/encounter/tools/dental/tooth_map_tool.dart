@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
-import '../../core/interfaces.dart';
-import '../../core/encounter_context.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:path_drawing/path_drawing.dart';
+
 import '../../core/base_tool_widget.dart';
+import '../../core/encounter_context.dart';
+import '../../core/interfaces.dart';
 
 class ToothMapTool implements IEncounterTool {
   final ToolConfig config;
@@ -70,16 +74,34 @@ class ToothMapWidget extends BaseToolWidget {
   ToothMapWidgetState createState() => ToothMapWidgetState();
 }
 
+class ToothRegion {
+  final int number;
+  final Path path;
+  final Rect bounds;
+
+  ToothRegion({
+    required this.number,
+    required this.path,
+    required this.bounds,
+  });
+
+  Offset get center => bounds.center;
+}
+
 class ToothMapWidgetState extends BaseToolWidgetState<ToothMapWidget> {
   Map<int, String> _teethConditions = {};
   String _selectedCondition = 'healthy';
   List<String> _availableConditions = [];
   Map<String, Color> _conditionColors = {};
+  Map<int, ToothRegion> _toothRegions = {};
+  bool _toothRegionsLoaded = false;
+  String? _toothRegionsLoadError;
 
   @override
   void initState() {
     super.initState();
     _initializeConditions();
+    _loadToothRegions();
   }
 
   void _initializeConditions() {
@@ -106,6 +128,61 @@ class ToothMapWidgetState extends BaseToolWidgetState<ToothMapWidget> {
       'implant': _parseColor(colorConfig['implant']) ?? Colors.purple,
       'root_canal': _parseColor(colorConfig['root_canal']) ?? Colors.brown,
     };
+  }
+
+  Future<void> _loadToothRegions() async {
+    try {
+      debugPrint('ToothMap: extracting tooth shapes from SVG...');
+      final svgContent =
+          await rootBundle.loadString('assets/images/dental-arches-flutter.svg');
+
+      final RegExp pathPattern = RegExp(
+        r'<path[^>]*class="([^"]*tooth-(\d{2})[^"]*parent[^"]*)"[^>]*d="([^"]+)"',
+        multiLine: true,
+      );
+
+      final Map<int, ToothRegion> regions = {};
+
+      for (final match in pathPattern.allMatches(svgContent)) {
+        final int number = int.parse(match.group(2)!);
+        final String rawPath = match.group(3)!;
+        final Path path = parseSvgPathData(rawPath)..fillType = PathFillType.nonZero;
+        final Rect bounds = path.getBounds();
+
+        regions.putIfAbsent(
+          number,
+          () => ToothRegion(number: number, path: path, bounds: bounds),
+        );
+      }
+
+      if (regions.isEmpty) {
+        throw const FormatException('No tooth shapes were found in SVG');
+      }
+
+      if (!mounted) {
+        return;
+      }
+
+      setState(() {
+        _toothRegions = regions;
+        _toothRegionsLoaded = true;
+        _toothRegionsLoadError = null;
+      });
+      debugPrint('ToothMap: loaded ${regions.length} tooth regions from SVG.');
+    } catch (error, stackTrace) {
+      debugPrint('ToothMap: failed to load tooth regions: $error');
+      debugPrint(stackTrace.toString());
+
+      if (!mounted) {
+        return;
+      }
+
+      setState(() {
+        _toothRegions = {};
+        _toothRegionsLoaded = true;
+        _toothRegionsLoadError = error.toString();
+      });
+    }
   }
 
   Color? _parseColor(dynamic colorValue) {
@@ -214,6 +291,28 @@ class ToothMapWidgetState extends BaseToolWidgetState<ToothMapWidget> {
     );
   }
 
+  // Widget _buildToothChart() {
+  //   return Container(
+  //     decoration: BoxDecoration(
+  //       color: Colors.white,
+  //       borderRadius: BorderRadius.circular(12),
+  //       border: Border.all(color: Theme.of(context).dividerColor),
+  //     ),
+  //     child: Padding(
+  //       padding: const EdgeInsets.all(16),
+  //       child: Column(
+  //         children: [
+  //           // Upper jaw
+  //           _buildJaw(isUpper: true),
+  //           const SizedBox(height: 20),
+  //           // Lower jaw
+  //           _buildJaw(isUpper: false),
+  //         ],
+  //       ),
+  //     ),
+  //   );
+  // }
+
   Widget _buildToothChart() {
     return Container(
       decoration: BoxDecoration(
@@ -223,81 +322,103 @@ class ToothMapWidgetState extends BaseToolWidgetState<ToothMapWidget> {
       ),
       child: Padding(
         padding: const EdgeInsets.all(16),
-        child: Column(
-          children: [
-            // Upper jaw
-            _buildJaw(isUpper: true),
-            const SizedBox(height: 20),
-            // Lower jaw
-            _buildJaw(isUpper: false),
-          ],
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            if (!_toothRegionsLoaded) {
+              return const Center(child: CircularProgressIndicator());
+            }
+
+            if (_toothRegionsLoadError != null) {
+              return Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Icon(Icons.error_outline, color: Colors.redAccent, size: 32),
+                    const SizedBox(height: 8),
+                    Text(
+                      'Unable to load tooth regions',
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      _toothRegionsLoadError!,
+                      style: Theme.of(context).textTheme.bodySmall,
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
+              );
+            }
+
+            const double svgWidth = 289.61084;
+            const double svgHeight = 370.54398;
+            final double aspectRatio = svgWidth / svgHeight;
+
+            double width = constraints.maxWidth;
+            double height = width / aspectRatio;
+
+            if (height > constraints.maxHeight) {
+              height = constraints.maxHeight;
+              width = height * aspectRatio;
+            }
+
+            final double scaleX = width / svgWidth;
+            final double scaleY = height / svgHeight;
+            final Map<int, String> conditionSnapshot =
+                Map<int, String>.from(_teethConditions);
+
+            return Center(
+              child: SizedBox(
+                width: width,
+                height: height,
+                child: GestureDetector(
+                  behavior: HitTestBehavior.opaque,
+                  onTapDown: (details) =>
+                      _handleTap(details.localPosition, scaleX, scaleY),
+                  child: MouseRegion(
+                    cursor: SystemMouseCursors.click,
+                    child: Stack(
+                      fit: StackFit.expand,
+                      children: [
+                        SvgPicture.asset(
+                          'assets/images/dental-arches-flutter.svg',
+                          width: width,
+                          height: height,
+                          fit: BoxFit.contain,
+                        ),
+                        CustomPaint(
+                          painter: _ToothHighlightPainter(
+                            toothRegions: _toothRegions,
+                            teethConditions: conditionSnapshot,
+                            conditionColors: _conditionColors,
+                            scaleX: scaleX,
+                            scaleY: scaleY,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            );
+          },
         ),
       ),
     );
   }
 
-  Widget _buildJaw({required bool isUpper}) {
-    
-    return Column(
-      children: [
-        Text(
-          isUpper ? 'Upper Jaw' : 'Lower Jaw',
-          style: const TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 16,
-          ),
-        ),
-        const SizedBox(height: 8),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            // Right side
-            ...List.generate(8, (index) {
-              final toothNumber = isUpper ? (18 - index) : (48 - index);
-              return _buildTooth(toothNumber);
-            }),
-            const SizedBox(width: 20),
-            // Left side
-            ...List.generate(8, (index) {
-              final toothNumber = isUpper ? (21 + index) : (31 + index);
-              return _buildTooth(toothNumber);
-            }),
-          ],
-        ),
-      ],
+  void _handleTap(Offset position, double scaleX, double scaleY) {
+    final Offset normalized = Offset(
+      position.dx / scaleX,
+      position.dy / scaleY,
     );
-  }
 
-  Widget _buildTooth(int toothNumber) {
-    final condition = _teethConditions[toothNumber] ?? 'healthy';
-    final color = _conditionColors[condition] ?? Colors.green;
-    
-    return GestureDetector(
-      onTap: () => _setToothCondition(toothNumber),
-      child: Container(
-        width: 32,
-        height: 32,
-        margin: const EdgeInsets.all(2),
-        decoration: BoxDecoration(
-          color: color,
-          borderRadius: BorderRadius.circular(6),
-          border: Border.all(
-            color: Colors.black26,
-            width: 1,
-          ),
-        ),
-        child: Center(
-          child: Text(
-            toothNumber.toString(),
-            style: const TextStyle(
-              color: Colors.white,
-              fontSize: 10,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
-      ),
-    );
+    for (final entry in _toothRegions.entries) {
+      if (entry.value.path.contains(normalized)) {
+        _onToothTapped(entry.key);
+        break;
+      }
+    }
   }
 
   Widget _buildLegend() {
@@ -347,7 +468,11 @@ class ToothMapWidgetState extends BaseToolWidgetState<ToothMapWidget> {
 
   void _setToothCondition(int toothNumber) {
     setState(() {
-      _teethConditions[toothNumber] = _selectedCondition;
+      if (_selectedCondition == 'healthy') {
+        _teethConditions.remove(toothNumber);
+      } else {
+        _teethConditions[toothNumber] = _selectedCondition;
+      }
     });
   }
 
@@ -355,6 +480,10 @@ class ToothMapWidgetState extends BaseToolWidgetState<ToothMapWidget> {
     setState(() {
       _teethConditions.clear();
     });
+  }
+
+  void _onToothTapped(int toothNumber) {
+    _setToothCondition(toothNumber);
   }
 
   @override
@@ -388,5 +517,58 @@ class ToothMapWidgetState extends BaseToolWidgetState<ToothMapWidget> {
   bool validateToolData() {
     // 牙位图数据总是有效的，即使是空的
     return true;
+  }
+}
+
+class _ToothHighlightPainter extends CustomPainter {
+  final Map<int, ToothRegion> toothRegions;
+  final Map<int, String> teethConditions;
+  final Map<String, Color> conditionColors;
+  final double scaleX;
+  final double scaleY;
+
+  _ToothHighlightPainter({
+    required this.toothRegions,
+    required this.teethConditions,
+    required this.conditionColors,
+    required this.scaleX,
+    required this.scaleY,
+  });
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    canvas.save();
+    canvas.scale(scaleX, scaleY);
+
+    toothRegions.forEach((number, region) {
+      final String? condition = teethConditions[number];
+      if (condition == null || condition == 'healthy') {
+        return;
+      }
+
+      final Color fillColor =
+          (conditionColors[condition] ?? Colors.green).withOpacity(0.55);
+
+      final Paint paint = Paint()
+        ..color = fillColor
+        ..style = PaintingStyle.fill
+        ..isAntiAlias = true;
+
+      canvas.drawPath(region.path, paint);
+    });
+
+    canvas.restore();
+  }
+
+  @override
+  bool shouldRepaint(covariant _ToothHighlightPainter oldDelegate) {
+    if (identical(this, oldDelegate)) {
+      return false;
+    }
+
+    return oldDelegate.teethConditions != teethConditions ||
+        oldDelegate.conditionColors != conditionColors ||
+        oldDelegate.scaleX != scaleX ||
+        oldDelegate.scaleY != scaleY;
   }
 }
