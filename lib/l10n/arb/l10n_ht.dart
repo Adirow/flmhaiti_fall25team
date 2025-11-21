@@ -149,12 +149,12 @@ class AppLocalizationsHt extends AppLocalizations {
   String get appointmentsSearchButton => 'Chèche';
 
   @override
-  String appointmentsLoadError(String error) {
+  String appointmentsLoadError(Object error) {
     return 'Echwe pou chaje randevou yo : $error';
   }
 
   @override
-  String appointmentsSearchError(String error) {
+  String appointmentsSearchError(Object error) {
     return 'Echwe pou chèche randevou yo : $error';
   }
 
@@ -165,7 +165,7 @@ class AppLocalizationsHt extends AppLocalizations {
   String get appointmentsCancelSuccess => 'Randevou anile';
 
   @override
-  String appointmentsActionError(String action, String error) {
+  String appointmentsActionError(Object action, Object error) {
     return 'Echwe pou $action randevou a : $error';
   }
 
@@ -173,12 +173,12 @@ class AppLocalizationsHt extends AppLocalizations {
   String get appointmentsRescheduleTitle => 'Repwograme randevou a';
 
   @override
-  String appointmentsRescheduleDate(String date) {
+  String appointmentsRescheduleDate(Object date) {
     return 'Dat : $date';
   }
 
   @override
-  String appointmentsRescheduleTime(String time) {
+  String appointmentsRescheduleTime(Object time) {
     return 'Lè : $time';
   }
 
@@ -186,7 +186,7 @@ class AppLocalizationsHt extends AppLocalizations {
   String get appointmentsRescheduleSuccess => 'Randevou replanifye';
 
   @override
-  String appointmentsRescheduleError(String error) {
+  String appointmentsRescheduleError(Object error) {
     return 'Echwe pou replanifye : $error';
   }
 
@@ -204,7 +204,7 @@ class AppLocalizationsHt extends AppLocalizations {
   String get appointmentsDeleteSuccess => 'Randevou efase';
 
   @override
-  String appointmentsDeleteError(String error) {
+  String appointmentsDeleteError(Object error) {
     return 'Echwe pou efase randevou a : $error';
   }
 
@@ -212,17 +212,17 @@ class AppLocalizationsHt extends AppLocalizations {
   String get appointmentsDetailTitle => 'Detay randevou';
 
   @override
-  String appointmentsStatusUpdated(String status) {
+  String appointmentsStatusUpdated(Object status) {
     return 'Estati randevou a mete ajou kòm $status';
   }
 
   @override
-  String appointmentsStatusUpdateError(String error) {
+  String appointmentsStatusUpdateError(Object error) {
     return 'Echwe pou mete ajou estati a : $error';
   }
 
   @override
-  String appointmentsIdLabel(String id) {
+  String appointmentsIdLabel(Object id) {
     return 'ID : $id...';
   }
 
@@ -259,7 +259,7 @@ class AppLocalizationsHt extends AppLocalizations {
   String get appointmentsFieldDuration => 'Dire';
 
   @override
-  String appointmentsDurationValue(num minutes) {
+  String appointmentsDurationValue(Object minutes) {
     return '$minutes minit';
   }
 
@@ -315,7 +315,7 @@ class AppLocalizationsHt extends AppLocalizations {
   String get appointmentsUpdateSuccess => 'Randevou mete ajou avèk siksè';
 
   @override
-  String appointmentsSaveError(String error) {
+  String appointmentsSaveError(Object error) {
     return 'Echwe pou sove randevou a : $error';
   }
 
@@ -323,12 +323,12 @@ class AppLocalizationsHt extends AppLocalizations {
   String get appointmentsEndTimeError => 'Lè fini an dwe apre lè kòmanse a';
 
   @override
-  String appointmentsLoadPatientsError(String error) {
+  String appointmentsLoadPatientsError(Object error) {
     return 'Echwe pou chaje pasyan yo : $error';
   }
 
   @override
-  String appointmentsLoadPatientError(String error) {
+  String appointmentsLoadPatientError(Object error) {
     return 'Echwe pou chaje pasyan an : $error';
   }
 

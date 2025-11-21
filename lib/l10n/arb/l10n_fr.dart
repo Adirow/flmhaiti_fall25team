@@ -145,18 +145,19 @@ class AppLocalizationsFr extends AppLocalizations {
   String get appointmentsSearchTitle => 'Rechercher des rendez-vous';
 
   @override
-  String get appointmentsSearchLabel => 'Rechercher par nom de patient ou motif';
+  String get appointmentsSearchLabel =>
+      'Rechercher par nom de patient ou motif';
 
   @override
   String get appointmentsSearchButton => 'Rechercher';
 
   @override
-  String appointmentsLoadError(String error) {
+  String appointmentsLoadError(Object error) {
     return 'Échec du chargement des rendez-vous : $error';
   }
 
   @override
-  String appointmentsSearchError(String error) {
+  String appointmentsSearchError(Object error) {
     return 'Échec de la recherche de rendez-vous : $error';
   }
 
@@ -167,7 +168,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get appointmentsCancelSuccess => 'Rendez-vous annulé';
 
   @override
-  String appointmentsActionError(String action, String error) {
+  String appointmentsActionError(Object action, Object error) {
     return 'Échec de $action du rendez-vous : $error';
   }
 
@@ -175,12 +176,12 @@ class AppLocalizationsFr extends AppLocalizations {
   String get appointmentsRescheduleTitle => 'Reprogrammer le rendez-vous';
 
   @override
-  String appointmentsRescheduleDate(String date) {
+  String appointmentsRescheduleDate(Object date) {
     return 'Date : $date';
   }
 
   @override
-  String appointmentsRescheduleTime(String time) {
+  String appointmentsRescheduleTime(Object time) {
     return 'Heure : $time';
   }
 
@@ -188,7 +189,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get appointmentsRescheduleSuccess => 'Rendez-vous reprogrammé';
 
   @override
-  String appointmentsRescheduleError(String error) {
+  String appointmentsRescheduleError(Object error) {
     return 'Échec de la reprogrammation : $error';
   }
 
@@ -206,7 +207,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get appointmentsDeleteSuccess => 'Rendez-vous supprimé';
 
   @override
-  String appointmentsDeleteError(String error) {
+  String appointmentsDeleteError(Object error) {
     return 'Échec de la suppression du rendez-vous : $error';
   }
 
@@ -214,17 +215,17 @@ class AppLocalizationsFr extends AppLocalizations {
   String get appointmentsDetailTitle => 'Détails du rendez-vous';
 
   @override
-  String appointmentsStatusUpdated(String status) {
+  String appointmentsStatusUpdated(Object status) {
     return 'Statut du rendez-vous mis à jour vers $status';
   }
 
   @override
-  String appointmentsStatusUpdateError(String error) {
+  String appointmentsStatusUpdateError(Object error) {
     return 'Échec de la mise à jour du statut : $error';
   }
 
   @override
-  String appointmentsIdLabel(String id) {
+  String appointmentsIdLabel(Object id) {
     return 'ID : $id...';
   }
 
@@ -261,7 +262,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get appointmentsFieldDuration => 'Durée';
 
   @override
-  String appointmentsDurationValue(num minutes) {
+  String appointmentsDurationValue(Object minutes) {
     return '$minutes minutes';
   }
 
@@ -287,7 +288,8 @@ class AppLocalizationsFr extends AppLocalizations {
   String get appointmentsSelectPatientLabel => 'Sélectionner un patient';
 
   @override
-  String get appointmentsSelectPatientError => 'Veuillez sélectionner un patient';
+  String get appointmentsSelectPatientError =>
+      'Veuillez sélectionner un patient';
 
   @override
   String get appointmentsReasonLabel => 'Motif de la visite';
@@ -317,20 +319,21 @@ class AppLocalizationsFr extends AppLocalizations {
   String get appointmentsUpdateSuccess => 'Rendez-vous mis à jour avec succès';
 
   @override
-  String appointmentsSaveError(String error) {
-    return "Échec de l'enregistrement du rendez-vous : $error";
+  String appointmentsSaveError(Object error) {
+    return 'Échec de l\'enregistrement du rendez-vous : $error';
   }
 
   @override
-  String get appointmentsEndTimeError => "L'heure de fin doit être après l'heure de début";
+  String get appointmentsEndTimeError =>
+      'L\'heure de fin doit être après l\'heure de début';
 
   @override
-  String appointmentsLoadPatientsError(String error) {
+  String appointmentsLoadPatientsError(Object error) {
     return 'Échec du chargement des patients : $error';
   }
 
   @override
-  String appointmentsLoadPatientError(String error) {
+  String appointmentsLoadPatientError(Object error) {
     return 'Échec du chargement du patient : $error';
   }
 

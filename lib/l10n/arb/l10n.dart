@@ -380,13 +380,13 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'Failed to load appointments: {error}'**
-  String appointmentsLoadError(String error);
+  String appointmentsLoadError(Object error);
 
   /// No description provided for @appointmentsSearchError.
   ///
   /// In en, this message translates to:
   /// **'Failed to search appointments: {error}'**
-  String appointmentsSearchError(String error);
+  String appointmentsSearchError(Object error);
 
   /// No description provided for @appointmentsConfirmSuccess.
   ///
@@ -404,7 +404,7 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'Failed to {action} appointment: {error}'**
-  String appointmentsActionError(String action, String error);
+  String appointmentsActionError(Object action, Object error);
 
   /// No description provided for @appointmentsRescheduleTitle.
   ///
@@ -416,13 +416,13 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'Date: {date}'**
-  String appointmentsRescheduleDate(String date);
+  String appointmentsRescheduleDate(Object date);
 
   /// No description provided for @appointmentsRescheduleTime.
   ///
   /// In en, this message translates to:
   /// **'Time: {time}'**
-  String appointmentsRescheduleTime(String time);
+  String appointmentsRescheduleTime(Object time);
 
   /// No description provided for @appointmentsRescheduleSuccess.
   ///
@@ -434,7 +434,7 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'Failed to reschedule: {error}'**
-  String appointmentsRescheduleError(String error);
+  String appointmentsRescheduleError(Object error);
 
   /// No description provided for @appointmentsRescheduleButton.
   ///
@@ -464,7 +464,7 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'Failed to delete appointment: {error}'**
-  String appointmentsDeleteError(String error);
+  String appointmentsDeleteError(Object error);
 
   /// No description provided for @appointmentsDetailTitle.
   ///
@@ -476,19 +476,19 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'Appointment status updated to {status}'**
-  String appointmentsStatusUpdated(String status);
+  String appointmentsStatusUpdated(Object status);
 
   /// No description provided for @appointmentsStatusUpdateError.
   ///
   /// In en, this message translates to:
   /// **'Failed to update status: {error}'**
-  String appointmentsStatusUpdateError(String error);
+  String appointmentsStatusUpdateError(Object error);
 
   /// No description provided for @appointmentsIdLabel.
   ///
   /// In en, this message translates to:
   /// **'ID: {id}...'**
-  String appointmentsIdLabel(String id);
+  String appointmentsIdLabel(Object id);
 
   /// No description provided for @appointmentsPatientInformation.
   ///
@@ -554,7 +554,7 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'{minutes} minutes'**
-  String appointmentsDurationValue(num minutes);
+  String appointmentsDurationValue(Object minutes);
 
   /// No description provided for @appointmentsTimestamps.
   ///
@@ -662,7 +662,7 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'Failed to save appointment: {error}'**
-  String appointmentsSaveError(String error);
+  String appointmentsSaveError(Object error);
 
   /// No description provided for @appointmentsEndTimeError.
   ///
@@ -674,13 +674,13 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'Failed to load patients: {error}'**
-  String appointmentsLoadPatientsError(String error);
+  String appointmentsLoadPatientsError(Object error);
 
   /// No description provided for @appointmentsLoadPatientError.
   ///
   /// In en, this message translates to:
   /// **'Failed to load patient: {error}'**
-  String appointmentsLoadPatientError(String error);
+  String appointmentsLoadPatientError(Object error);
 
   /// No description provided for @encountersCardTitle.
   ///
