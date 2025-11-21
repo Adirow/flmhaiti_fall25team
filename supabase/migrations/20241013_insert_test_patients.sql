@@ -1,12 +1,3 @@
--- Insert test patients for encounter testing
--- This provides basic patient data for testing encounters
-
--- Insert test patients if they don't exist (assuming patients table exists)
-INSERT INTO patients (id, name, email, phone, date_of_birth, gender) VALUES 
-('00000000-0000-0000-0000-000000000001', 'Test Patient 1', 'patient1@test.com', '123-456-7890', '1990-01-01', 'female'),
-('00000000-0000-0000-0000-000000000002', 'Test Patient 2', 'patient2@test.com', '123-456-7891', '1985-05-15', 'male')
-ON CONFLICT (id) DO NOTHING;
-
 -- Insert departments if they don't exist
 INSERT INTO departments (code, name, description) VALUES 
 ('dental', 'Dental', 'Dental care and oral health services'),

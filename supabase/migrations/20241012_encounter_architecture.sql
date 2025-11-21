@@ -112,6 +112,6 @@ FOR ALL USING (
     EXISTS (
         SELECT 1 FROM encounters e 
         WHERE e.id = encounter_tool_data.encounter_id 
-        AND e.clinic_id = auth.jwt() ->> 'clinic_id'
+        AND e.clinic_id = (auth.jwt() ->> 'clinic_id')::uuid
     )
 );

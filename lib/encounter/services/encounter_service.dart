@@ -1,12 +1,15 @@
+import 'package:flutter/foundation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../models/encounter.dart';
 import 'department_service.dart';
 import 'tool_data_service.dart';
+import '../../services/billing_service.dart';
 
 class EncounterService {
   final SupabaseClient _supabase = Supabase.instance.client;
   final DepartmentService _departmentService = DepartmentService();
   final ToolDataService _toolDataService = ToolDataService();
+  final BillingService _billingService = BillingService();
 
   // 创建问诊
   Future<Encounter> createEncounter({
@@ -38,7 +41,10 @@ class EncounterService {
           .select()
           .single();
 
-      return Encounter.fromJson(response);
+      final encounter = Encounter.fromJson(response);
+      await _attemptConsultationInvoice(patientId: patientId, encounterId: encounter.id);
+
+      return encounter;
     } catch (e) {
       throw Exception('Failed to create encounter: $e');
     }
@@ -313,6 +319,20 @@ class EncounterService {
           .toList();
     } catch (e) {
       throw Exception('Failed to search encounters: $e');
+    }
+  }
+
+  Future<void> _attemptConsultationInvoice({
+    required String patientId,
+    required String encounterId,
+  }) async {
+    try {
+      await _billingService.createConsultationInvoice(
+        patientId: patientId,
+        encounterId: encounterId,
+      );
+    } catch (e) {
+      debugPrint('EncounterService: Unable to create consultation invoice ($encounterId): $e');
     }
   }
 }

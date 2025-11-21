@@ -293,6 +293,13 @@ lib/
 7. **Treatment Plans**: Enhanced odontogram with scheduling
 8. **Insurance Management**: New module with claims tracking
 
+### Billing Module (In Progress)
+- **Tables**: `billing_invoices`, `billing_invoice_items`, `billing_payments`
+- **Status Enums**: `draft`, `sent`, `partial`, `paid`, `void`
+- **Payment Methods**: `cash`, `card`, `check`, `mobile_money`, `other`
+- **RLS**: Scoped to `clinic_id` via policies mirroring other modules
+- **UI**: Dashboard entry opens billing list showing invoices, balances, and payments
+
 ### No Schema Changes Required
 - All new modules add new tables
 - Existing tables remain unchanged
