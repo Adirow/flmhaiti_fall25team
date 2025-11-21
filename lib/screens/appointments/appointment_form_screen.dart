@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:flmhaiti_fall25team/localization/l10n_extension.dart';
 import 'package:flmhaiti_fall25team/models/appointment.dart';
 import 'package:flmhaiti_fall25team/models/patient.dart';
 import 'package:flmhaiti_fall25team/services/appointment_service.dart';
@@ -89,7 +90,7 @@ class _AppointmentFormScreenState extends State<AppointmentFormScreen> {
       setState(() => _isLoadingPatients = false);
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Failed to load patients: $e')),
+          SnackBar(content: Text(context.l10n.appointmentsLoadPatientsError('$e'))),
         );
       }
     }
@@ -113,7 +114,7 @@ class _AppointmentFormScreenState extends State<AppointmentFormScreen> {
     } catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Failed to load patient: $e')),
+          SnackBar(content: Text(context.l10n.appointmentsLoadPatientError('$e'))),
         );
       }
     }
@@ -144,7 +145,7 @@ class _AppointmentFormScreenState extends State<AppointmentFormScreen> {
       );
 
       if (endDateTime.isBefore(startDateTime)) {
-        throw Exception('End time must be after start time');
+        throw Exception(context.l10n.appointmentsEndTimeError);
       }
 
       if (widget.appointment == null) {
@@ -217,9 +218,9 @@ class _AppointmentFormScreenState extends State<AppointmentFormScreen> {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text(widget.appointment == null 
-                ? 'Appointment created successfully' 
-                : 'Appointment updated successfully'),
+            content: Text(widget.appointment == null
+                ? context.l10n.appointmentsCreateSuccess
+                : context.l10n.appointmentsUpdateSuccess),
           ),
         );
       }
@@ -227,7 +228,7 @@ class _AppointmentFormScreenState extends State<AppointmentFormScreen> {
       setState(() => _isLoading = false);
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Failed to save appointment: $e')),
+          SnackBar(content: Text(context.l10n.appointmentsSaveError('$e'))),
         );
       }
     }
@@ -237,10 +238,13 @@ class _AppointmentFormScreenState extends State<AppointmentFormScreen> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
+    final l10n = context.l10n;
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.appointment == null ? 'New Appointment' : 'Edit Appointment'),
+        title: Text(widget.appointment == null
+            ? l10n.appointmentsFormNewTitle
+            : l10n.appointmentsFormEditTitle),
         actions: [
           if (_isLoading)
             const Center(
@@ -256,7 +260,7 @@ class _AppointmentFormScreenState extends State<AppointmentFormScreen> {
           else
             TextButton(
               onPressed: _saveAppointment,
-              child: const Text('Save'),
+              child: Text(l10n.commonSave),
             ),
         ],
       ),
@@ -275,7 +279,7 @@ class _AppointmentFormScreenState extends State<AppointmentFormScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Patient Information',
+                            l10n.appointmentsPatientInformation,
                             style: theme.textTheme.titleMedium?.copyWith(
                               fontWeight: FontWeight.bold,
                             ),
@@ -283,10 +287,10 @@ class _AppointmentFormScreenState extends State<AppointmentFormScreen> {
                           const SizedBox(height: 16),
                           DropdownButtonFormField<Patient>(
                             value: _selectedPatient,
-                            decoration: const InputDecoration(
-                              labelText: 'Select Patient',
-                              border: OutlineInputBorder(),
-                              prefixIcon: Icon(Icons.person),
+                            decoration: InputDecoration(
+                              labelText: l10n.appointmentsSelectPatientLabel,
+                              border: const OutlineInputBorder(),
+                              prefixIcon: const Icon(Icons.person),
                             ),
                             items: _patients.map((patient) {
                               return DropdownMenuItem(
@@ -304,7 +308,7 @@ class _AppointmentFormScreenState extends State<AppointmentFormScreen> {
                             },
                             validator: (value) {
                               if (value == null) {
-                                return 'Please select a patient';
+                                return l10n.appointmentsSelectPatientError;
                               }
                               return null;
                             },
@@ -324,7 +328,7 @@ class _AppointmentFormScreenState extends State<AppointmentFormScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Appointment Details',
+                            l10n.appointmentsInformation,
                             style: theme.textTheme.titleMedium?.copyWith(
                               fontWeight: FontWeight.bold,
                             ),
@@ -334,15 +338,15 @@ class _AppointmentFormScreenState extends State<AppointmentFormScreen> {
                           // Reason
                           TextFormField(
                             controller: _reasonController,
-                            decoration: const InputDecoration(
-                              labelText: 'Reason for Visit',
-                              border: OutlineInputBorder(),
-                              prefixIcon: Icon(Icons.medical_services),
+                            decoration: InputDecoration(
+                              labelText: l10n.appointmentsReasonLabel,
+                              border: const OutlineInputBorder(),
+                              prefixIcon: const Icon(Icons.medical_services),
                             ),
                             maxLines: 2,
                             validator: (value) {
                               if (value == null || value.trim().isEmpty) {
-                                return 'Please enter a reason for the visit';
+                                return l10n.appointmentsReasonError;
                               }
                               return null;
                             },
@@ -354,10 +358,10 @@ class _AppointmentFormScreenState extends State<AppointmentFormScreen> {
                           if (widget.appointment != null)
                             DropdownButtonFormField<AppointmentStatus>(
                               value: _status,
-                              decoration: const InputDecoration(
-                                labelText: 'Status',
-                                border: OutlineInputBorder(),
-                                prefixIcon: Icon(Icons.info),
+                              decoration: InputDecoration(
+                                labelText: l10n.appointmentsStatusLabel,
+                                border: const OutlineInputBorder(),
+                                prefixIcon: const Icon(Icons.info),
                               ),
                               items: AppointmentStatus.values.map((status) {
                                 return DropdownMenuItem(
@@ -399,7 +403,7 @@ class _AppointmentFormScreenState extends State<AppointmentFormScreen> {
                           ListTile(
                             contentPadding: EdgeInsets.zero,
                             leading: const Icon(Icons.calendar_today),
-                            title: const Text('Date'),
+                            title: Text(l10n.appointmentsFieldDate),
                             subtitle: Text(DateFormat('EEEE, MMM dd, yyyy').format(_selectedDate)),
                             trailing: const Icon(Icons.chevron_right),
                             onTap: () async {
@@ -423,7 +427,7 @@ class _AppointmentFormScreenState extends State<AppointmentFormScreen> {
                           ListTile(
                             contentPadding: EdgeInsets.zero,
                             leading: const Icon(Icons.access_time),
-                            title: const Text('Start Time'),
+                            title: Text(l10n.appointmentsStartTimeLabel),
                             subtitle: Text(_startTime.format(context)),
                             trailing: const Icon(Icons.chevron_right),
                             onTap: () async {
@@ -449,7 +453,7 @@ class _AppointmentFormScreenState extends State<AppointmentFormScreen> {
                           ListTile(
                             contentPadding: EdgeInsets.zero,
                             leading: const Icon(Icons.access_time_filled),
-                            title: const Text('End Time'),
+                            title: Text(l10n.appointmentsEndTimeLabel),
                             subtitle: Text(_endTime.format(context)),
                             trailing: const Icon(Icons.chevron_right),
                             onTap: () async {
@@ -490,7 +494,9 @@ class _AppointmentFormScreenState extends State<AppointmentFormScreen> {
                                 color: Colors.white,
                               ),
                             )
-                          : Text(widget.appointment == null ? 'Create Appointment' : 'Update Appointment'),
+                          : Text(widget.appointment == null
+                              ? l10n.appointmentsCreateButton
+                              : l10n.appointmentsUpdateButton),
                     ),
                   ),
                 ],
@@ -502,15 +508,15 @@ class _AppointmentFormScreenState extends State<AppointmentFormScreen> {
   String _getStatusLabel(AppointmentStatus status) {
     switch (status) {
       case AppointmentStatus.scheduled:
-        return 'Scheduled';
+        return context.l10n.appointmentsStatusScheduled;
       case AppointmentStatus.confirmed:
-        return 'Confirmed';
+        return context.l10n.appointmentsStatusConfirmed;
       case AppointmentStatus.inProgress:
-        return 'In Progress';
+        return context.l10n.appointmentsStatusInProgress;
       case AppointmentStatus.completed:
-        return 'Completed';
+        return context.l10n.appointmentsStatusCompleted;
       case AppointmentStatus.cancelled:
-        return 'Cancelled';
+        return context.l10n.appointmentsStatusCancelled;
     }
   }
 

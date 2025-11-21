@@ -268,6 +268,420 @@ abstract class AppLocalizations {
   /// **'Schedule & manage'**
   String get appointmentsCardSubtitle;
 
+  /// No description provided for @appointmentsStatusScheduled.
+  ///
+  /// In en, this message translates to:
+  /// **'Scheduled'**
+  String get appointmentsStatusScheduled;
+
+  /// No description provided for @appointmentsStatusConfirmed.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirmed'**
+  String get appointmentsStatusConfirmed;
+
+  /// No description provided for @appointmentsStatusInProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'In Progress'**
+  String get appointmentsStatusInProgress;
+
+  /// No description provided for @appointmentsStatusCompleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed'**
+  String get appointmentsStatusCompleted;
+
+  /// No description provided for @appointmentsStatusCancelled.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancelled'**
+  String get appointmentsStatusCancelled;
+
+  /// No description provided for @appointmentsFilterAll.
+  ///
+  /// In en, this message translates to:
+  /// **'All Appointments'**
+  String get appointmentsFilterAll;
+
+  /// No description provided for @appointmentsEmptyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No appointments found'**
+  String get appointmentsEmptyTitle;
+
+  /// No description provided for @appointmentsEmptySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap the + button to schedule a new appointment'**
+  String get appointmentsEmptySubtitle;
+
+  /// No description provided for @appointmentsUnknownPatient.
+  ///
+  /// In en, this message translates to:
+  /// **'Unknown Patient'**
+  String get appointmentsUnknownPatient;
+
+  /// No description provided for @appointmentsActionConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm'**
+  String get appointmentsActionConfirm;
+
+  /// No description provided for @appointmentsActionEdit.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit'**
+  String get appointmentsActionEdit;
+
+  /// No description provided for @appointmentsActionReschedule.
+  ///
+  /// In en, this message translates to:
+  /// **'Reschedule'**
+  String get appointmentsActionReschedule;
+
+  /// No description provided for @appointmentsActionStart.
+  ///
+  /// In en, this message translates to:
+  /// **'Start Appointment'**
+  String get appointmentsActionStart;
+
+  /// No description provided for @appointmentsActionComplete.
+  ///
+  /// In en, this message translates to:
+  /// **'Complete'**
+  String get appointmentsActionComplete;
+
+  /// No description provided for @appointmentsNewButton.
+  ///
+  /// In en, this message translates to:
+  /// **'New Appointment'**
+  String get appointmentsNewButton;
+
+  /// No description provided for @appointmentsSearchTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Search Appointments'**
+  String get appointmentsSearchTitle;
+
+  /// No description provided for @appointmentsSearchLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Search by patient name or reason'**
+  String get appointmentsSearchLabel;
+
+  /// No description provided for @appointmentsSearchButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Search'**
+  String get appointmentsSearchButton;
+
+  /// No description provided for @appointmentsLoadError.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to load appointments: {error}'**
+  String appointmentsLoadError(String error);
+
+  /// No description provided for @appointmentsSearchError.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to search appointments: {error}'**
+  String appointmentsSearchError(String error);
+
+  /// No description provided for @appointmentsConfirmSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Appointment confirmed'**
+  String get appointmentsConfirmSuccess;
+
+  /// No description provided for @appointmentsCancelSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Appointment cancelled'**
+  String get appointmentsCancelSuccess;
+
+  /// No description provided for @appointmentsActionError.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to {action} appointment: {error}'**
+  String appointmentsActionError(String action, String error);
+
+  /// No description provided for @appointmentsRescheduleTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Reschedule Appointment'**
+  String get appointmentsRescheduleTitle;
+
+  /// No description provided for @appointmentsRescheduleDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Date: {date}'**
+  String appointmentsRescheduleDate(String date);
+
+  /// No description provided for @appointmentsRescheduleTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Time: {time}'**
+  String appointmentsRescheduleTime(String time);
+
+  /// No description provided for @appointmentsRescheduleSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Appointment rescheduled'**
+  String get appointmentsRescheduleSuccess;
+
+  /// No description provided for @appointmentsRescheduleError.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to reschedule: {error}'**
+  String appointmentsRescheduleError(String error);
+
+  /// No description provided for @appointmentsRescheduleButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Reschedule'**
+  String get appointmentsRescheduleButton;
+
+  /// No description provided for @appointmentsDeleteTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete Appointment'**
+  String get appointmentsDeleteTitle;
+
+  /// No description provided for @appointmentsDeleteMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to delete this appointment? This action cannot be undone.'**
+  String get appointmentsDeleteMessage;
+
+  /// No description provided for @appointmentsDeleteSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Appointment deleted'**
+  String get appointmentsDeleteSuccess;
+
+  /// No description provided for @appointmentsDeleteError.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to delete appointment: {error}'**
+  String appointmentsDeleteError(String error);
+
+  /// No description provided for @appointmentsDetailTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Appointment Details'**
+  String get appointmentsDetailTitle;
+
+  /// No description provided for @appointmentsStatusUpdated.
+  ///
+  /// In en, this message translates to:
+  /// **'Appointment status updated to {status}'**
+  String appointmentsStatusUpdated(String status);
+
+  /// No description provided for @appointmentsStatusUpdateError.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to update status: {error}'**
+  String appointmentsStatusUpdateError(String error);
+
+  /// No description provided for @appointmentsIdLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'ID: {id}...'**
+  String appointmentsIdLabel(String id);
+
+  /// No description provided for @appointmentsPatientInformation.
+  ///
+  /// In en, this message translates to:
+  /// **'Patient Information'**
+  String get appointmentsPatientInformation;
+
+  /// No description provided for @appointmentsFieldName.
+  ///
+  /// In en, this message translates to:
+  /// **'Name'**
+  String get appointmentsFieldName;
+
+  /// No description provided for @appointmentsFieldPhone.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone'**
+  String get appointmentsFieldPhone;
+
+  /// No description provided for @appointmentsFieldAge.
+  ///
+  /// In en, this message translates to:
+  /// **'Age'**
+  String get appointmentsFieldAge;
+
+  /// No description provided for @appointmentsAgeValue.
+  ///
+  /// In en, this message translates to:
+  /// **'{age} years old'**
+  String appointmentsAgeValue(Object age);
+
+  /// No description provided for @appointmentsInformation.
+  ///
+  /// In en, this message translates to:
+  /// **'Appointment Information'**
+  String get appointmentsInformation;
+
+  /// No description provided for @appointmentsFieldReason.
+  ///
+  /// In en, this message translates to:
+  /// **'Reason'**
+  String get appointmentsFieldReason;
+
+  /// No description provided for @appointmentsFieldDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Date'**
+  String get appointmentsFieldDate;
+
+  /// No description provided for @appointmentsFieldTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Time'**
+  String get appointmentsFieldTime;
+
+  /// No description provided for @appointmentsFieldDuration.
+  ///
+  /// In en, this message translates to:
+  /// **'Duration'**
+  String get appointmentsFieldDuration;
+
+  /// No description provided for @appointmentsDurationValue.
+  ///
+  /// In en, this message translates to:
+  /// **'{minutes} minutes'**
+  String appointmentsDurationValue(num minutes);
+
+  /// No description provided for @appointmentsTimestamps.
+  ///
+  /// In en, this message translates to:
+  /// **'Timestamps'**
+  String get appointmentsTimestamps;
+
+  /// No description provided for @appointmentsFieldCreated.
+  ///
+  /// In en, this message translates to:
+  /// **'Created'**
+  String get appointmentsFieldCreated;
+
+  /// No description provided for @appointmentsFieldUpdated.
+  ///
+  /// In en, this message translates to:
+  /// **'Last Updated'**
+  String get appointmentsFieldUpdated;
+
+  /// No description provided for @appointmentsFormNewTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'New Appointment'**
+  String get appointmentsFormNewTitle;
+
+  /// No description provided for @appointmentsFormEditTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Appointment'**
+  String get appointmentsFormEditTitle;
+
+  /// No description provided for @commonSave.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get commonSave;
+
+  /// No description provided for @appointmentsSelectPatientLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Select Patient'**
+  String get appointmentsSelectPatientLabel;
+
+  /// No description provided for @appointmentsSelectPatientError.
+  ///
+  /// In en, this message translates to:
+  /// **'Please select a patient'**
+  String get appointmentsSelectPatientError;
+
+  /// No description provided for @appointmentsReasonLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Reason for Visit'**
+  String get appointmentsReasonLabel;
+
+  /// No description provided for @appointmentsReasonError.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a reason for the visit'**
+  String get appointmentsReasonError;
+
+  /// No description provided for @appointmentsStatusLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Status'**
+  String get appointmentsStatusLabel;
+
+  /// No description provided for @appointmentsStartTimeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Start Time'**
+  String get appointmentsStartTimeLabel;
+
+  /// No description provided for @appointmentsEndTimeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'End Time'**
+  String get appointmentsEndTimeLabel;
+
+  /// No description provided for @appointmentsCreateButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Create Appointment'**
+  String get appointmentsCreateButton;
+
+  /// No description provided for @appointmentsUpdateButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Update Appointment'**
+  String get appointmentsUpdateButton;
+
+  /// No description provided for @appointmentsCreateSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Appointment created successfully'**
+  String get appointmentsCreateSuccess;
+
+  /// No description provided for @appointmentsUpdateSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Appointment updated successfully'**
+  String get appointmentsUpdateSuccess;
+
+  /// No description provided for @appointmentsSaveError.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to save appointment: {error}'**
+  String appointmentsSaveError(String error);
+
+  /// No description provided for @appointmentsEndTimeError.
+  ///
+  /// In en, this message translates to:
+  /// **'End time must be after start time'**
+  String get appointmentsEndTimeError;
+
+  /// No description provided for @appointmentsLoadPatientsError.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to load patients: {error}'**
+  String appointmentsLoadPatientsError(String error);
+
+  /// No description provided for @appointmentsLoadPatientError.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to load patient: {error}'**
+  String appointmentsLoadPatientError(String error);
+
   /// No description provided for @encountersCardTitle.
   ///
   /// In en, this message translates to:

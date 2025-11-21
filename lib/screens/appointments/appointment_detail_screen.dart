@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:flmhaiti_fall25team/localization/l10n_extension.dart';
 import 'package:flmhaiti_fall25team/models/appointment.dart';
 import 'package:flmhaiti_fall25team/models/patient.dart';
 import 'package:flmhaiti_fall25team/services/appointment_service.dart';
@@ -48,17 +49,18 @@ class _AppointmentDetailScreenState extends State<AppointmentDetailScreen> {
   }
 
   String _getStatusLabel(AppointmentStatus status) {
+    final l10n = context.l10n;
     switch (status) {
       case AppointmentStatus.scheduled:
-        return 'Scheduled';
+        return l10n.appointmentsStatusScheduled;
       case AppointmentStatus.confirmed:
-        return 'Confirmed';
+        return l10n.appointmentsStatusConfirmed;
       case AppointmentStatus.inProgress:
-        return 'In Progress';
+        return l10n.appointmentsStatusInProgress;
       case AppointmentStatus.completed:
-        return 'Completed';
+        return l10n.appointmentsStatusCompleted;
       case AppointmentStatus.cancelled:
-        return 'Cancelled';
+        return l10n.appointmentsStatusCancelled;
     }
   }
 
@@ -80,14 +82,14 @@ class _AppointmentDetailScreenState extends State<AppointmentDetailScreen> {
       
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Appointment status updated to ${_getStatusLabel(newStatus)}')),
+          SnackBar(content: Text(context.l10n.appointmentsStatusUpdated(_getStatusLabel(newStatus)))),
         );
       }
     } catch (e) {
       setState(() => _isLoading = false);
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Failed to update status: $e')),
+          SnackBar(content: Text(context.l10n.appointmentsStatusUpdateError('$e'))),
         );
       }
     }
@@ -116,12 +118,13 @@ class _AppointmentDetailScreenState extends State<AppointmentDetailScreen> {
       context: context,
       builder: (context) => StatefulBuilder(
         builder: (context, setState) => AlertDialog(
-          title: const Text('Reschedule Appointment'),
+          title: Text(context.l10n.appointmentsRescheduleTitle),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               ListTile(
-                title: Text('Date: ${DateFormat('MMM dd, yyyy').format(selectedDate)}'),
+                title: Text(context.l10n
+                    .appointmentsRescheduleDate(DateFormat('MMM dd, yyyy').format(selectedDate))),
                 trailing: const Icon(Icons.calendar_today),
                 onTap: () async {
                   final date = await showDatePicker(
@@ -136,7 +139,8 @@ class _AppointmentDetailScreenState extends State<AppointmentDetailScreen> {
                 },
               ),
               ListTile(
-                title: Text('Time: ${selectedTime.format(context)}'),
+                title: Text(context.l10n
+                    .appointmentsRescheduleTime(selectedTime.format(context))),
                 trailing: const Icon(Icons.access_time),
                 onTap: () async {
                   final time = await showTimePicker(
@@ -153,7 +157,7 @@ class _AppointmentDetailScreenState extends State<AppointmentDetailScreen> {
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context),
-              child: const Text('Cancel'),
+              child: Text(context.l10n.commonCancel),
             ),
             ElevatedButton(
               onPressed: () async {
@@ -177,22 +181,24 @@ class _AppointmentDetailScreenState extends State<AppointmentDetailScreen> {
                   Navigator.pop(context);
                   setState(() => _appointment = updatedAppointment);
                   widget.onUpdated();
-                  
+
                   if (mounted) {
                     ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('Appointment rescheduled')),
+                      SnackBar(content: Text(context.l10n.appointmentsRescheduleSuccess)),
                     );
                   }
                 } catch (e) {
                   Navigator.pop(context);
                   if (mounted) {
                     ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text('Failed to reschedule: $e')),
+                      SnackBar(
+                          content: Text(context.l10n
+                              .appointmentsRescheduleError('$e'))),
                     );
                   }
                 }
               },
-              child: const Text('Reschedule'),
+              child: Text(context.l10n.appointmentsRescheduleButton),
             ),
           ],
         ),
@@ -205,10 +211,11 @@ class _AppointmentDetailScreenState extends State<AppointmentDetailScreen> {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
     final statusColor = _getStatusColor(_appointment.status, colorScheme);
+    final l10n = context.l10n;
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Appointment Details'),
+        title: Text(l10n.appointmentsDetailTitle),
         actions: [
           IconButton(
             icon: const Icon(Icons.edit),
@@ -236,16 +243,16 @@ class _AppointmentDetailScreenState extends State<AppointmentDetailScreen> {
             },
             itemBuilder: (context) => [
               if (_appointment.status == AppointmentStatus.scheduled)
-                const PopupMenuItem(value: 'confirm', child: Text('Confirm')),
+                PopupMenuItem(value: 'confirm', child: Text(l10n.appointmentsActionConfirm)),
               if (_appointment.status == AppointmentStatus.confirmed)
-                const PopupMenuItem(value: 'start', child: Text('Start Appointment')),
+                PopupMenuItem(value: 'start', child: Text(l10n.appointmentsActionStart)),
               if (_appointment.status == AppointmentStatus.inProgress)
-                const PopupMenuItem(value: 'complete', child: Text('Complete')),
-              if (_appointment.status != AppointmentStatus.cancelled && 
+                PopupMenuItem(value: 'complete', child: Text(l10n.appointmentsActionComplete)),
+              if (_appointment.status != AppointmentStatus.cancelled &&
                   _appointment.status != AppointmentStatus.completed)
-                const PopupMenuItem(value: 'reschedule', child: Text('Reschedule')),
+                PopupMenuItem(value: 'reschedule', child: Text(l10n.appointmentsActionReschedule)),
               if (_appointment.status != AppointmentStatus.cancelled)
-                const PopupMenuItem(value: 'cancel', child: Text('Cancel')),
+                PopupMenuItem(value: 'cancel', child: Text(l10n.commonCancel)),
             ],
           ),
         ],
@@ -288,7 +295,7 @@ class _AppointmentDetailScreenState extends State<AppointmentDetailScreen> {
                         ),
                         const Spacer(),
                         Text(
-                          'ID: ${_appointment.id.substring(0, 8)}...',
+                          l10n.appointmentsIdLabel(_appointment.id.substring(0, 8)),
                           style: theme.textTheme.bodySmall?.copyWith(
                             color: colorScheme.onSurface.withValues(alpha: 0.6),
                           ),
@@ -308,32 +315,32 @@ class _AppointmentDetailScreenState extends State<AppointmentDetailScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Patient Information',
+                          l10n.appointmentsPatientInformation,
                           style: theme.textTheme.titleMedium?.copyWith(
                             fontWeight: FontWeight.bold,
                           ),
                         ),
                         const SizedBox(height: 16),
-                        _buildInfoRow(
-                          Icons.person,
-                          'Name',
-                          widget.patient?.name ?? 'Unknown Patient',
-                        ),
-                        if (widget.patient != null) ...[
-                          const SizedBox(height: 12),
                           _buildInfoRow(
-                            Icons.phone,
-                            'Phone',
-                            widget.patient!.phone,
+                            Icons.person,
+                            l10n.appointmentsFieldName,
+                            widget.patient?.name ?? l10n.appointmentsUnknownPatient,
                           ),
-                          const SizedBox(height: 12),
-                          _buildInfoRow(
-                            Icons.cake,
-                            'Age',
-                            '${widget.patient!.age} years old',
-                          ),
+                          if (widget.patient != null) ...[
+                            const SizedBox(height: 12),
+                            _buildInfoRow(
+                              Icons.phone,
+                              l10n.appointmentsFieldPhone,
+                              widget.patient!.phone,
+                            ),
+                            const SizedBox(height: 12),
+                            _buildInfoRow(
+                              Icons.cake,
+                              l10n.appointmentsFieldAge,
+                              l10n.appointmentsAgeValue(widget.patient!.age),
+                            ),
+                          ],
                         ],
-                      ],
                     ),
                   ),
                 ),
@@ -348,37 +355,38 @@ class _AppointmentDetailScreenState extends State<AppointmentDetailScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Appointment Information',
+                          l10n.appointmentsInformation,
                           style: theme.textTheme.titleMedium?.copyWith(
                             fontWeight: FontWeight.bold,
                           ),
                         ),
                         const SizedBox(height: 16),
-                        _buildInfoRow(
-                          Icons.medical_services,
-                          'Reason',
-                          _appointment.reason,
-                        ),
-                        const SizedBox(height: 12),
-                        _buildInfoRow(
-                          Icons.calendar_today,
-                          'Date',
-                          DateFormat('EEEE, MMM dd, yyyy').format(_appointment.startTime),
-                        ),
-                        const SizedBox(height: 12),
-                        _buildInfoRow(
-                          Icons.access_time,
-                          'Time',
-                          '${DateFormat('h:mm a').format(_appointment.startTime)} - ${DateFormat('h:mm a').format(_appointment.endTime ?? _appointment.startTime.add(const Duration(hours: 1)))}',
-                        ),
-                        const SizedBox(height: 12),
-                        _buildInfoRow(
-                          Icons.schedule,
-                          'Duration',
-                          '${(_appointment.endTime?.difference(_appointment.startTime) ?? const Duration(hours: 1)).inMinutes} minutes',
-                        ),
-                      ],
-                    ),
+                          _buildInfoRow(
+                            Icons.medical_services,
+                            l10n.appointmentsFieldReason,
+                            _appointment.reason,
+                          ),
+                          const SizedBox(height: 12),
+                          _buildInfoRow(
+                            Icons.calendar_today,
+                            l10n.appointmentsFieldDate,
+                            DateFormat('EEEE, MMM dd, yyyy').format(_appointment.startTime),
+                          ),
+                          const SizedBox(height: 12),
+                          _buildInfoRow(
+                            Icons.access_time,
+                            l10n.appointmentsFieldTime,
+                            '${DateFormat('h:mm a').format(_appointment.startTime)} - ${DateFormat('h:mm a').format(_appointment.endTime ?? _appointment.startTime.add(const Duration(hours: 1)))}',
+                          ),
+                          const SizedBox(height: 12),
+                          _buildInfoRow(
+                            Icons.schedule,
+                            l10n.appointmentsFieldDuration,
+                            l10n.appointmentsDurationValue(
+                                (_appointment.endTime?.difference(_appointment.startTime) ?? const Duration(hours: 1)).inMinutes),
+                          ),
+                        ],
+                      ),
                   ),
                 ),
 
@@ -392,23 +400,23 @@ class _AppointmentDetailScreenState extends State<AppointmentDetailScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Timestamps',
+                          l10n.appointmentsTimestamps,
                           style: theme.textTheme.titleMedium?.copyWith(
                             fontWeight: FontWeight.bold,
                           ),
                         ),
                         const SizedBox(height: 16),
-                        _buildInfoRow(
-                          Icons.add_circle_outline,
-                          'Created',
-                          DateFormat('MMM dd, yyyy h:mm a').format(_appointment.createdAt),
-                        ),
-                        const SizedBox(height: 12),
-                        _buildInfoRow(
-                          Icons.update,
-                          'Last Updated',
-                          DateFormat('MMM dd, yyyy h:mm a').format(_appointment.updatedAt),
-                        ),
+                          _buildInfoRow(
+                            Icons.add_circle_outline,
+                            l10n.appointmentsFieldCreated,
+                            DateFormat('MMM dd, yyyy h:mm a').format(_appointment.createdAt),
+                          ),
+                          const SizedBox(height: 12),
+                          _buildInfoRow(
+                            Icons.update,
+                            l10n.appointmentsFieldUpdated,
+                            DateFormat('MMM dd, yyyy h:mm a').format(_appointment.updatedAt),
+                          ),
                       ],
                     ),
                   ),

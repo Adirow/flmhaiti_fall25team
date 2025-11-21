@@ -94,6 +94,244 @@ class AppLocalizationsEn extends AppLocalizations {
   String get appointmentsCardSubtitle => 'Schedule & manage';
 
   @override
+  String get appointmentsStatusScheduled => 'Scheduled';
+
+  @override
+  String get appointmentsStatusConfirmed => 'Confirmed';
+
+  @override
+  String get appointmentsStatusInProgress => 'In Progress';
+
+  @override
+  String get appointmentsStatusCompleted => 'Completed';
+
+  @override
+  String get appointmentsStatusCancelled => 'Cancelled';
+
+  @override
+  String get appointmentsFilterAll => 'All Appointments';
+
+  @override
+  String get appointmentsEmptyTitle => 'No appointments found';
+
+  @override
+  String get appointmentsEmptySubtitle => 'Tap the + button to schedule a new appointment';
+
+  @override
+  String get appointmentsUnknownPatient => 'Unknown Patient';
+
+  @override
+  String get appointmentsActionConfirm => 'Confirm';
+
+  @override
+  String get appointmentsActionEdit => 'Edit';
+
+  @override
+  String get appointmentsActionReschedule => 'Reschedule';
+
+  @override
+  String get appointmentsActionStart => 'Start Appointment';
+
+  @override
+  String get appointmentsActionComplete => 'Complete';
+
+  @override
+  String get appointmentsNewButton => 'New Appointment';
+
+  @override
+  String get appointmentsSearchTitle => 'Search Appointments';
+
+  @override
+  String get appointmentsSearchLabel => 'Search by patient name or reason';
+
+  @override
+  String get appointmentsSearchButton => 'Search';
+
+  @override
+  String appointmentsLoadError(String error) {
+    return 'Failed to load appointments: $error';
+  }
+
+  @override
+  String appointmentsSearchError(String error) {
+    return 'Failed to search appointments: $error';
+  }
+
+  @override
+  String get appointmentsConfirmSuccess => 'Appointment confirmed';
+
+  @override
+  String get appointmentsCancelSuccess => 'Appointment cancelled';
+
+  @override
+  String appointmentsActionError(String action, String error) {
+    return 'Failed to $action appointment: $error';
+  }
+
+  @override
+  String get appointmentsRescheduleTitle => 'Reschedule Appointment';
+
+  @override
+  String appointmentsRescheduleDate(String date) {
+    return 'Date: $date';
+  }
+
+  @override
+  String appointmentsRescheduleTime(String time) {
+    return 'Time: $time';
+  }
+
+  @override
+  String get appointmentsRescheduleSuccess => 'Appointment rescheduled';
+
+  @override
+  String appointmentsRescheduleError(String error) {
+    return 'Failed to reschedule: $error';
+  }
+
+  @override
+  String get appointmentsRescheduleButton => 'Reschedule';
+
+  @override
+  String get appointmentsDeleteTitle => 'Delete Appointment';
+
+  @override
+  String get appointmentsDeleteMessage =>
+      'Are you sure you want to delete this appointment? This action cannot be undone.';
+
+  @override
+  String get appointmentsDeleteSuccess => 'Appointment deleted';
+
+  @override
+  String appointmentsDeleteError(String error) {
+    return 'Failed to delete appointment: $error';
+  }
+
+  @override
+  String get appointmentsDetailTitle => 'Appointment Details';
+
+  @override
+  String appointmentsStatusUpdated(String status) {
+    return 'Appointment status updated to $status';
+  }
+
+  @override
+  String appointmentsStatusUpdateError(String error) {
+    return 'Failed to update status: $error';
+  }
+
+  @override
+  String appointmentsIdLabel(String id) {
+    return 'ID: $id...';
+  }
+
+  @override
+  String get appointmentsPatientInformation => 'Patient Information';
+
+  @override
+  String get appointmentsFieldName => 'Name';
+
+  @override
+  String get appointmentsFieldPhone => 'Phone';
+
+  @override
+  String get appointmentsFieldAge => 'Age';
+
+  @override
+  String appointmentsAgeValue(Object age) {
+    return '$age years old';
+  }
+
+  @override
+  String get appointmentsInformation => 'Appointment Information';
+
+  @override
+  String get appointmentsFieldReason => 'Reason';
+
+  @override
+  String get appointmentsFieldDate => 'Date';
+
+  @override
+  String get appointmentsFieldTime => 'Time';
+
+  @override
+  String get appointmentsFieldDuration => 'Duration';
+
+  @override
+  String appointmentsDurationValue(num minutes) {
+    return '$minutes minutes';
+  }
+
+  @override
+  String get appointmentsTimestamps => 'Timestamps';
+
+  @override
+  String get appointmentsFieldCreated => 'Created';
+
+  @override
+  String get appointmentsFieldUpdated => 'Last Updated';
+
+  @override
+  String get appointmentsFormNewTitle => 'New Appointment';
+
+  @override
+  String get appointmentsFormEditTitle => 'Edit Appointment';
+
+  @override
+  String get commonSave => 'Save';
+
+  @override
+  String get appointmentsSelectPatientLabel => 'Select Patient';
+
+  @override
+  String get appointmentsSelectPatientError => 'Please select a patient';
+
+  @override
+  String get appointmentsReasonLabel => 'Reason for Visit';
+
+  @override
+  String get appointmentsReasonError => 'Please enter a reason for the visit';
+
+  @override
+  String get appointmentsStatusLabel => 'Status';
+
+  @override
+  String get appointmentsStartTimeLabel => 'Start Time';
+
+  @override
+  String get appointmentsEndTimeLabel => 'End Time';
+
+  @override
+  String get appointmentsCreateButton => 'Create Appointment';
+
+  @override
+  String get appointmentsUpdateButton => 'Update Appointment';
+
+  @override
+  String get appointmentsCreateSuccess => 'Appointment created successfully';
+
+  @override
+  String get appointmentsUpdateSuccess => 'Appointment updated successfully';
+
+  @override
+  String appointmentsSaveError(String error) {
+    return 'Failed to save appointment: $error';
+  }
+
+  @override
+  String get appointmentsEndTimeError => 'End time must be after start time';
+
+  @override
+  String appointmentsLoadPatientsError(String error) {
+    return 'Failed to load patients: $error';
+  }
+
+  @override
+  String appointmentsLoadPatientError(String error) {
+    return 'Failed to load patient: $error';
+  }
+
+  @override
   String get encountersCardTitle => 'Encounters';
 
   @override

@@ -96,6 +96,245 @@ class AppLocalizationsFr extends AppLocalizations {
   String get appointmentsCardSubtitle => 'Planifier et gérer';
 
   @override
+  String get appointmentsStatusScheduled => 'Planifié';
+
+  @override
+  String get appointmentsStatusConfirmed => 'Confirmé';
+
+  @override
+  String get appointmentsStatusInProgress => 'En cours';
+
+  @override
+  String get appointmentsStatusCompleted => 'Terminé';
+
+  @override
+  String get appointmentsStatusCancelled => 'Annulé';
+
+  @override
+  String get appointmentsFilterAll => 'Tous les rendez-vous';
+
+  @override
+  String get appointmentsEmptyTitle => 'Aucun rendez-vous trouvé';
+
+  @override
+  String get appointmentsEmptySubtitle =>
+      'Appuyez sur le bouton + pour planifier un nouveau rendez-vous';
+
+  @override
+  String get appointmentsUnknownPatient => 'Patient inconnu';
+
+  @override
+  String get appointmentsActionConfirm => 'Confirmer';
+
+  @override
+  String get appointmentsActionEdit => 'Modifier';
+
+  @override
+  String get appointmentsActionReschedule => 'Reprogrammer';
+
+  @override
+  String get appointmentsActionStart => 'Commencer le rendez-vous';
+
+  @override
+  String get appointmentsActionComplete => 'Terminer';
+
+  @override
+  String get appointmentsNewButton => 'Nouveau rendez-vous';
+
+  @override
+  String get appointmentsSearchTitle => 'Rechercher des rendez-vous';
+
+  @override
+  String get appointmentsSearchLabel => 'Rechercher par nom de patient ou motif';
+
+  @override
+  String get appointmentsSearchButton => 'Rechercher';
+
+  @override
+  String appointmentsLoadError(String error) {
+    return 'Échec du chargement des rendez-vous : $error';
+  }
+
+  @override
+  String appointmentsSearchError(String error) {
+    return 'Échec de la recherche de rendez-vous : $error';
+  }
+
+  @override
+  String get appointmentsConfirmSuccess => 'Rendez-vous confirmé';
+
+  @override
+  String get appointmentsCancelSuccess => 'Rendez-vous annulé';
+
+  @override
+  String appointmentsActionError(String action, String error) {
+    return 'Échec de $action du rendez-vous : $error';
+  }
+
+  @override
+  String get appointmentsRescheduleTitle => 'Reprogrammer le rendez-vous';
+
+  @override
+  String appointmentsRescheduleDate(String date) {
+    return 'Date : $date';
+  }
+
+  @override
+  String appointmentsRescheduleTime(String time) {
+    return 'Heure : $time';
+  }
+
+  @override
+  String get appointmentsRescheduleSuccess => 'Rendez-vous reprogrammé';
+
+  @override
+  String appointmentsRescheduleError(String error) {
+    return 'Échec de la reprogrammation : $error';
+  }
+
+  @override
+  String get appointmentsRescheduleButton => 'Reprogrammer';
+
+  @override
+  String get appointmentsDeleteTitle => 'Supprimer le rendez-vous';
+
+  @override
+  String get appointmentsDeleteMessage =>
+      'Êtes-vous sûr de vouloir supprimer ce rendez-vous ? Cette action est irréversible.';
+
+  @override
+  String get appointmentsDeleteSuccess => 'Rendez-vous supprimé';
+
+  @override
+  String appointmentsDeleteError(String error) {
+    return 'Échec de la suppression du rendez-vous : $error';
+  }
+
+  @override
+  String get appointmentsDetailTitle => 'Détails du rendez-vous';
+
+  @override
+  String appointmentsStatusUpdated(String status) {
+    return 'Statut du rendez-vous mis à jour vers $status';
+  }
+
+  @override
+  String appointmentsStatusUpdateError(String error) {
+    return 'Échec de la mise à jour du statut : $error';
+  }
+
+  @override
+  String appointmentsIdLabel(String id) {
+    return 'ID : $id...';
+  }
+
+  @override
+  String get appointmentsPatientInformation => 'Informations sur le patient';
+
+  @override
+  String get appointmentsFieldName => 'Nom';
+
+  @override
+  String get appointmentsFieldPhone => 'Téléphone';
+
+  @override
+  String get appointmentsFieldAge => 'Âge';
+
+  @override
+  String appointmentsAgeValue(Object age) {
+    return '$age ans';
+  }
+
+  @override
+  String get appointmentsInformation => 'Informations sur le rendez-vous';
+
+  @override
+  String get appointmentsFieldReason => 'Motif';
+
+  @override
+  String get appointmentsFieldDate => 'Date';
+
+  @override
+  String get appointmentsFieldTime => 'Heure';
+
+  @override
+  String get appointmentsFieldDuration => 'Durée';
+
+  @override
+  String appointmentsDurationValue(num minutes) {
+    return '$minutes minutes';
+  }
+
+  @override
+  String get appointmentsTimestamps => 'Horodatages';
+
+  @override
+  String get appointmentsFieldCreated => 'Créé';
+
+  @override
+  String get appointmentsFieldUpdated => 'Dernière mise à jour';
+
+  @override
+  String get appointmentsFormNewTitle => 'Nouveau rendez-vous';
+
+  @override
+  String get appointmentsFormEditTitle => 'Modifier le rendez-vous';
+
+  @override
+  String get commonSave => 'Enregistrer';
+
+  @override
+  String get appointmentsSelectPatientLabel => 'Sélectionner un patient';
+
+  @override
+  String get appointmentsSelectPatientError => 'Veuillez sélectionner un patient';
+
+  @override
+  String get appointmentsReasonLabel => 'Motif de la visite';
+
+  @override
+  String get appointmentsReasonError => 'Veuillez saisir le motif de la visite';
+
+  @override
+  String get appointmentsStatusLabel => 'Statut';
+
+  @override
+  String get appointmentsStartTimeLabel => 'Heure de début';
+
+  @override
+  String get appointmentsEndTimeLabel => 'Heure de fin';
+
+  @override
+  String get appointmentsCreateButton => 'Créer le rendez-vous';
+
+  @override
+  String get appointmentsUpdateButton => 'Mettre à jour le rendez-vous';
+
+  @override
+  String get appointmentsCreateSuccess => 'Rendez-vous créé avec succès';
+
+  @override
+  String get appointmentsUpdateSuccess => 'Rendez-vous mis à jour avec succès';
+
+  @override
+  String appointmentsSaveError(String error) {
+    return "Échec de l'enregistrement du rendez-vous : $error";
+  }
+
+  @override
+  String get appointmentsEndTimeError => "L'heure de fin doit être après l'heure de début";
+
+  @override
+  String appointmentsLoadPatientsError(String error) {
+    return 'Échec du chargement des patients : $error';
+  }
+
+  @override
+  String appointmentsLoadPatientError(String error) {
+    return 'Échec du chargement du patient : $error';
+  }
+
+  @override
   String get encountersCardTitle => 'Consultations';
 
   @override
