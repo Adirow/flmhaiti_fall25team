@@ -94,6 +94,245 @@ class AppLocalizationsHt extends AppLocalizations {
   String get appointmentsCardSubtitle => 'Planifye ak jere';
 
   @override
+  String get appointmentsStatusScheduled => 'Pwograme';
+
+  @override
+  String get appointmentsStatusConfirmed => 'Konfime';
+
+  @override
+  String get appointmentsStatusInProgress => 'An pwogrè';
+
+  @override
+  String get appointmentsStatusCompleted => 'Fini';
+
+  @override
+  String get appointmentsStatusCancelled => 'Anile';
+
+  @override
+  String get appointmentsFilterAll => 'Tout randevou yo';
+
+  @override
+  String get appointmentsEmptyTitle => 'Pa gen okenn randevou';
+
+  @override
+  String get appointmentsEmptySubtitle =>
+      'Peze bouton + pou pwograme yon nouvo randevou';
+
+  @override
+  String get appointmentsUnknownPatient => 'Pasyan enkoni';
+
+  @override
+  String get appointmentsActionConfirm => 'Konfime';
+
+  @override
+  String get appointmentsActionEdit => 'Modifye';
+
+  @override
+  String get appointmentsActionReschedule => 'Repwograme';
+
+  @override
+  String get appointmentsActionStart => 'Kòmanse randevou';
+
+  @override
+  String get appointmentsActionComplete => 'Fini';
+
+  @override
+  String get appointmentsNewButton => 'Nouvo randevou';
+
+  @override
+  String get appointmentsSearchTitle => 'Chèche randevou';
+
+  @override
+  String get appointmentsSearchLabel => 'Chèche pa non pasyan oswa rezon';
+
+  @override
+  String get appointmentsSearchButton => 'Chèche';
+
+  @override
+  String appointmentsLoadError(String error) {
+    return 'Echwe pou chaje randevou yo : $error';
+  }
+
+  @override
+  String appointmentsSearchError(String error) {
+    return 'Echwe pou chèche randevou yo : $error';
+  }
+
+  @override
+  String get appointmentsConfirmSuccess => 'Randevou konfime';
+
+  @override
+  String get appointmentsCancelSuccess => 'Randevou anile';
+
+  @override
+  String appointmentsActionError(String action, String error) {
+    return 'Echwe pou $action randevou a : $error';
+  }
+
+  @override
+  String get appointmentsRescheduleTitle => 'Repwograme randevou a';
+
+  @override
+  String appointmentsRescheduleDate(String date) {
+    return 'Dat : $date';
+  }
+
+  @override
+  String appointmentsRescheduleTime(String time) {
+    return 'Lè : $time';
+  }
+
+  @override
+  String get appointmentsRescheduleSuccess => 'Randevou replanifye';
+
+  @override
+  String appointmentsRescheduleError(String error) {
+    return 'Echwe pou replanifye : $error';
+  }
+
+  @override
+  String get appointmentsRescheduleButton => 'Repwograme';
+
+  @override
+  String get appointmentsDeleteTitle => 'Efase randevou a';
+
+  @override
+  String get appointmentsDeleteMessage =>
+      'Èske w sèten ou vle efase randevou sa a? Aksyon sa a pap ka defèt.';
+
+  @override
+  String get appointmentsDeleteSuccess => 'Randevou efase';
+
+  @override
+  String appointmentsDeleteError(String error) {
+    return 'Echwe pou efase randevou a : $error';
+  }
+
+  @override
+  String get appointmentsDetailTitle => 'Detay randevou';
+
+  @override
+  String appointmentsStatusUpdated(String status) {
+    return 'Estati randevou a mete ajou kòm $status';
+  }
+
+  @override
+  String appointmentsStatusUpdateError(String error) {
+    return 'Echwe pou mete ajou estati a : $error';
+  }
+
+  @override
+  String appointmentsIdLabel(String id) {
+    return 'ID : $id...';
+  }
+
+  @override
+  String get appointmentsPatientInformation => 'Enfòmasyon pasyan';
+
+  @override
+  String get appointmentsFieldName => 'Non';
+
+  @override
+  String get appointmentsFieldPhone => 'Telefòn';
+
+  @override
+  String get appointmentsFieldAge => 'Laj';
+
+  @override
+  String appointmentsAgeValue(Object age) {
+    return '$age an';
+  }
+
+  @override
+  String get appointmentsInformation => 'Enfòmasyon sou randevou';
+
+  @override
+  String get appointmentsFieldReason => 'Rezon';
+
+  @override
+  String get appointmentsFieldDate => 'Dat';
+
+  @override
+  String get appointmentsFieldTime => 'Lè';
+
+  @override
+  String get appointmentsFieldDuration => 'Dire';
+
+  @override
+  String appointmentsDurationValue(num minutes) {
+    return '$minutes minit';
+  }
+
+  @override
+  String get appointmentsTimestamps => 'Anrejistreman tan';
+
+  @override
+  String get appointmentsFieldCreated => 'Kreye';
+
+  @override
+  String get appointmentsFieldUpdated => 'Dènye aktyalizasyon';
+
+  @override
+  String get appointmentsFormNewTitle => 'Nouvo randevou';
+
+  @override
+  String get appointmentsFormEditTitle => 'Modifye randevou a';
+
+  @override
+  String get commonSave => 'Sove';
+
+  @override
+  String get appointmentsSelectPatientLabel => 'Chwazi yon pasyan';
+
+  @override
+  String get appointmentsSelectPatientError => 'Tanpri chwazi yon pasyan';
+
+  @override
+  String get appointmentsReasonLabel => 'Rezon vizit la';
+
+  @override
+  String get appointmentsReasonError => 'Tanpri antre rezon vizit la';
+
+  @override
+  String get appointmentsStatusLabel => 'Estati';
+
+  @override
+  String get appointmentsStartTimeLabel => 'Lè kòmanse';
+
+  @override
+  String get appointmentsEndTimeLabel => 'Lè fini';
+
+  @override
+  String get appointmentsCreateButton => 'Kreye randevou';
+
+  @override
+  String get appointmentsUpdateButton => 'Mete ajou randevou a';
+
+  @override
+  String get appointmentsCreateSuccess => 'Randevou kreye avèk siksè';
+
+  @override
+  String get appointmentsUpdateSuccess => 'Randevou mete ajou avèk siksè';
+
+  @override
+  String appointmentsSaveError(String error) {
+    return 'Echwe pou sove randevou a : $error';
+  }
+
+  @override
+  String get appointmentsEndTimeError => 'Lè fini an dwe apre lè kòmanse a';
+
+  @override
+  String appointmentsLoadPatientsError(String error) {
+    return 'Echwe pou chaje pasyan yo : $error';
+  }
+
+  @override
+  String appointmentsLoadPatientError(String error) {
+    return 'Echwe pou chaje pasyan an : $error';
+  }
+
+  @override
   String get encountersCardTitle => 'Vizit';
 
   @override
