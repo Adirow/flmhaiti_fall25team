@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:flmhaiti_fall25team/l10n/arb/l10n.dart';
 import 'package:flmhaiti_fall25team/localization/l10n_extension.dart';
 import 'package:flmhaiti_fall25team/models/appointment.dart';
 import 'package:flmhaiti_fall25team/models/patient.dart';
