@@ -22,6 +22,8 @@ class _AppointmentsScreenState extends State<AppointmentsScreen> {
   bool _isLoading = true;
   String _searchQuery = '';
   AppointmentStatus? _statusFilter;
+
+  AppLocalizations get l10n => context.l10n;
   
   final _appointmentService = AppointmentService();
   final _patientService = PatientService();
