@@ -23,7 +23,7 @@ class _AppointmentsScreenState extends State<AppointmentsScreen> {
   String _searchQuery = '';
   AppointmentStatus? _statusFilter;
 
-  get l10n => context.l10n;
+  AppLocalizations get l10n => context.l10n;
   
   final _appointmentService = AppointmentService();
   final _patientService = PatientService();
