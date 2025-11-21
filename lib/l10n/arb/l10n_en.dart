@@ -115,8 +115,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get appointmentsEmptyTitle => 'No appointments found';
 
   @override
-  String get appointmentsEmptySubtitle =>
-      'Tap the + button to schedule a new appointment';
+  String get appointmentsEmptySubtitle => 'Tap the + button to schedule a new appointment';
 
   @override
   String get appointmentsUnknownPatient => 'Unknown Patient';
@@ -149,12 +148,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get appointmentsSearchButton => 'Search';
 
   @override
-  String appointmentsLoadError(Object error) {
+  String appointmentsLoadError(String error) {
     return 'Failed to load appointments: $error';
   }
 
   @override
-  String appointmentsSearchError(Object error) {
+  String appointmentsSearchError(String error) {
     return 'Failed to search appointments: $error';
   }
 
@@ -165,7 +164,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get appointmentsCancelSuccess => 'Appointment cancelled';
 
   @override
-  String appointmentsActionError(Object action, Object error) {
+  String appointmentsActionError(String action, String error) {
     return 'Failed to $action appointment: $error';
   }
 
@@ -173,12 +172,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get appointmentsRescheduleTitle => 'Reschedule Appointment';
 
   @override
-  String appointmentsRescheduleDate(Object date) {
+  String appointmentsRescheduleDate(String date) {
     return 'Date: $date';
   }
 
   @override
-  String appointmentsRescheduleTime(Object time) {
+  String appointmentsRescheduleTime(String time) {
     return 'Time: $time';
   }
 
@@ -186,7 +185,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get appointmentsRescheduleSuccess => 'Appointment rescheduled';
 
   @override
-  String appointmentsRescheduleError(Object error) {
+  String appointmentsRescheduleError(String error) {
     return 'Failed to reschedule: $error';
   }
 
@@ -204,7 +203,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get appointmentsDeleteSuccess => 'Appointment deleted';
 
   @override
-  String appointmentsDeleteError(Object error) {
+  String appointmentsDeleteError(String error) {
     return 'Failed to delete appointment: $error';
   }
 
@@ -212,17 +211,17 @@ class AppLocalizationsEn extends AppLocalizations {
   String get appointmentsDetailTitle => 'Appointment Details';
 
   @override
-  String appointmentsStatusUpdated(Object status) {
+  String appointmentsStatusUpdated(String status) {
     return 'Appointment status updated to $status';
   }
 
   @override
-  String appointmentsStatusUpdateError(Object error) {
+  String appointmentsStatusUpdateError(String error) {
     return 'Failed to update status: $error';
   }
 
   @override
-  String appointmentsIdLabel(Object id) {
+  String appointmentsIdLabel(String id) {
     return 'ID: $id...';
   }
 
@@ -259,7 +258,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get appointmentsFieldDuration => 'Duration';
 
   @override
-  String appointmentsDurationValue(Object minutes) {
+  String appointmentsDurationValue(num minutes) {
     return '$minutes minutes';
   }
 
@@ -315,7 +314,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get appointmentsUpdateSuccess => 'Appointment updated successfully';
 
   @override
-  String appointmentsSaveError(Object error) {
+  String appointmentsSaveError(String error) {
     return 'Failed to save appointment: $error';
   }
 
@@ -323,12 +322,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get appointmentsEndTimeError => 'End time must be after start time';
 
   @override
-  String appointmentsLoadPatientsError(Object error) {
+  String appointmentsLoadPatientsError(String error) {
     return 'Failed to load patients: $error';
   }
 
   @override
-  String appointmentsLoadPatientError(Object error) {
+  String appointmentsLoadPatientError(String error) {
     return 'Failed to load patient: $error';
   }
 
