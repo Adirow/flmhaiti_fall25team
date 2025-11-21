@@ -4,6 +4,7 @@ import 'package:flmhaiti_fall25team/localization/l10n_extension.dart';
 import 'package:flmhaiti_fall25team/models/user_profile.dart';
 import 'package:flmhaiti_fall25team/screens/appointments/appointments_screen.dart';
 import 'package:flmhaiti_fall25team/screens/auth/login_screen.dart';
+import 'package:flmhaiti_fall25team/screens/billing/billing_screen.dart';
 import 'package:flmhaiti_fall25team/screens/encounters/encounter_screen.dart';
 import 'package:flmhaiti_fall25team/screens/forms/template_list_page.dart';
 import 'package:flmhaiti_fall25team/screens/patients/patient_list_screen.dart';
@@ -104,6 +105,16 @@ class DashboardScreen extends StatelessWidget {
                   onTap: () => Navigator.push(
                     context,
                     MaterialPageRoute(builder: (_) => const TemplateListPage()),
+                  ),
+                ),
+                _DashboardCard(
+                  title: 'Billing',
+                  subtitle: 'Invoices & payments',
+                  icon: Icons.receipt_long,
+                  color: const Color(0xFFEF6C00),
+                  onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (_) => const BillingScreen()),
                   ),
                 ),
                 _DashboardCard(
