@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:flmhaiti_fall25team/localization/l10n_extension.dart';
 import 'package:flmhaiti_fall25team/models/appointment.dart';
 import 'package:flmhaiti_fall25team/models/patient.dart';
 import 'package:flmhaiti_fall25team/services/appointment_service.dart';
@@ -21,6 +22,8 @@ class _AppointmentsScreenState extends State<AppointmentsScreen> {
   bool _isLoading = true;
   String _searchQuery = '';
   AppointmentStatus? _statusFilter;
+
+  get l10n => context.l10n;
   
   final _appointmentService = AppointmentService();
   final _patientService = PatientService();
@@ -62,7 +65,7 @@ class _AppointmentsScreenState extends State<AppointmentsScreen> {
       setState(() => _isLoading = false);
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Failed to load appointments: $e')),
+          SnackBar(content: Text(context.l10n.appointmentsLoadError('$e'))),
         );
       }
     }
@@ -97,7 +100,7 @@ class _AppointmentsScreenState extends State<AppointmentsScreen> {
       setState(() => _isLoading = false);
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Failed to search appointments: $e')),
+          SnackBar(content: Text(context.l10n.appointmentsSearchError('$e'))),
         );
       }
     }
@@ -119,17 +122,18 @@ class _AppointmentsScreenState extends State<AppointmentsScreen> {
   }
 
   String _getStatusLabel(AppointmentStatus status) {
+    final l10n = context.l10n;
     switch (status) {
       case AppointmentStatus.inProgress:
-        return 'In Progress';
+        return l10n.appointmentsStatusInProgress;
       case AppointmentStatus.scheduled:
-        return 'Scheduled';
+        return l10n.appointmentsStatusScheduled;
       case AppointmentStatus.confirmed:
-        return 'Confirmed';
+        return l10n.appointmentsStatusConfirmed;
       case AppointmentStatus.completed:
-        return 'Completed';
+        return l10n.appointmentsStatusCompleted;
       case AppointmentStatus.cancelled:
-        return 'Cancelled';
+        return l10n.appointmentsStatusCancelled;
     }
   }
   
@@ -147,11 +151,12 @@ class _AppointmentsScreenState extends State<AppointmentsScreen> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
+    final l10n = context.l10n;
 
     return Scaffold(
       backgroundColor: colorScheme.surface,
       appBar: AppBar(
-        title: const Text('Appointments'),
+        title: Text(l10n.appointmentsCardTitle),
         actions: [
           IconButton(
             icon: const Icon(Icons.search),
@@ -165,9 +170,9 @@ class _AppointmentsScreenState extends State<AppointmentsScreen> {
               });
             },
             itemBuilder: (context) => [
-              const PopupMenuItem(
+              PopupMenuItem(
                 value: null,
-                child: Text('All Appointments'),
+                child: Text(l10n.appointmentsFilterAll),
               ),
               ...AppointmentStatus.values.map((status) => PopupMenuItem(
                 value: status,
@@ -221,14 +226,14 @@ class _AppointmentsScreenState extends State<AppointmentsScreen> {
                             ),
                             const SizedBox(height: 16),
                             Text(
-                              'No appointments found',
+                              l10n.appointmentsEmptyTitle,
                               style: theme.textTheme.titleMedium?.copyWith(
                                 color: colorScheme.onSurface.withValues(alpha: 0.6),
                               ),
                             ),
                             const SizedBox(height: 8),
                             Text(
-                              'Tap the + button to schedule a new appointment',
+                              l10n.appointmentsEmptySubtitle,
                               style: theme.textTheme.bodyMedium?.copyWith(
                                 color: colorScheme.onSurface.withValues(alpha: 0.5),
                               ),
@@ -275,7 +280,7 @@ class _AppointmentsScreenState extends State<AppointmentsScreen> {
                                   ),
                                 ),
                                 title: Text(
-                                  patient?.name ?? 'Unknown Patient',
+                                  patient?.name ?? l10n.appointmentsUnknownPatient,
                                   style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w600),
                                 ),
                                 subtitle: Column(
@@ -314,12 +319,12 @@ class _AppointmentsScreenState extends State<AppointmentsScreen> {
                                   onSelected: (value) => _handleAppointmentAction(appointment, value),
                                   itemBuilder: (context) => [
                                     if (appointment.status == AppointmentStatus.scheduled)
-                                      const PopupMenuItem(value: 'confirm', child: Text('Confirm')),
-                                    const PopupMenuItem(value: 'edit', child: Text('Edit')),
-                                    const PopupMenuItem(value: 'reschedule', child: Text('Reschedule')),
+                                      PopupMenuItem(value: 'confirm', child: Text(l10n.appointmentsActionConfirm)),
+                                    PopupMenuItem(value: 'edit', child: Text(l10n.appointmentsActionEdit)),
+                                    PopupMenuItem(value: 'reschedule', child: Text(l10n.appointmentsActionReschedule)),
                                     if (appointment.status != AppointmentStatus.cancelled)
-                                      const PopupMenuItem(value: 'cancel', child: Text('Cancel')),
-                                    const PopupMenuItem(value: 'delete', child: Text('Delete')),
+                                      PopupMenuItem(value: 'cancel', child: Text(l10n.commonCancel)),
+                                    PopupMenuItem(value: 'delete', child: Text(l10n.commonDelete)),
                                   ],
                                 ),
                                 onTap: () => _showAppointmentDetails(appointment, patient),
@@ -336,7 +341,7 @@ class _AppointmentsScreenState extends State<AppointmentsScreen> {
         backgroundColor: colorScheme.primary,
         foregroundColor: colorScheme.onPrimary,
         icon: const Icon(Icons.add),
-        label: const Text('New Appointment'),
+        label: Text(l10n.appointmentsNewButton),
       ),
     );
   }
@@ -348,13 +353,13 @@ class _AppointmentsScreenState extends State<AppointmentsScreen> {
         final searchController = TextEditingController(text: _searchQuery);
         
         return AlertDialog(
-          title: const Text('Search Appointments'),
+          title: Text(l10n.appointmentsSearchTitle),
           content: TextField(
             controller: searchController,
-            decoration: const InputDecoration(
-              labelText: 'Search by patient name or reason',
-              border: OutlineInputBorder(),
-              prefixIcon: Icon(Icons.search),
+            decoration: InputDecoration(
+              labelText: l10n.appointmentsSearchLabel,
+              border: const OutlineInputBorder(),
+              prefixIcon: const Icon(Icons.search),
             ),
             autofocus: true,
             onSubmitted: (value) {
@@ -365,14 +370,14 @@ class _AppointmentsScreenState extends State<AppointmentsScreen> {
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context),
-              child: const Text('Cancel'),
+              child: Text(l10n.commonCancel),
             ),
             ElevatedButton(
               onPressed: () {
                 Navigator.pop(context);
                 _searchAppointments(searchController.text);
               },
-              child: const Text('Search'),
+              child: Text(l10n.appointmentsSearchButton),
             ),
           ],
         );
@@ -401,7 +406,7 @@ class _AppointmentsScreenState extends State<AppointmentsScreen> {
           _loadAppointments();
           if (mounted) {
             ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text('Appointment confirmed')),
+              SnackBar(content: Text(l10n.appointmentsConfirmSuccess)),
             );
           }
           break;
@@ -426,7 +431,7 @@ class _AppointmentsScreenState extends State<AppointmentsScreen> {
           _loadAppointments();
           if (mounted) {
             ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text('Appointment cancelled')),
+              SnackBar(content: Text(l10n.appointmentsCancelSuccess)),
             );
           }
           break;
@@ -437,7 +442,7 @@ class _AppointmentsScreenState extends State<AppointmentsScreen> {
     } catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Failed to $action appointment: $e')),
+          SnackBar(content: Text(l10n.appointmentsActionError(action, '$e'))),
         );
       }
     }
@@ -451,12 +456,13 @@ class _AppointmentsScreenState extends State<AppointmentsScreen> {
       context: context,
       builder: (context) => StatefulBuilder(
         builder: (context, setState) => AlertDialog(
-          title: const Text('Reschedule Appointment'),
+          title: Text(context.l10n.appointmentsRescheduleTitle),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               ListTile(
-                title: Text('Date: ${DateFormat('MMM dd, yyyy').format(selectedDate)}'),
+                title: Text(context.l10n
+                    .appointmentsRescheduleDate(DateFormat('MMM dd, yyyy').format(selectedDate))),
                 trailing: const Icon(Icons.calendar_today),
                 onTap: () async {
                   final date = await showDatePicker(
@@ -471,7 +477,8 @@ class _AppointmentsScreenState extends State<AppointmentsScreen> {
                 },
               ),
               ListTile(
-                title: Text('Time: ${selectedTime.format(context)}'),
+                title: Text(context.l10n
+                    .appointmentsRescheduleTime(selectedTime.format(context))),
                 trailing: const Icon(Icons.access_time),
                 onTap: () async {
                   final time = await showTimePicker(
@@ -488,7 +495,7 @@ class _AppointmentsScreenState extends State<AppointmentsScreen> {
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context),
-              child: const Text('Cancel'),
+              child: Text(context.l10n.commonCancel),
             ),
             ElevatedButton(
               onPressed: () async {
@@ -511,22 +518,24 @@ class _AppointmentsScreenState extends State<AppointmentsScreen> {
                   
                   Navigator.pop(context);
                   _loadAppointments();
-                  
+
                   if (mounted) {
                     ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('Appointment rescheduled')),
+                      SnackBar(content: Text(context.l10n.appointmentsRescheduleSuccess)),
                     );
                   }
                 } catch (e) {
                   Navigator.pop(context);
                   if (mounted) {
                     ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text('Failed to reschedule: $e')),
+                      SnackBar(
+                          content: Text(context.l10n
+                              .appointmentsRescheduleError('$e'))),
                     );
                   }
                 }
               },
-              child: const Text('Reschedule'),
+              child: Text(context.l10n.appointmentsRescheduleButton),
             ),
           ],
         ),
@@ -538,12 +547,12 @@ class _AppointmentsScreenState extends State<AppointmentsScreen> {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Delete Appointment'),
-        content: const Text('Are you sure you want to delete this appointment? This action cannot be undone.'),
+        title: Text(context.l10n.appointmentsDeleteTitle),
+        content: Text(context.l10n.appointmentsDeleteMessage),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: const Text('Cancel'),
+            child: Text(context.l10n.commonCancel),
           ),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
@@ -555,22 +564,22 @@ class _AppointmentsScreenState extends State<AppointmentsScreen> {
                 await _appointmentService.deleteAppointment(appointment.id);
                 Navigator.pop(context);
                 _loadAppointments();
-                
+
                 if (mounted) {
                   ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Appointment deleted')),
+                    SnackBar(content: Text(context.l10n.appointmentsDeleteSuccess)),
                   );
                 }
               } catch (e) {
                 Navigator.pop(context);
                 if (mounted) {
                   ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text('Failed to delete appointment: $e')),
+                    SnackBar(content: Text(context.l10n.appointmentsDeleteError('$e'))),
                   );
                 }
               }
             },
-            child: const Text('Delete'),
+            child: Text(context.l10n.commonDelete),
           ),
         ],
       ),
